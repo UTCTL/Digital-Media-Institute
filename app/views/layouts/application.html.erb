@@ -1,14 +1,36 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Dmtraining</title>
+  <title>Digital Media Training</title>
   <%= stylesheet_link_tag    "application" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="page" class="container_12">
+  <div id="user_links" class="grid_12">
+    <% if(signed_in?) %>
+      <%= link_to "Sign Out", signout_path, :method => :delete %>
+    <% else %>
+      <%= link_to "Sign In", signin_path %> | <%= link_to "Create Account", signup_path %>
+    <% end %>
+  </div>
+  <div id="header" class="grid_12"><h1>Digital Media Training</h1></div>
+  <div>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+  <% if content_for?(:content) %>
+    <%= yield(:content) %>
+  <% else %>
+    <div id="content" class="grid_12">
+      <%= yield %>
+    </div>
+  <% end %>
+  <div id="footer" class="grid_12"></div>
+</div>
 
-<%= yield %>
 
 </body>
 </html>

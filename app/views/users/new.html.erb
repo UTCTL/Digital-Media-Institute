@@ -1,0 +1,30 @@
+<h2>Create Account</h2>
+
+<%= form_for @user do |f| %>
+  <% if @user.errors.any? %>
+    <div class="error_messages">
+      <ul>
+        <% for message in @user.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="field">
+    <%= f.label :email, "Email" %>
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password, "Password" %>
+    <%= f.password_field :password %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :password_confirmation, "Password Confirmation" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="actions"><%= f.submit "Sign up", :disable_with => 'Signing up...' %></div>
+  
+<% end %>

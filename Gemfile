@@ -26,11 +26,13 @@ end
 
 group :test do
   gem 'rspec-rails', '~> 2.7'
+  gem 'factory_girl_rails', "~>1.2"
   gem 'webrat'
+  gem 'spork'
 end
 
 # To use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
+gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Use unicorn as the web server
 # gem 'unicorn'
