@@ -1,6 +1,6 @@
 Dmtraining::Application.routes.draw do
 
-  resources :skills
+  resources :skills,   :only => [:index, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
   
@@ -8,6 +8,7 @@ Dmtraining::Application.routes.draw do
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/skills/*slug', :to => 'skills#show'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

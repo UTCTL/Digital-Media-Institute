@@ -44,8 +44,13 @@ class Skill < ActiveRecord::Base
       else
         parent_slug = Skill.find_by_id(self.parent_id).slug
         
-        title_slug = self.title.gsub(/\s+/,'-').chomp('-')
-        title_slug = parent_slug + '/' + title_slug.downcase.gsub(/[^a-z0-9\-\/]/,'')
+        title_slug = self.title.gsub(/[\s\/\\]+/,'-').chomp('-')
+        
+        if parent_slug != '' 
+          parent_slug += '/'
+        end
+        
+        title_slug = parent_slug + title_slug.downcase.gsub(/[^a-z0-9\-]/,'')
         
         generated_slug = title_slug
         

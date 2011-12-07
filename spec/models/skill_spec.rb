@@ -61,6 +61,12 @@ describe Skill do
       @root_node.slug.should == ""
     end
     
+    it "should not have a leading slash" do
+     c4_node = @c2_node.children.create(@attr.merge(:title => "I like beans & corn @ the mall." ))
+     
+     c4_node.slug[0].should_not == '/'
+    end
+    
     it "should only include lowercase letters,-,/, and 0-9" do
       c4_node = @c2_node.children.create(@attr.merge(:title => "I like beans & corn @ the mall." ))
       
