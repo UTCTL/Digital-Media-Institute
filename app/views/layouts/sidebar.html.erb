@@ -1,5 +1,5 @@
 <% content_for :content do %>
-  <div id="sidebar" class="grid_4">Side bar content</div>
+  <div id="sidebar" class="grid_4"><%= yield(:sidebar)%></div>
   <div id="content" class="grid_8"><%= yield %></div>
 <% end %>
 <%= render :template => 'layouts/application' %>

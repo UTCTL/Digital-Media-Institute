@@ -4,10 +4,17 @@ class SkillsController < ApplicationController
   end
   
   def show
+    @skills = Skill.root.self_and_descendants
+    
     if params[:slug]
-      @skill = Skill.find_by_slug(params[:slug])
-    else
-      @skill = Skill.find(params[:id])
+      @skill = Skill.find_by_slug!(params[:slug])
+      
+      title_array = @skill.self_and_ancestors
+      title_array.shift
+      
+      @title = title_array.map {|i| i = i.title }.join(' > ')
     end
+    
+    render :layout => "sidebar" 
   end
 end

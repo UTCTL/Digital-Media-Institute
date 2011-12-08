@@ -1,1 +1,6 @@
-<%= @skill.title %>
+<% content_for :sidebar do %>
+
+  <%= print_tree_list(@skills) %>
+<% end %>
+
+<h2><%= @title %></h2>

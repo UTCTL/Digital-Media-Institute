@@ -22,3 +22,24 @@
     font-weight:normal;
     font-size:1.4em;
 }
+
+.toplevel_node li a
+{
+    color:#666;
+    display:block;
+    font-size:1.2em;
+    font-weight:bold;
+    padding:2px;
+    text-decoration:none;
+}
+
+.toplevel_node li a:hover
+{
+    color:#FFF;
+    background-color:#ddd;
+}
+
+.tree_list li
+{
+    margin-left:20px;
+}

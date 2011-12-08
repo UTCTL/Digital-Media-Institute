@@ -14,20 +14,21 @@ end
 def make_skills
   root_node = Skill.create!(:title => "Digital Media Training" )
   
-  design_node = root_node.children.create!(:title => "Design")
+  site_map = YAML::load(File.open("#{Rails.root}/lib/tasks/site-map.yml"))
   
-  ps_node = design_node.children.create!(:title => "Photoshop")
-    ps_node.children.create!(:title => "Beginner")
-    ps_node.children.create!(:title => "Intermediate")
-    ps_node.children.create!(:title => "Advanced")
+  traverse_site_map(site_map, root_node)
   
-  il_node = design_node.children.create!(:title => "Illustrator")
-    il_node.children.create!(:title => "Beginner")
-    il_node.children.create!(:title => "Intermediate")
-    il_node.children.create!(:title => "Advanced")
-  
-  web_node = root_node.children.create!(:title => "HTML/CSS")
-  motion_node = root_node.children.create!(:title => "Motion")
-  three_d_node = root_node.children.create!(:title => "3D")
-  mobile_node = root_node.children.create!(:title => "Mobile")
+end
+
+def traverse_site_map(node, parent)
+  node.each do |key, value|
+    new_parent = parent.children.create!(:title => key)
+    
+    if value.class.to_s == 'Hash'
+      traverse_site_map(value,new_parent)
+    else
+      value.each { |value| new_parent.children.create(:title => value) }
+    end
+      
+  end
 end
