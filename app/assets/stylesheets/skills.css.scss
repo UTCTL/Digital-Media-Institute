@@ -1,6 +1,10 @@
 // Place all the styles related to the Skills controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.skill_tree
+{
+    
+}
 
 .toplevel_node
 {
@@ -8,7 +12,12 @@
     float:left;
 }
 
-.toplevel_node h3
+.skill_tree h2
+{
+    color:#f33218;
+}
+
+.skill_tree h3
 {
     display:block;
     text-align:center;
@@ -16,14 +25,14 @@
     font-weight:bold;
 }
 
-.node_title
+.skill_tree .node_title
 {
     text-align:left;
     font-weight:normal;
     font-size:1.4em;
 }
 
-.toplevel_node li a
+.skill_tree li a
 {
     color:#666;
     display:block;
@@ -33,13 +42,23 @@
     text-decoration:none;
 }
 
-.toplevel_node li a:hover
+.skill_tree li a:hover
 {
     color:#FFF;
     background-color:#ddd;
 }
 
-.tree_list li
+ul.skill_tree
 {
-    margin-left:20px;
+    padding:10px;
+}
+
+ul.skill_tree li
+{
+    margin-bottom:20px;
+}
+
+ul.skill_tree li li
+{
+    margin-bottom:0;
 }
