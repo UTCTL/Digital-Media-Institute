@@ -3,6 +3,7 @@ Dmtraining::Application.routes.draw do
   resources :skills,   :only => [:index, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
+  resources :lessons, :except => [:index]
   
   root :to => 'skills#index'
   match '/signup', :to => 'users#new'

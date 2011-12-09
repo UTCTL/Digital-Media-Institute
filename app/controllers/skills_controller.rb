@@ -12,7 +12,7 @@ class SkillsController < ApplicationController
       title_array = @skill.self_and_ancestors
       title_array.shift
       
-      @title = title_array.map {|i| i = i.title }.join(' > ')
+      @title = title_array.map {|i| i = i.title }.join(" \u27A2 ")
     end
     
     render :layout => "sidebar" 

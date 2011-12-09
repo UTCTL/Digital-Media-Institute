@@ -27,14 +27,14 @@ module SkillsHelper
       elsif(right_values.length == 2) 
         output += <<-HTML
           <div id="tree-#{node.id}" class="tree_node">
-            <h3>#{h(node.title)}</h3>
+            <span class="second_level">#{h(node.title)}</span>
             <ul>
         HTML
       elsif(right_values.length == 1)
         
         output += <<-HTML
           <div id="tree-#{node.id}" class="skill_tree toplevel_node">
-            <h2>#{h(node.title)}</h2>
+            <span class="top_level">#{h(node.title)}</span>
         HTML
       end
       
@@ -73,12 +73,12 @@ module SkillsHelper
       
       if(node != tree.first)
         
-        headings = ['',:h2,:h3]
+        headings = ['',"top_level","second_level"]
         
         if(right_values.length == 3)
           node_text = link_to(node.title,"#{skills_path}/#{node.slug}")
         else
-          node_text = content_tag(headings[right_values.length], node.title)
+          node_text = content_tag(:span, node.title, :class => headings[right_values.length])
         end
         
         output += <<-HTML

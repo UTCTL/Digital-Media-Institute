@@ -38,10 +38,12 @@ describe Lesson do
       lesson.should_not be_valid
     end
     
-    it "should have non blank content" do
-      lesson = @skill.lessons.create(@attr.merge( :content => "" ))
+    it "should have a type should be in the list of valid types"
+    
+    it "should have a link if type is Video or Link"
+    
+    it "should have non blank content if type is Text" do
       
-      lesson.should_not be_valid
     end
     
   end
