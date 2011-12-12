@@ -16,15 +16,29 @@
 class Lesson < ActiveRecord::Base
   acts_as_list :scope => [:skill_id,:list_scope]
   
-  attr_accessible :title, :content, :thumbnail, :list_scope
+  attr_accessible :title, :skill_id, :content, :kind, :link, :thumbnail, :list_scope
+  
+  KINDS = ["Video","Link","Text"]
   
   validates :skill_id, :presence => true
+  validates :kind, :inclusion => { :in => KINDS, :message => "%{value} is not a valid kind" }
   validates :list_scope, :numericality => { 
                                             :only_integer => true,
                                             :greater_than_or_equal_to => 1, 
                                             :less_than_or_equal_to => 2
                                           }
-  validates :content, :presence => true 
+  validates :content, :presence => true, :if => :isText?
+  validates :link, :presence => true, :if => :isExternal?
   
   belongs_to :skill 
+  
+  
+  
+  def isText?
+    kind == "Text"
+  end
+  
+  def isExternal?
+    (kind == "Link" || kind == "Video")
+  end
 end

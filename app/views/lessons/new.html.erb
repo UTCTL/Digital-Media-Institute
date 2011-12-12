@@ -1,0 +1,34 @@
+<h2>New Lesson</h2>
+
+<%= form_for @lesson do |f| %>
+  <%= render "shared/error_messages", :obj => @lesson %>
+  <div style="padding:0; margin:0; display:inline">
+    <%= f.hidden_field :position %>
+    <%= f.hidden_field :list_scope %>
+    <%= f.hidden_field :skill_id %>
+  </div>
+  <div class="field">
+    <%= f.label :kind, "Kind" %>
+    <%= f.select :kind, options_for_select(Lesson::KINDS, @lesson.kind) %>
+  </div>
+  <div id="titleField" class="field dynamic">
+    <%= f.label :title, "Title" %>
+    <%= f.text_field :title %>
+  </div>
+  <div id="linkField" class="field dynamic">
+    <%= f.label :link, "Link" %>
+    <%= f.text_field :link %>
+  </div>
+  <div id="contentField" class="field dynamic">
+    <%= f.label :content, "Content" %>
+    <%= f.text_area :content %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit "Save", :disable_with => 'Saving...' %>
+  </div>
+<% end %>
+
+<script>
+  $(lessonForm.init("#new_lesson"));
+</script>

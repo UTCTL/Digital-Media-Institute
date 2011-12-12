@@ -23,6 +23,7 @@ describe Lesson do
   end
   
   it "should create object with valid attributes" do
+    
     @skill.lessons.create!(@attr)
   end
   
@@ -38,12 +39,28 @@ describe Lesson do
       lesson.should_not be_valid
     end
     
-    it "should have a type should be in the list of valid types"
-    
-    it "should have a link if type is Video or Link"
-    
-    it "should have non blank content if type is Text" do
+    it "should have a kind should be in the list of valid types" do
+      lesson = @skill.lessons.create(@attr.merge(:kind => "Invalid"))
       
+      lesson.should_not be_valid
+    end
+    
+    it "should have a link if type is Video or Link" do
+      lesson = @skill.lessons.create(@attr.merge(:kind => "Link",:link => ""))
+      
+      lesson.should_not be_valid
+    end
+    
+    it "should have non blank content if kind is Text" do
+      lesson = @skill.lessons.create(@attr.merge(:kind => "Text",:content => ""))
+      
+      lesson.should_not be_valid
+    end
+    
+    it "should allow blank content for kinds other than Text" do
+      lesson = @skill.lessons.create(@attr.merge(:kind => "Link",:content => ""))
+      
+      lesson.should be_valid
     end
     
   end
