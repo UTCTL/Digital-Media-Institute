@@ -1,0 +1,9 @@
+<% if obj.errors.any? %>
+    <div class="error_messages">
+      <ul>
+        <% for message in obj.errors.full_messages %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>

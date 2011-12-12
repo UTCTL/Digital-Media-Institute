@@ -7,6 +7,8 @@ FactoryGirl.define do
   factory :lesson do
     title "Beginner Photoshop Getting Started"
     content "In the beginning there was photoshop"
+    kind "Video"
+    link "http://vimeo.com/32001208"
     list_scope 1
   end
 end

@@ -7,6 +7,39 @@
 
 <h3>Learn</h3>
 
+<% 
+  grid_modifiers = ["alpha", "omega"] 
+  modifier_class = grid_modifiers[0]
+%>
+
+<% if @skill.lessons.any? %>
+  
+  <% @skill.lessons.each_with_index  do |l, index| %>
+    
+    <div class="grid_4 primaryLesson <%= modifier_class %>">
+      <div class="numbering"><%= index+1 %></div>
+      <div class="lessonContent"><h4><%= l.title %></h4></div>
+    </div>
+  
+    <% modifier_class = grid_modifiers[ ( (index+1) % 2) ] %>
+  <% end %>
+  
+  
+<% else %>
+  
+  <div class="grid_4 primaryLesson empty <%= modifier_class %>">
+    There are no lessons for this skill.
+  </div>
+  
+  <% modifier_class = grid_modifiers[ 1 ] %>
+<% end %>
+
+<div class="grid_4 primaryLesson <%= modifier_class %>">
+  <%= link_to "Add new lesson", new_lesson_path(:skill_id => @skill.id), :class => "addNewLesson" %>
+</div>
+
 <h3>Practice</h3>
+<div> There are no assessments for this Skill</div>
 
 <h3>Additional Resources</h3>
+<div> There are no additional resources for this Skill</div>
