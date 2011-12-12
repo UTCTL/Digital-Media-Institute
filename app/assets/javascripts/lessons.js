@@ -31,13 +31,21 @@ var lessonForm = function(){
       },
       setSelectedKind: function(value){
         
+<<<<<<< HEAD
         if(_selectedKind !== value)
+=======
+        if(_selectedKind != value)
+>>>>>>> f6e937a669889a858f6afac3980045efdb256d01
         {
           _selectedKind = value;
           
           $(_form_id+" .dynamic").remove();
           
+<<<<<<< HEAD
           if(_selectedKind === "Video" || _selectedKind === "Link")
+=======
+          if(_selectedKind == "Video" || _selectedKind == "Link")
+>>>>>>> f6e937a669889a858f6afac3980045efdb256d01
           {
             _addFormField(_fields["linkField"]);
             _addFormField(_fields["titleField"]);
