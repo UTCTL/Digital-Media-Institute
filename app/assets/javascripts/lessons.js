@@ -70,7 +70,6 @@ var lessonForm = function(){
           
           $(_form_id+" .dynamic").remove();
           
-
           if(_selectedKind === "Video" || _selectedKind === "Link")
           {
             _addFormField(_fields["linkField"]);
