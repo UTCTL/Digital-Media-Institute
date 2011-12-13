@@ -18,7 +18,10 @@
     
     <div class="grid_4 primaryLesson <%= modifier_class %>">
       <div class="numbering"><%= index+1 %></div>
-      <div class="lessonContent"><h4><%= l.title %></h4></div>
+      <div class="lessonContent">
+        <h4><%= l.title %></h4>
+        <%= image_tag l.thumbnail, :alt => "#{l.title} Video"%>
+      </div>
     </div>
   
     <% modifier_class = grid_modifiers[ ( (index+1) % 2) ] %>
