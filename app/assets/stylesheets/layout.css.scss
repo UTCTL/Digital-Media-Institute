@@ -44,6 +44,7 @@ h3
   color:$textColor2;
 	font-size:2.3em;
 	border-bottom:1px solid $textColor3;
+	margin-bottom:10px;
 	clear:both;
 }
 
@@ -123,4 +124,62 @@ form div
 #sidebar
 {
 	background:$bgColor2;
+}
+
+#content
+{
+	overflow:hidden;
+}
+
+#lessonContainer
+{
+/*-webkit-transition: -webkit-transform .5s ease-out;*/
+	position:relative;
+	height:900px;
+}
+
+#slideContainer.slideLeft
+{
+	/*-webkit-transform: translate3d(-620px,0,0);*/
+}
+
+.slidePage
+{
+	-webkit-transition: -webkit-transform .5s ease-out;
+	width:320px;
+	height:650px;
+	position:absolute;
+	background-color:$bgColor;
+	padding:10px;
+	
+	-webkit-transform: translate3d(625px,0,0);
+	-webkit-box-shadow:-2px 5px 5px rgba(0,0,0,.5);
+	z-index:105;
+}
+
+.overlay
+{
+	-webkit-transition: opacity .5s ease-out;
+	position:absolute;
+	top:0;
+	left:0;
+	width:100%;
+	height:100%;
+	background-color:rgba(0,0,0,.6);
+	z-index:100;
+	opacity:0;
+	
+	
+}
+
+.slidePage.open
+{
+	-webkit-transform: translate3d(300px,0,0);	
+}
+
+
+
+.overlay.show
+{
+	opacity:1;
 }

@@ -1,24 +1,26 @@
 <h2>New Lesson</h2>
 
-<%= form_for @lesson do |f| %>
+<%= form_for(@lesson, :remote => true) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   <div style="padding:0; margin:0; display:inline">
     <%= f.hidden_field :position %>
     <%= f.hidden_field :list_scope %>
     <%= f.hidden_field :skill_id %>
+		<%= f.hidden_field :kind,:value => "Video" %>
   </div>
-  <div class="field">
+ <!-- <div class="field">
     <%= f.label :kind, "Kind" %>
     <%= f.select :kind, options_for_select(Lesson::KINDS, @lesson.kind) %>
+  </div>-->
+	<div id="linkField" class="field dynamic">
+    <%= f.label :link, "Vimeo Link" %>
+    <%= f.text_field :link %>
   </div>
   <div id="titleField" class="field dynamic">
     <%= f.label :title, "Title" %>
     <%= f.text_field :title %>
   </div>
-  <div id="linkField" class="field dynamic">
-    <%= f.label :link, "Link" %>
-    <%= f.text_field :link %>
-  </div>
+  
   <div id="thumbnailField" class="field dynamic">
     <%= f.hidden_field :thumbnail %>
   </div>

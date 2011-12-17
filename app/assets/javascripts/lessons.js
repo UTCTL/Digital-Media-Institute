@@ -27,9 +27,9 @@ var lessonForm = function(){
         
         //Event Handlers
         var owner = this;
-        $("#lesson_kind").change(function(){
+       /* $("#lesson_kind").change(function(){
           owner.setSelectedKind( $(this).val() );
-        });
+        });*/
         
         $("#lesson_link").on("paste", function(event){
           setTimeout(function(){ owner.processLink() },0);
@@ -37,13 +37,13 @@ var lessonForm = function(){
         
         
         //detach and store dynamic form fields
-        $(_form_id+" .dynamic").detach().each(function(index){
+       /* $(_form_id+" .dynamic").detach().each(function(index){
           var id = $(this).attr("id");
           _fields[id] = this;
         });
         
         
-        this.setSelectedKind( $("#lesson_kind").val() );
+        this.setSelectedKind( $("#lesson_kind").val() );*/
       },
       processLink: function(){
         var link = $("#lesson_link").val();

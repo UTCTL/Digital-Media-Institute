@@ -1,0 +1,12 @@
+var addLessonLink = $("a.addNewLesson");
+var newLesson = "<%= escape_javascript(render @lesson) %>";
+
+
+if(!addLessonLink)
+{
+	$("#innerLessonContainer").append(newLesson);
+}
+else
+{
+	addLessonLink.before(newLesson);
+}

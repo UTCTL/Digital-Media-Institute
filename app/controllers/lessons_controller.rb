@@ -3,6 +3,12 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new
     @lesson.list_scope = 1
     @lesson.skill_id = params[:skill_id]
+    
+    if request.xhr?
+      render :new, :layout => false
+    else
+      render :new
+    end
   end
   
   def create
@@ -10,7 +16,8 @@ class LessonsController < ApplicationController
     @lesson = Lesson.new(params[:lesson])
     
     if(skill && @lesson.save)
-      redirect_to "#{skills_path}/#{skill.slug}", :flash => { :success => "Lesson Added."}
+      
+      #redirect_to "#{skills_path}/#{skill.slug}", :flash => { :success => "Lesson Added."}
     else
       render :new
     end
