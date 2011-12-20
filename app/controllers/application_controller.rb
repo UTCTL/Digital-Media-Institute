@@ -11,6 +11,11 @@ class ApplicationController < ActionController::Base
     session[:user_id] != nil
   end
   
+  def admin?
+    signed_in? && current_user.admin
+  end
+  
   helper_method :current_user
   helper_method :signed_in?
+  helper_method :admin?
 end

@@ -52,7 +52,7 @@ module SkillsHelper
     output.html_safe
   end
   
-  def print_tree_list(tree)
+  def print_tree_list(tree,current)
     output = ""
     right_values = []
 
@@ -76,7 +76,8 @@ module SkillsHelper
         headings = ['',"top_level","second_level"]
         
         if(right_values.length == 3)
-          node_text = link_to(node.title,"#{skills_path}/#{node.slug}")
+          link_class = (node.id == current.id) ? "current" : ""
+          node_text = link_to(node.title,"#{skills_path}/#{node.slug}", :class => link_class)
         else
           node_text = content_tag(:span, node.title, :class => headings[right_values.length])
         end

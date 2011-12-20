@@ -54,6 +54,12 @@ h4
     font-size:2em;
 }
 
+h5
+{
+    color:$textColor2;
+    font-size:1.5em;
+}
+
 form label
 {
 	display:block;
@@ -124,6 +130,15 @@ form div
 #sidebar
 {
 	background:$bgColor2;
+}
+
+#sidebar h4 a
+{
+    display:block;
+    color:inherit;
+    background-color:$bgColor2 - #151515;
+    padding:10px;
+    text-decoration:none;
 }
 
 #content

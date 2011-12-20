@@ -36,7 +36,6 @@ class Skill < ActiveRecord::Base
 
     end
     
-    
     def create_slug
       
       if self.root?

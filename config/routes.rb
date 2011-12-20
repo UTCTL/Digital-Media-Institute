@@ -9,7 +9,10 @@ Dmtraining::Application.routes.draw do
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/skills/*slug/lessons/:lesson_id', :to => 'skills#show_lesson'
+  match '/skills/*slug/challenges/:challenge_id', :to => 'skills#show_challenge'
   match '/skills/*slug', :to => 'skills#show'
+  
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
