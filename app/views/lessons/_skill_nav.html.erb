@@ -1,4 +1,4 @@
-<h4><%= link_to "\u2190 #{@skill.title}", "#{skills_path}/#{@skill.slug}"%></h4>
+<h4><%= link_to "\u2190 #{@skill.title}", training_path(@skill.slug)%></h4>
 
 <ul class="skill_tree">
   <li>
@@ -8,7 +8,7 @@
       
       <% link_class = (@lesson && @lesson.id == item.id) ? "current": "" %>
     
-      <li><%= link_to item.title, "#{skills_path}/#{@skill.slug}/lessons/#{item.id}", :class => link_class %></li>
+      <li><%= link_to item.title, training_lesson_path(@skill.slug,item), :class => link_class %></li>
     <% end %>
     </ul>
   </li>

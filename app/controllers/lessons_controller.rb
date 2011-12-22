@@ -1,5 +1,5 @@
 class LessonsController < ApplicationController
-  before_filter :admin_user
+  before_filter :check_admin_user
 
   def new
     @lesson = Lesson.new
@@ -25,9 +25,17 @@ class LessonsController < ApplicationController
     end
   end
   
-  private
-  
-  def admin_user
-    redirect_to(root_path) unless admin?
+  def show
+     if(params[:slug])
+      @skill = Skill.find_by_slug!(params[:slug])
+      
+      @lesson = @skill.lessons.find(params[:id])
+      
+      @title = @lesson.title
+      
+      @video_id = @lesson.link.match(/([0-9]+)$/)[0]
+    end
+    
+    render :layout => "sidebar"
   end
 end

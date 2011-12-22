@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
     signed_in? && current_user.admin
   end
   
+  def check_admin_user
+    redirect_to(root_path) unless admin?
+  end
+  
   helper_method :current_user
   helper_method :signed_in?
   helper_method :admin?

@@ -22,7 +22,7 @@ module SkillsHelper
           <li id="tree-#{node.id}" class="tree_node">
         HTML
         
-        output += link_to( node.title, "#{skills_path}/#{node.slug}")
+        output += link_to( node.title, training_path(node.slug))
       
       elsif(right_values.length == 2) 
         output += <<-HTML
@@ -77,7 +77,7 @@ module SkillsHelper
         
         if(right_values.length == 3)
           link_class = (node.id == current.id) ? "current" : ""
-          node_text = link_to(node.title,"#{skills_path}/#{node.slug}", :class => link_class)
+          node_text = link_to(node.title,training_path(node.slug), :class => link_class)
         else
           node_text = content_tag(:span, node.title, :class => headings[right_values.length])
         end

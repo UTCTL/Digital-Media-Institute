@@ -1,1 +1,1 @@
-<%= link_to content_tag(:h4,lesson.title), "#{skills_path}/#{@skill.slug}/lessons/#{lesson.id}",:class => "primaryLesson",:style => "background:url(#{lesson.thumbnail})" %>
+<%= link_to content_tag(:h4,lesson.title), training_lesson_path(@skill.slug,lesson),:class => "primaryLesson",:style => "background:url(#{lesson.thumbnail})" %>

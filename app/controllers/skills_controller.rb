@@ -18,22 +18,5 @@ class SkillsController < ApplicationController
     render :layout => "sidebar" 
   end
   
-  def show_lesson
-    
-    
-    if(params[:slug])
-      @skill = Skill.find_by_slug!(params[:slug])
-      
-      @lesson = @skill.lessons.find(params[:lesson_id])
-      
-      @title = @lesson.title
-      
-      @video_id = @lesson.link.match(/([0-9]+)$/)[0]
-    end
-    
-    render :layout => "sidebar"
-  end
   
-  def show_challenge
-  end
 end
