@@ -1,1 +1,6 @@
-<%= link_to content_tag(:h4,lesson.title), training_lesson_path(@skill.slug,lesson),:class => "primaryLesson",:style => "background:url(#{lesson.thumbnail})" %>
+
+<% linkClass = (lesson.list_scope == 1) ? "blockLink" : "listLink" %>
+<% linkClass += (lesson_counter % 2 != 0) ? " odd" : " even" %>
+<% linkStyle = (lesson.list_scope == 1) ? "background:url(#{lesson.thumbnail})" : "" %>
+
+<%= link_to content_tag(:span,lesson.title,:class => "title"), training_lesson_path(@skill.slug,lesson),:class => linkClass,:style => linkStyle %>

@@ -32,7 +32,8 @@ class Lesson < ActiveRecord::Base
   
   belongs_to :skill 
   
-  
+  scope :primary_lessons, where("list_scope = 1")
+  scope :other_lessons, where("list_scope = 2")
   
   def isText?
     kind == "Text"

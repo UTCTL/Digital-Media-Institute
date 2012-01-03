@@ -26,6 +26,7 @@ class Skill < ActiveRecord::Base
   
   before_save :create_slug
   
+  
   private
     
     def only_one_root
