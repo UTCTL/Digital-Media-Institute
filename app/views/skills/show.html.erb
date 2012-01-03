@@ -9,14 +9,14 @@
 
 
 <div id="lessonContainer" class="clearfix">
-		
-		<div id="innerLessonContainer"><%= render "lessons" %></div>
-		<div class="overlay"></div>
-		<div class="slidePage"></div>
+		<%= render "primary" %>
 </div>
 
 <h3>Challenges</h3>
-<h3>Links</h3>
-<script>
-	$(skillsPage.init());
-</script>
+<div id="challengeContainer" class="clearfix">
+  <%= render "challenges" %>
+</div>
+<h3>Other Resources</h3>
+<div id="resourceContainer" class="clearfix">
+		<%= render "other" %>
+</div>

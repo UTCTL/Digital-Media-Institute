@@ -1,0 +1,14 @@
+<% if @skill.lessons.other_lessons.any? %>
+
+  <%= render @skill.lessons.other_lessons %>
+
+<% else %>
+  <div>
+    There are no resources for this skill.
+  </div>
+<% end %>
+
+<% if admin? %>
+ <%= link_to content_tag(:span,"+ Add New Resource",:class => "title"), new_training_lesson_path(:list_scope => 2), 
+    :class => "newButton" %>
+<% end %>

@@ -4,14 +4,35 @@
   <li>
     <span class="top_level">Lessons</span>
     <ul>
-    <% @skill.lessons.each do |item| %>
+    <% @skill.lessons.primary_lessons.each do |item| %>
       
       <% link_class = (@lesson && @lesson.id == item.id) ? "current": "" %>
     
       <li><%= link_to item.title, training_lesson_path(@skill.slug,item), :class => link_class %></li>
     <% end %>
+    
+    <% if params[:controller] == "lessons" && %w(new create).include?(params[:action]) && @lesson.list_scope == 1 %>
+      <li><%= link_to "New Lesson", new_training_lesson_path, :class => "current" %></li>
+    <% end %>
     </ul>
   </li>
-  <li><span class="top_level">Challenges</span></li>
-  <li><span class="top_level">Links</span></li>
+  <li>
+    <span class="top_level">Challenges</span>
+    <ul></ul>
+  </li>
+  <li>
+    <span class="top_level">Other Resources</span>
+    <ul>
+    <% @skill.lessons.other_lessons.each do |item| %>
+      
+      <% link_class = (@lesson && @lesson.id == item.id) ? "current": "" %>
+    
+      <li><%= link_to item.title, training_lesson_path(@skill.slug,item), :class => link_class %></li>
+    <% end %>
+    
+    <% if params[:controller] == "lessons" && %w(new create).include?(params[:action]) && @lesson.list_scope == 2 %>
+      <li><%= link_to "New Resource", new_training_lesson_path(:list_scope => 2), :class => "current" %></li>
+    <% end %>
+    </ul>
+  </li>
 </ul>

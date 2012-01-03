@@ -1,6 +1,11 @@
-<h2>New Lesson</h2>
+<% content_for :sidebar do %>
 
-<%= form_for(@lesson, :remote => true) do |f| %>
+<%=render "skill_nav" %>
+<% end %>
+
+<h2>New <%= (@lesson.list_scope == 1) ? "Lesson" : "Resource" %></h2>
+
+<%= form_for(@lesson, :url => training_lessons_path) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   <div style="padding:0; margin:0; display:inline">
     <%= f.hidden_field :position %>

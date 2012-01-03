@@ -79,45 +79,68 @@ ul.skill_tree li li
 
 /* Lesson Listing */
 
-.primaryLesson
+.blockLink, .listLink
+{
+   display:block;
+   text-decoration:none; 
+}
+
+.blockLink
 {
 	width:$lessonBlockWidth;
     height:$lessonBlockHeight;
 	margin:3px;
 	float:left;
-	display:block;
-	text-decoration:none;
+	
 }
 
-.primaryLesson h4
+.blockLink .title
 {
+    display:block;
+    font-size:2em;
 	color:#FFF;
 	background:rgba(0,0,0,.5);
 	padding:5px;
 }
 
 
-
-.primaryLesson.empty
+.listLink
 {
-    color:$textColor3;
-	background-color:#000;
-    font-style:italic;
-    font-weight:bold;
+    color:$textColor1;
+    padding:5px;
 }
 
-.primaryLesson .numbering
+.listLink.even
 {
-    float:left;
-    width:30px;
-    height:100%;
+    background-color:$bgColor + #080808;
+}
+
+.listLink.odd
+{
+    background-color:$bgColor - #080808;
+}
+
+.listLink .title
+{
+    font-size:1.4em;
+    
+}
+
+.newButton
+{
+    background-color:$bgColor3;
+    font-size:1.4em;
     color:#FFF;
-    font-size:2em;
-	line-height:1.2;
+    display:block;
+    float:left;
+    clear:both;
+    width:100%;
+    padding:5px;
+    margin-top:10px;
+    text-decoration:none;
 }
 
-a.addNewLesson
-{   
-    color:inherit;
-	
+.newButton:hover
+{
+    background-color:$bgColor3 + #111;
 }
