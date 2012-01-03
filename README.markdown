@@ -65,6 +65,7 @@ Anonymous user
    * Download source files for this skill
    
 Logged in user
+
    * Progress indicators, show videos watched
 
 
@@ -85,6 +86,7 @@ Logged In User
 ### Challenges Page
 
 Anonymous User
+
    * View challenge content
    * Download challenge source files
    
