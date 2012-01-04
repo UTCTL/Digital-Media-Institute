@@ -3,9 +3,9 @@
 <%=render "skill_nav" %>
 <% end %>
 
-<h2>New <%= (@lesson.list_scope == 1) ? "Lesson" : "Resource" %></h2>
+<h2>Edit <%= (@lesson.list_scope == 1) ? "Lesson" : "Resource" %></h2>
 
-<%= form_for(@lesson, :url => training_lessons_path) do |f| %>
+<%= form_for(@lesson, :url => training_lesson_path) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   
   <%= render "fields", :f => f %>
@@ -16,5 +16,5 @@
 <% end %>
 
 <script>
-  $(lessonForm.init("#new_lesson"));
+  $(lessonForm.init("#edit_lesson"));
 </script>
