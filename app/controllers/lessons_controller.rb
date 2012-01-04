@@ -24,6 +24,32 @@ class LessonsController < ApplicationController
     end
   end
   
+  def edit
+    @skill = Skill.find_by_slug(params[:slug])
+    @lesson = @skill.lessons.find(params[:id])
+    
+    
+  end
+  
+  def update
+    @lesson = Lesson.find(params[:id])
+    
+    if @lesson.update_attributes(params[:lesson])
+      redirect_to training_lesson_path
+    else
+      @skill = Skill.find_by_slug(params[:slug])
+      render :edit
+    end
+    
+  end
+  
+  def destroy
+    @lesson = Lesson.find(params[:id])
+    @lesson.destroy
+    
+    redirect_to training_path(:slug => params[:slug]), :flash => {:success => "Lesson Deleted."}
+  end
+  
   def show
     if(params[:slug])
       @skill = Skill.find_by_slug!(params[:slug])

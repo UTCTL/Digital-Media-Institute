@@ -29,6 +29,7 @@ class Lesson < ActiveRecord::Base
                                           }
   validates :content, :presence => true, :if => :isText?
   validates :link, :presence => true, :if => :isExternal?
+  validates :title, :presence => true
   
   belongs_to :skill 
   
