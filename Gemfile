@@ -5,7 +5,7 @@ gem 'rails', '3.1.3'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
+gem 'pg'
 gem "acts_as_list", "~> 0.1.4"
 gem "awesome_nested_set", "~> 2.0.2"
 gem "vimeo"
