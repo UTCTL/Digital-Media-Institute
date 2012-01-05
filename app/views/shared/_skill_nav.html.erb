@@ -1,4 +1,4 @@
-<h4><%= link_to "\u2190 #{@skill.title}", training_path(@skill.slug)%></h4>
+<h4><span style="display:block; float:left; padding:10px">&#x2190;</span><%= link_to "#{short_title}", training_path(@skill.slug)%></h4>
 
 <ul class="skill_tree">
   <li>
@@ -11,14 +11,23 @@
       <li><%= link_to item.title, training_lesson_path(@skill.slug,item), :class => link_class %></li>
     <% end %>
     
-    <% if params[:controller] == "lessons" && %w(new create).include?(params[:action]) && @lesson.list_scope == 1 %>
+    <% if skill_content_display == "newlesson" && @lesson.list_scope == 1 %>
       <li><%= link_to "New Lesson", new_training_lesson_path, :class => "current" %></li>
     <% end %>
     </ul>
   </li>
   <li>
     <span class="top_level">Challenges</span>
-    <ul></ul>
+    <ul>
+      <% @skill.challenges.each do |item| %>
+        <% link_class = (@challenge && @challenge.id == item.id) ? "current": "" %>
+    
+        <li><%= link_to item.title, training_challenge_path(@skill.slug,item), :class => link_class %></li>
+      <% end %>
+    </ul>
+    <% if skill_content_display == "newchallenge" %>
+      <li><%= link_to "New Challenge", new_training_challenge_path, :class => "current" %></li>
+    <% end %>
   </li>
   <li>
     <span class="top_level">Other Resources</span>
@@ -30,7 +39,7 @@
       <li><%= link_to item.title, training_lesson_path(@skill.slug,item), :class => link_class %></li>
     <% end %>
     
-    <% if params[:controller] == "lessons" && %w(new create).include?(params[:action]) && @lesson.list_scope == 2 %>
+    <% if skill_content_display == "newlesson" && @lesson.list_scope == 2 %>
       <li><%= link_to "New Resource", new_training_lesson_path(:list_scope => 2), :class => "current" %></li>
     <% end %>
     </ul>

@@ -191,9 +191,12 @@ form div
 	-webkit-transform: translate3d(300px,0,0);	
 }
 
-
-
 .overlay.show
 {
 	opacity:1;
+}
+
+.itemContent
+{
+    font-size:1.5em;
 }

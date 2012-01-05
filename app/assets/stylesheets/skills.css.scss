@@ -79,6 +79,13 @@ ul.skill_tree li li
 
 /* Lesson Listing */
 
+.itemContainer
+{
+    padding-bottom:20px;
+    border-bottom:1px $textColor1 solid;
+    margin-bottom:30px;
+}
+
 .blockLink, .listLink
 {
    display:block;

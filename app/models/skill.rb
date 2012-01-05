@@ -17,12 +17,15 @@
 class Skill < ActiveRecord::Base
   acts_as_nested_set
   
+  SEP = "|*|"
+  
   attr_accessible :title, :description, :icon, :parent_id
   
   validate :only_one_root
   validates :title, :presence => true 
   
-  has_many :lessons, :order => "list_scope, position" 
+  has_many :lessons, :order => "list_scope, position"
+  has_many :challenges, :order => "position" 
   
   before_save :create_slug
   
@@ -42,24 +45,29 @@ class Skill < ActiveRecord::Base
       if self.root?
         self.slug = ""
       else
-        parent_slug = Skill.find_by_id(self.parent_id).slug
+        parent_skill = Skill.find_by_id(self.parent_id)
         
-        title_slug = self.title.gsub(/[\s\/\\]+/,'-').chomp('-')
+        parent_slug = parent_skill.slug
+        generated_title = parent_skill.fulltitle || ''
+        
+        generated_slug = self.title.gsub(/[\s\/\\]+/,'-').chomp('-')
         
         if parent_slug != '' 
           parent_slug += '/'
+          generated_title += SEP
         end
         
-        title_slug = parent_slug + title_slug.downcase.gsub(/[^a-z0-9\-]/,'')
+        generated_title += self.title
+        generated_slug = parent_slug + generated_slug.downcase.gsub(/[^a-z0-9\-]/,'')
         
-        generated_slug = title_slug
         
         i = 1
         while Skill.find_by_slug(generated_slug)
-          generated_slug = "#{title_slug}-#{i}"
+          generated_slug = "#{generated_slug}-#{i}"
           i += 1
         end  
         
+        self.fulltitle = generated_title
         self.slug = generated_slug
       end
     end

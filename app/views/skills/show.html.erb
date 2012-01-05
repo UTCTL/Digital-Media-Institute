@@ -3,20 +3,19 @@
   <%= print_tree_list(@skills,@skill) %>
 <% end %>
 
-<h2><%= @title %></h2>
+<h2><%= fulltitle %></h2>
 
 <h3>Lessons</h3>
 
-
-<div id="lessonContainer" class="clearfix">
+<div id="lessonContainer" class="itemContainer clearfix">
 		<%= render "primary" %>
 </div>
 
 <h3>Challenges</h3>
-<div id="challengeContainer" class="clearfix">
+<div id="challengeContainer" class="itemContainer clearfix">
   <%= render "challenges" %>
 </div>
 <h3>Other Resources</h3>
-<div id="resourceContainer" class="clearfix">
+<div id="resourceContainer" class="itemContainer clearfix">
 		<%= render "other" %>
 </div>

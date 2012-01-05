@@ -108,4 +108,34 @@ module SkillsHelper
 
     output.html_safe
   end
+  
+  def skill_content_display
+    actions = %w(new create)
+    type = ""
+    
+    if(params[:controller] == "lessons" && actions.include?(params[:action]))
+      type = "newlesson"
+    end
+    
+    if(params[:controller] == "challenges" && actions.include?(params[:action]))
+      type = "newchallenge"
+    end
+    
+    type
+  end
+  
+  def fulltitle
+    if @skill
+      @skill.fulltitle.gsub(Skill::SEP," \u27A2 ")
+    end
+  end
+  
+  def short_title
+    if @skill
+      index = @skill.fulltitle.index(Skill::SEP)
+      short_title = @skill.fulltitle[ (index+Skill::SEP.length)..@skill.fulltitle.length ]
+      
+      short_title.gsub(Skill::SEP," \u27A2 ")
+    end
+  end
 end

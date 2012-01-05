@@ -1,6 +1,6 @@
 <% content_for :sidebar do %>
 
-<%=render "skill_nav" %>
+<%=render "shared/skill_nav" %>
 <% end %>
 
 <h2><%= @title%></h2>
@@ -15,6 +15,6 @@
 <iframe src="http://player.vimeo.com/video/<%= @video_id %>?title=0&amp;byline=0&amp;portrait=0" 
   width="620" height="349" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
 </iframe>
-<div id="lessonContent">
+<div id="lessonContent" class="itemContent">
   <%= sanitize @lesson.content %>
 </div>

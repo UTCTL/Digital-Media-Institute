@@ -11,4 +11,9 @@ FactoryGirl.define do
     link "http://vimeo.com/32001208"
     list_scope 1
   end
+  
+  factory :challenge do
+    title "Challenge #1"
+    content "This is a really hard challenge"
+  end
 end

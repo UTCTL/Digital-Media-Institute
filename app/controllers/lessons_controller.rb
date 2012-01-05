@@ -47,7 +47,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
     
-    redirect_to training_path(:slug => params[:slug]), :flash => {:success => "Lesson Deleted."}
+    redirect_to training_path, :flash => {:success => "Lesson Deleted."}
   end
   
   def show

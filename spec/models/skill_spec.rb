@@ -27,12 +27,15 @@ describe Skill do
     @root_node.children.create!(@attr)
   end
   
-  describe "lesson associations" do
+  describe "associations" do
     
     it "should have lessons attribute" do
       @root_node.should respond_to(:lessons)
     end
     
+    it "should have a challenges attribute" do
+      @root_node.should respond_to(:challenges)
+    end
   end
   
   describe "validations" do
@@ -53,7 +56,7 @@ describe Skill do
       @c1_node = @root_node.children.create(@attr.merge(:title => "Child Node 1" ))
       @c2_node = @root_node.children.create(@attr.merge(:title => "Child Node 1" ))
       
-      @c3_node = @c2_node.children.create(@attr.merge(:title => "Nested Child Node 1" ))
+      @c3_node = @c2_node.children.create(@attr.merge(:title => "Weinerschnizel" ))
     end
     
     it "should have a blank slug for root node" do
@@ -83,6 +86,17 @@ describe Skill do
       parent_node = Skill.find_by_id(@c3_node.parent_id)
       
       @c3_node.slug.match(parent_node.slug+'/').should_not be_nil
+    end
+    
+    it "should have a full title" do
+      
+      @c3_node.fulltitle.should_not be_nil
+    end
+    
+    it "should create a full title from titles of parent nodes" do
+      parent_node = Skill.find(@c3_node.parent_id)
+      
+      @c3_node.fulltitle.match(parent_node.title).should_not be_nil
     end
   end
   

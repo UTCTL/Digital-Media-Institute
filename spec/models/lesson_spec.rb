@@ -11,6 +11,8 @@
 #  position   :integer
 #  created_at :datetime
 #  updated_at :datetime
+#  kind       :string(255)
+#  link       :string(255)
 #
 
 require 'spec_helper'
@@ -31,6 +33,11 @@ describe Lesson do
     
     it "should have a skill_id" do
       Lesson.new(@attr).should_not be_valid
+    end
+    
+    it "should require a title" do
+      lesson = @skill.lessons.create(@attr.merge(:title => ''))
+      lesson.should_not be_valid
     end
     
     it "should have a list scope of 1 or 2" do

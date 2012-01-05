@@ -1,0 +1,16 @@
+<% content_for :sidebar do %>
+
+<%=render "shared/skill_nav" %>
+<% end %>
+
+<h2>Edit Challenge</h2>
+
+<%= form_for(@challenge, :url => training_challenge_path) do |f| %>
+  <%= render "shared/error_messages", :obj => @challenge %>
+  
+  <%= render "fields", :f => f %>
+  
+  <div class="actions">
+    <%= f.submit "Save", :disable_with => 'Saving...' %>
+  </div>
+<% end -%>

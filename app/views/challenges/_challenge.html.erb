@@ -1,0 +1,3 @@
+<% linkClass = (challenge_counter % 2 != 0) ? "listLink odd" : "listLink even" %>
+
+<%= link_to content_tag(:span,challenge.title,:class => "title"), training_challenge_path(@skill.slug,challenge),:class => linkClass %>
