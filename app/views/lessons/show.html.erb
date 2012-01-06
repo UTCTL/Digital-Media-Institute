@@ -12,9 +12,10 @@
   </div>
 <% end %>
 
-<iframe src="http://player.vimeo.com/video/<%= @video_id %>?title=0&amp;byline=0&amp;portrait=0" 
-  width="620" height="349" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen>
-</iframe>
+<% if @lesson.kind == "Video" %>
+  <%= render "videoplayer", :player_link => player_link(@lesson.link) %>
+<% end %>
+  
 <div id="lessonContent" class="itemContent">
   <%= sanitize @lesson.content %>
 </div>

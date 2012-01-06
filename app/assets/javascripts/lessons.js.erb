@@ -10,11 +10,23 @@ var lessonForm = function(){
   
   var getVimeoInfo_result = function(data){
     var video = data[0];
-    
+
     $("#lesson_title").val(video.title);
     $("#lesson_content").val(video.description);
     $("#lesson_thumbnail").val(video.thumbnail_medium);
-    $("#thumbnailField").append("<img src=\""+video.thumbnail_medium+"\"/>");
+    $("#thumbnailImage").html("<img src=\""+video.thumbnail_medium+"\"/>");
+  };
+  
+  var getYoutubeInfo_result = function(data){
+      var video = data.entry;
+      
+      $("#lesson_title").val(video.title['$t']);
+      $("#lesson_content").val(video['media$group']['media$description']['$t']);
+      
+      var default_thumbnail = video['media$group']['media$thumbnail'][0].url;
+      
+      $("#lesson_thumbnail").val(default_thumbnail);
+      $("#thumbnailImage").html("<img src=\""+default_thumbnail+"\"/>");
   };
   
   var xhrError = function(xhr, status, error){
@@ -27,9 +39,9 @@ var lessonForm = function(){
         
         //Event Handlers
         var owner = this;
-       /* $("#lesson_kind").change(function(){
+       $("#lesson_kind").change(function(){
           owner.setSelectedKind( $(this).val() );
-        });*/
+        });
         
         $("#lesson_link").on("paste", function(event){
           setTimeout(function(){ owner.processLink() },0);
@@ -37,26 +49,48 @@ var lessonForm = function(){
         
         
         //detach and store dynamic form fields
-       /* $(_form_id+" .dynamic").detach().each(function(index){
+       $(_form_id+" .dynamic").detach().each(function(index){
           var id = $(this).attr("id");
           _fields[id] = this;
         });
         
         
-        this.setSelectedKind( $("#lesson_kind").val() );*/
+        this.setSelectedKind( $("#lesson_kind").val() );
       },
       processLink: function(){
         var link = $("#lesson_link").val();
         
-        var vimeoRegexp = /^.*vimeo\.com\/([0-9]+)/;
+        var vimeoRegexp = /<%= LessonsHelper::VIMEO_REGEX.source %>/;
+        var youtubeRegexp = /<%= LessonsHelper::YOUTUBE_REGEX.source %>/
                 
-        var matches = link.match(vimeoRegexp);
+        var matches;
         
-        if(matches)
-          this.getVimeoInfo(matches[1]);
+        if(matches = link.match(vimeoRegexp))
+        {
+            this.getVimeoInfo(matches[1]);
+        }
+        else if(matches = link.match(youtubeRegexp))
+        {
+            this.getYoutubeInfo(matches[1]);
+        }
+        
+          
       },
       getVimeoInfo: function(video_id){
-        $.ajax({url:"http://vimeo.com/api/v2/video/"+video_id+".json",dataType:"jsonp", success: getVimeoInfo_result, error: xhrError });
+        $.ajax({
+                url:"http://vimeo.com/api/v2/video/"+video_id+".json",
+                dataType:"jsonp", 
+                success: getVimeoInfo_result, 
+                error: xhrError 
+               });
+      },
+      getYoutubeInfo: function(video_id){
+         $.ajax({
+                url:"http://gdata.youtube.com/feeds/api/videos/"+video_id+"?v=2&alt=json",
+                dataType:"jsonp", 
+                success: getYoutubeInfo_result, 
+                error: xhrError
+                });
       },
       getSelectedKind: function(){
         return _selectedKind;

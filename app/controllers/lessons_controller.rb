@@ -58,7 +58,6 @@ class LessonsController < ApplicationController
       
       @title = @lesson.title
       
-      @video_id = @lesson.link.match(/([0-9]+)$/)[0]
     end
   end
 end
