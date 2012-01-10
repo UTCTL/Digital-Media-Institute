@@ -8,6 +8,7 @@ Dmtraining::Application.routes.draw do
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/linkinfo', :to => 'lessons#link_info'
   
   scope "/training/:slug", :slug => /.*/ , :as => "training" do
     resources :lessons

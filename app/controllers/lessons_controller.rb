@@ -1,4 +1,8 @@
+require 'nokogiri'
+require 'open-uri'
+
 class LessonsController < ApplicationController
+  include LessonsHelper
   before_filter :check_admin_user, :except => :show
   layout "sidebar"
   
@@ -58,6 +62,31 @@ class LessonsController < ApplicationController
       
       @title = @lesson.title
       
+    end
+  end
+  
+  def link_info
+    if(params[:url] && params[:url].match(URL_REGEX))
+      doc = Nokogiri::HTML(open(params[:url]))
+      
+      result = Hash.new
+      
+      result['title'] = doc.title
+      result['description'] = "Not Found."
+      
+      doc.css('body p').each do |p|
+        if(p.content.length > 200)
+          result['description'] = p.content
+          break
+        end
+      end
+      
+      
+      respond_to do |format|
+        format.json { render :json => ActiveSupport::JSON.encode(result) }
+      end
+    else
+      head :bad_request
     end
   end
 end

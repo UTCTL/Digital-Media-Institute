@@ -68,6 +68,20 @@ form label
 	width:200px;
 }
 
+input[type="text"]
+{
+    width:50%;
+}
+
+.ajaxError
+{
+    color:#F00;
+    font-weight:bold;
+    font-size:1.3em;
+    margin:0;
+    padding-left:10px;
+}
+
 textarea
 {
     width:95%;

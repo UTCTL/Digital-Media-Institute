@@ -9,6 +9,7 @@ gem 'pg'
 gem "acts_as_list", "~> 0.1.4"
 gem "awesome_nested_set", "~> 2.0.2"
 gem "vimeo"
+gem "nokogiri"
 
 # Gems used only for assets and not required
 # in production environments by default.

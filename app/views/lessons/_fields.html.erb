@@ -2,15 +2,15 @@
     <%= f.hidden_field :position %>
     <%= f.hidden_field :list_scope %>
     <%= f.hidden_field :skill_id %>
+    <%= f.hidden_field :kind %>
   </div>
   <div class="field">
-    <%= f.label :kind, "Kind" %>
-    <%= f.select :kind, options_for_select(Lesson::KINDS, @lesson.kind) %>
+    <%= select_tag :content_location, options_for_select(['External','Internal'],(["Video","Link"].include?(@lesson.kind) || @lesson.kind.nil? ? 'External' : 'Internal')) %>
   </div>
 	<div id="linkField" class="field dynamic">
     <%= f.label :link, "Link" %>
     <%= f.text_field :link %>
-    <p>Paste a link from Vimeo or YouTube</p>
+    <p id="linkInstructions"></p>
   </div>
   <div id="titleField" class="field dynamic">
     <%= f.label :title, "Title" %>

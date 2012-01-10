@@ -19,3 +19,7 @@
 <div id="lessonContent" class="itemContent">
   <%= sanitize @lesson.content %>
 </div>
+
+<% if @lesson.kind == "Link" %>
+<div><%= link_to "Go to external site.", @lesson.link, :target => "_blank" %></div>
+<% end %>
