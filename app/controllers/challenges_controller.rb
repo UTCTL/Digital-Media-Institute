@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-  before_filter :check_admin_user, :except => :show
+  #before_filter :check_admin_user, :except => :show
   layout "sidebar"
   
   def new
@@ -12,7 +12,7 @@ class ChallengesController < ApplicationController
   
   def create
     @skill = Skill.find_by_slug(params[:slug])
-    @challenge = @skill.challenges.new(params[:challenge])
+    @challenge = @skill.challenges.build(params[:challenge])
     
     if(@skill && @challenge.save)
       
@@ -20,6 +20,7 @@ class ChallengesController < ApplicationController
     else
       render :new
     end
+    
   end
   
   def edit

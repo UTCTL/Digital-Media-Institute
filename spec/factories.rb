@@ -1,8 +1,22 @@
 FactoryGirl.define do
   factory :skill do
-    title "Test Skill"
+    sequence(:title) {|n| "Skill #{n}"}
     description "this is only a test, yo!"
   end
+  
+  factory :user do
+    first_name "Scotty"
+    last_name "H"
+    sequence(:email) {|n| "user#{n}@example.com"}
+    password "foobar87"
+    password_confirmation "foobar87"
+    
+    factory :admin_user do
+      admin true
+    end
+  end
+  
+  
   
   factory :lesson do
     title "Beginner Photoshop Getting Started"

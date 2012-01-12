@@ -1,8 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  private
-  
   def current_user
     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
@@ -16,7 +14,11 @@ class ApplicationController < ActionController::Base
   end
   
   def check_admin_user
-    redirect_to(root_path) unless admin?
+    if(!signed_in?)
+      redirect_to(signin_path) 
+    else
+      redirect_to(root_path) unless admin?
+    end
   end
   
   helper_method :current_user

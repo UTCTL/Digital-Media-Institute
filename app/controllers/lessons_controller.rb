@@ -18,11 +18,11 @@ class LessonsController < ApplicationController
   
   def create
     @skill = Skill.find_by_slug(params[:slug])
-    @lesson = @skill.lessons.new(params[:lesson])
+    @lesson = @skill.lessons.build(params[:lesson])
     
     if(@skill && @lesson.save)
       
-      redirect_to training_path, :flash => { :success => "Lesson Added."}
+      redirect_to training_lesson_path(@skill.slug,@lesson.id), :flash => { :success => "Lesson Added."}
     else
       render :new
     end

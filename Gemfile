@@ -21,16 +21,16 @@ end
 
 gem 'jquery-rails'
 
-group :development do
-  gem 'rspec-rails', '~> 2.7'
-  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
-end
 
-group :test do
+group :development, :test do
   gem 'rspec-rails', '~> 2.7'
   gem 'factory_girl_rails', "~>1.2"
   gem 'webrat'
   gem 'spork'
+  gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
+  gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
+  gem 'guard-rspec'
+  gem 'guard-spork'
 end
 
 # To use ActiveModel has_secure_password

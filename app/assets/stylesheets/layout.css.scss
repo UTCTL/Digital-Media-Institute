@@ -22,7 +22,6 @@ h1
 { 
 	font-size:5em;
 	border-bottom:1px $textColor1 solid;
-	margin-bottom:.5em;
 }
 
 h1 a
@@ -58,6 +57,53 @@ h5
 {
     color:$textColor2;
     font-size:1.5em;
+}
+
+#header
+{
+    margin-bottom:10px;
+}
+
+.flash
+{
+    padding:10px;
+    font-size:1.3em;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.flash.success
+{
+   border:2px solid #009408;
+   background-color:#61C44F;
+   color:#009408;
+}
+
+.flash.error
+{
+   border:2px solid #FF0900;
+   background-color:#C42B36;
+   color:#FF0900;
+}
+
+.error_messages
+{
+    border:2px solid #FF0000;
+    background-color:#FFF;
+}
+
+.error_messages h4
+{
+    background-color:#F00;
+    color:#FFF;
+    font-size:1.3em;
+}
+
+.error_messages ul
+{
+    list-style:disc;
+    margin-left:25px;
+    padding:10px;
 }
 
 form label
