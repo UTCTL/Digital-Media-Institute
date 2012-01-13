@@ -15,7 +15,7 @@ h1,h2,h3
 
 h1
 {
-    color:$textColor1;
+    color:$textColor3;
 }
 
 h1
@@ -53,6 +53,13 @@ h4
     font-size:2em;
 }
 
+#sidebar h4
+{
+    font-size:1.7em;
+    padding:10px;
+    border-bottom:1px solid $textColor1;
+}
+
 h5
 {
     color:$textColor2;
@@ -62,6 +69,29 @@ h5
 #header
 {
     margin-bottom:10px;
+}
+
+#top_navigation
+{
+    margin-bottom:40px;
+}
+
+#top_navigation li
+{
+    display:inline;
+    float:left;
+    margin-left:5px;
+}
+
+#top_navigation li a
+{
+    color:$textColor1;
+    font-size:2em;
+    font-weight:bold;
+    padding:10px;
+    text-decoration:none;
+    text-transform:uppercase;
+    background-color:$bgColor2;
 }
 
 .flash
@@ -150,14 +180,6 @@ form div
 	background:$bgColor2;
 }
 
-#sidebar h4 a
-{
-    display:block;
-    color:inherit;
-    background-color:$bgColor2 - #151515;
-    padding:10px;
-    text-decoration:none;
-}
 
 #content
 {

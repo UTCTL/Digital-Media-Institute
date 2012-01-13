@@ -8,7 +8,6 @@ class SkillsController < ApplicationController
     
     if params[:slug]
       @skill = Skill.find_by_slug!(params[:slug])
-      
     end
     
     render :layout => "sidebar" 

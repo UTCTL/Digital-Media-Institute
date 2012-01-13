@@ -16,6 +16,13 @@
     <% end %>
   </div>
   <div id="header" class="grid_12"><h1><%= link_to "Digital Media Institute", root_path %></h1></div>
+  <div id="top_navigation" class="grid_12">
+    <ul>
+      <li><%= link_to "Program", root_path %></li>
+      <li><%= link_to "Training", training_index_path %></li>
+      <li><%= link_to "Gallery", gallery_index_path %></li>
+    </ul>
+  </div>
   <div class="grid_12">
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>

@@ -1,6 +1,8 @@
-<h4><span style="display:block; float:left; padding:10px">&#x2190;</span><%= link_to "#{short_title}", training_path(@skill.slug)%></h4>
+<%= link_to "Training Index", training_index_path, :class => "indexLink" %>
 
+<h4><%= short_title %></h4>
 <ul class="skill_tree">
+  <li><%= link_to "Getting Started", training_path, :class => (skill_content_display == "skillstart") ? "current" : "" %></li>
   <li>
     <span class="top_level">Lessons</span>
     <ul>

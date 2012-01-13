@@ -6,6 +6,19 @@
 $lessonBlockWidth:200px;
 $lessonBlockHeight:150px;
 
+
+a.indexLink
+{
+    display:block;
+    font-size:1.8em;
+    font-weight:bold;
+    color:$textColor1;
+    background-color:$bgColor2 - #151515;
+    margin-bottom:10px;
+    padding:10px;
+    text-decoration:none;
+}
+
 .skill_tree
 {
     
@@ -43,7 +56,7 @@ $lessonBlockHeight:150px;
 
 .skill_tree li a
 {
-    color:$textColor1;
+    color:$textColor3;
     display:block;
     font-size:1.2em;
     font-weight:bold;

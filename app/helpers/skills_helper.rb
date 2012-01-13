@@ -113,6 +113,10 @@ module SkillsHelper
     actions = %w(new create)
     type = ""
     
+    if(params[:controller] == "skills")
+      type = "skillstart"
+    end
+    
     if(params[:controller] == "lessons" && actions.include?(params[:action]))
       type = "newlesson"
     end

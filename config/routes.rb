@@ -4,17 +4,21 @@ Dmtraining::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
   
-  root :to => 'skills#index'
+  root :to => 'pages#home'
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/linkinfo', :to => 'lessons#link_info'
   
   scope "/training/:slug", :constraints => {:slug => /.*/} , :as => "training" do
+    
     resources :lessons
     resources :challenges
     match '/', :to => "skills#show"
   end
+  
+  match '/training', :to => 'skills#index', :as => 'training_index'
+  match '/gallery', :to => 'pages#gallery', :as => 'gallery_index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
