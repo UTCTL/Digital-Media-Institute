@@ -1,14 +1,13 @@
 <% content_for :sidebar do %>
 
-<%=render "shared/skill_nav" %>
+  <%= render "shared/sidebar_nav"%>
 <% end %>
 
 <h2><%= @title%></h2>
 
 <% if admin? %>
   <div id="adminLinks">
-    <%= link_to "Edit", edit_training_lesson_path %>
-    <%= link_to "Delete", training_lesson_path, :method => :delete, :confirm => "Are you sure you want to delete this lesson?" %>
+    <%= link_to "Edit", edit_lesson_path %>
   </div>
 <% end %>
 

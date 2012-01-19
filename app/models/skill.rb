@@ -12,23 +12,31 @@
 #  parent_id   :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  fulltitle   :string(255)
 #
 
 class Skill < ActiveRecord::Base
   acts_as_nested_set
+  
+  has_many :skill_challenges
+  has_many :challenges, :through => :skill_challenges
+  
+  has_many :skill_lessons
+  has_many :lessons, :through => :skill_lessons do
+    def list_scope(num)
+      Lesson.joins(:skill_lessons).where("skill_id = ? AND list_scope = ?", proxy_association.owner.id, num)
+    end
+    
+  end
   
   SEP = "|*|"
   
   attr_accessible :title, :description, :icon, :parent_id
   
   validate :only_one_root
-  validates :title, :presence => true 
-  
-  has_many :lessons, :order => "list_scope, position"
-  has_many :challenges, :order => "position" 
+  validates :title, :presence => true  
   
   before_save :create_slug
-  
   
   private
     

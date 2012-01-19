@@ -1,11 +1,11 @@
 <% content_for :sidebar do %>
 
-<%=render "shared/skill_nav" %>
+  <%= render "shared/sidebar_nav"%>
 <% end %>
 
 <h2>New Challenge</h2>
 
-<%= form_for(@challenge, :url => training_challenges_path) do |f| %>
+<%= form_for(@challenge) do |f| %>
   <%= render "shared/error_messages", :obj => @challenge %>
   
   <%= render "fields", :f => f %>

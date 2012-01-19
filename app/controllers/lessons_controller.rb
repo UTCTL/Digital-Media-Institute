@@ -6,32 +6,50 @@ class LessonsController < ApplicationController
   before_filter :check_admin_user, :except => :show
   layout "sidebar"
   
+  def index
+  end
+  
   def new
     
     if(params[:slug])
       @skill = Skill.find_by_slug(params[:slug])
-      
-      @lesson = Lesson.new
-      @lesson.list_scope = (params[:list_scope].nil?) ? 1 : params[:list_scope]  
+      @skill_lesson = SkillLesson.new
+      @skill_lesson.list_scope = (params[:list_scope].nil?) ? 1 : params[:list_scope]
+      @skill_lesson.skill_id = @skill.id
     end
+    
+     @lesson = Lesson.new
   end
   
   def create
-    @skill = Skill.find_by_slug(params[:slug])
-    @lesson = @skill.lessons.build(params[:lesson])
     
-    if(@skill && @lesson.save)
+    @lesson = Lesson.new(params[:lesson])
+    if(params[:skill_lesson])
+      @skill_lesson = @lesson.skill_lessons.build(params[:skill_lesson])
+      @skill = @skill_lesson.skill
       
-      redirect_to training_lesson_path(@skill.slug,@lesson.id), :flash => { :success => "Lesson Added."}
+      if(@lesson.save)
+       
+       redirect_to categorized_lesson_path(@skill.slug,@lesson.id), :flash => { :success => "Lesson Added."}
+      else
+       render :new
+      end
+       
+    elsif(@lesson.save)
+      redirect_to lesson_path(@lesson), :flash => { :success => "Lesson Added."}
     else
       render :new
     end
+    
   end
   
   def edit
-    @skill = Skill.find_by_slug(params[:slug])
-    @lesson = @skill.lessons.find(params[:id])
-    
+    if(params[:slug])
+      @skill = Skill.find_by_slug(params[:slug])
+      @lesson = @skill.lessons.find(params[:id])
+    else
+      @lesson = Lesson.find(params[:id])
+    end
     
   end
   
@@ -39,9 +57,9 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     
     if @lesson.update_attributes(params[:lesson])
-      redirect_to training_lesson_path
+      redirect_to lesson_path
     else
-      @skill = Skill.find_by_slug(params[:slug])
+      #@skill = Skill.find_by_slug(params[:slug])
       render :edit
     end
     
@@ -51,7 +69,7 @@ class LessonsController < ApplicationController
     @lesson = Lesson.find(params[:id])
     @lesson.destroy
     
-    redirect_to training_path, :flash => {:success => "Lesson Deleted."}
+    redirect_to training_index_path, :flash => {:success => "Lesson Deleted."}
   end
   
   def show
@@ -59,10 +77,11 @@ class LessonsController < ApplicationController
       @skill = Skill.find_by_slug!(params[:slug])
       
       @lesson = @skill.lessons.find(params[:id])
-      
-      @title = @lesson.title
-      
+    else
+      @lesson = Lesson.find(params[:id])
     end
+    
+     @title = @lesson.title
   end
   
   def link_info

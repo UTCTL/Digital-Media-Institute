@@ -1,13 +1,9 @@
-<% if @skill.challenges.any? %>
-  <%= render @skill.challenges%>
 
-<% else %> 
   <div>
     There are no challenges for this skill.
   </div>
-<% end %>
 
 <% if admin? %>
- <%= link_to content_tag(:span,"+ Add New Challenge",:class => "title"), new_training_challenge_path, 
+ <%= link_to content_tag(:span,"+ Add New Challenge",:class => "title"), new_challenge_path, 
     :class => "newButton" %>
 <% end %>

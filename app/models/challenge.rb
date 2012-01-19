@@ -3,8 +3,6 @@
 # Table name: challenges
 #
 #  id         :integer         not null, primary key
-#  skill_id   :integer
-#  position   :integer
 #  title      :string(255)
 #  content    :text
 #  assets     :string(255)
@@ -13,15 +11,14 @@
 #
 
 class Challenge < ActiveRecord::Base
-  acts_as_list :scope => :skill_id
+  has_many :skill_challenges
+  has_many :skills, :through => :skill_challenges
   
   attr_accessible :title, :content, :assets
   
-  validates :skill_id, :presence => true
   validates :title, :presence => true
   validates :content, :presence => true
   
-  belongs_to :skill
 end
 
 

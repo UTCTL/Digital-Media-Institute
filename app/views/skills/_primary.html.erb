@@ -1,14 +1,9 @@
-<% if @skill.lessons.primary_lessons.any? %>
 
-  <%= render @skill.lessons.primary_lessons %>
-
-<% else %>
   <div>
     There are no lessons for this skill.
   </div>
-<% end %>
 
 <% if admin? %>
- <%= link_to content_tag(:span,"+ Add New Lesson",:class => "title"), new_training_lesson_path, 
+ <%= link_to content_tag(:span,"+ Add New Lesson",:class => "title"), new_lesson_path, 
     :class => "newButton" %>
 <% end %>

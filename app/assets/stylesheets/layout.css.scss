@@ -1,4 +1,5 @@
 @import "_colors.scss";
+@import "_util.scss";
 
 body
 {
@@ -175,10 +176,6 @@ form div
 	margin-bottom:10px;
 }
 
-#sidebar
-{
-	background:$bgColor2;
-}
 
 
 #content

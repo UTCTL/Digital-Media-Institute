@@ -12,6 +12,7 @@
 #  parent_id   :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  fulltitle   :string(255)
 #
 
 require 'spec_helper'
@@ -27,16 +28,6 @@ describe Skill do
     @root_node.children.create!(@attr)
   end
   
-  describe "associations" do
-    
-    it "should have lessons attribute" do
-      @root_node.should respond_to(:lessons)
-    end
-    
-    it "should have a challenges attribute" do
-      @root_node.should respond_to(:challenges)
-    end
-  end
   
   describe "validations" do
     it "should require a title" do
@@ -46,6 +37,38 @@ describe Skill do
     it "should only have one root object" do
       extra_root = Skill.new(@attr)
       extra_root.should_not be_valid
+    end
+    
+  end
+  
+  describe "associations" do
+    
+    it "has skill_challenges attribute" do
+      @root_node.should respond_to(:skill_challenges)
+    end
+    
+    it "has challenges attribute" do
+      @root_node.should respond_to(:challenges)
+    end
+    it "has skill_lessons attribute" do
+      @root_node.should respond_to(:skill_lessons)
+    end
+    
+    it "has lessons attribute" do
+      @root_node.should respond_to(:lessons)
+    end
+  end
+  
+  describe "association extensions" do
+    
+    describe "primary lessons" do
+      it "returns lessons of proper list scope" do
+        @lesson = FactoryGirl.create(:lesson);
+        @skill_lesson = SkillLesson.create(:skill_id => @root_node.id, :lesson_id => @lesson.id, :list_scope => 1)
+        @skill_lesson2 = SkillLesson.create(:skill_id => @root_node.id, :lesson_id => @lesson.id, :list_scope => 2)
+        
+        @root_node.lessons.list_scope(1).count.should == 1
+      end
     end
     
   end

@@ -11,11 +11,9 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120105212912) do
+ActiveRecord::Schema.define(:version => 20120113181112) do
 
   create_table "challenges", :force => true do |t|
-    t.integer  "skill_id"
-    t.integer  "position"
     t.string   "title"
     t.text     "content"
     t.string   "assets"
@@ -30,16 +28,31 @@ ActiveRecord::Schema.define(:version => 20120105212912) do
   end
 
   create_table "lessons", :force => true do |t|
-    t.integer  "skill_id"
     t.string   "title"
     t.text     "content"
     t.string   "thumbnail"
-    t.integer  "list_scope"
-    t.integer  "position"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "kind"
     t.string   "link"
+  end
+
+  create_table "skill_challenges", :force => true do |t|
+    t.integer  "skill_id"
+    t.integer  "challenge_id"
+    t.integer  "list_scope"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "skill_lessons", :force => true do |t|
+    t.integer  "skill_id"
+    t.integer  "lesson_id"
+    t.integer  "list_scope"
+    t.integer  "position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "skills", :force => true do |t|

@@ -1,13 +1,17 @@
 class ChallengesController < ApplicationController
-  #before_filter :check_admin_user, :except => :show
+  before_filter :check_admin_user, :except => :show
   layout "sidebar"
+  
+  def index
+    
+  end
   
   def new
     if(params[:slug])
       @skill = Skill.find_by_slug(params[:slug])
-      
-      @challenge = Challenge.new
     end
+    
+    @challenge = Challenge.new
   end
   
   def create

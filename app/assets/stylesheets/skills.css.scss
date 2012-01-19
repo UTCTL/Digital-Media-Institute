@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 @import "_colors.scss";
+@import "_util.scss";
 
 $lessonBlockWidth:200px;
 $lessonBlockHeight:150px;
@@ -17,6 +18,18 @@ a.indexLink
     margin-bottom:10px;
     padding:10px;
     text-decoration:none;
+    @include round-corners(10px);
+    @include box-shadow(2px, 2px, 5px,.5)
+}
+
+a.indexLink:hover
+{
+    background-color:$bgColor2 - #050505;
+}
+
+#skillNav
+{
+    background-color:$bgColor2;
 }
 
 .skill_tree
@@ -72,7 +85,7 @@ a.indexLink
 
 .skill_tree li a.current
 {
-    background-color:$hiliteColor;
+    background-color:$bgColor;
 }
 
 ul.skill_tree
@@ -148,7 +161,7 @@ ul.skill_tree li li
 
 .newButton
 {
-    background-color:$bgColor3;
+    background-color:$bgColor2;
     font-size:1.4em;
     color:#FFF;
     display:block;

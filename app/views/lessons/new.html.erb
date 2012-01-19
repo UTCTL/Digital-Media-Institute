@@ -1,14 +1,21 @@
 <% content_for :sidebar do %>
 
-<%=render "shared/skill_nav" %>
+  <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<h2>New <%= (@lesson.list_scope == 1) ? "Lesson" : "Resource" %></h2>
+<h2>New Lesson</h2>
 
-<%= form_for(@lesson, :url => training_lessons_path) do |f| %>
+<%= form_for(@lesson) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   
   <%= render "fields", :f => f %>
+  
+  <% if @skill_lesson %>
+    <div style="padding:0; margin:0; display:inline">
+      <%= hidden_field(:skill_lesson, :skill_id) %>
+      <%= hidden_field(:skill_lesson, :list_scope) %>
+    </div>
+  <% end %>
   
   <div class="actions">
     <%= f.submit "Save", :disable_with => 'Saving...' %>

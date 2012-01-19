@@ -27,6 +27,7 @@ group :development, :test do
   gem 'factory_girl_rails', "~>1.2"
   gem 'webrat'
   gem 'spork'
+  gem 'ruby-debug19'
   gem 'annotate', :git => 'git://github.com/ctran/annotate_models.git'
   gem 'rb-fsevent', :require => false if RUBY_PLATFORM =~ /darwin/i
   gem 'guard-rspec'

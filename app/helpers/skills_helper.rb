@@ -22,7 +22,7 @@ module SkillsHelper
           <li id="tree-#{node.id}" class="tree_node">
         HTML
         
-        output += link_to( node.title, training_path(node.slug))
+        output += link_to( node.title, named_skill_path(node.slug))
       
       elsif(right_values.length == 2) 
         output += <<-HTML
@@ -77,7 +77,7 @@ module SkillsHelper
         
         if(right_values.length == 3)
           link_class = (node.id == current.id) ? "current" : ""
-          node_text = link_to(node.title,training_path(node.slug), :class => link_class)
+          node_text = link_to(node.title,named_skill_path(node.slug), :class => link_class)
         else
           node_text = content_tag(:span, node.title, :class => headings[right_values.length])
         end
@@ -95,13 +95,13 @@ module SkillsHelper
     end
 
       
-      while(right_values.length > 0)
+    while(right_values.length > 0)
         right_values.pop
 
-        if right_values.length > 0
-          output += "</ul></li>" 
-        else
-          output += "</ul>"
+      if right_values.length > 0
+        output += "</ul></li>" 
+      else
+        output += "</ul>"
       end
     end
     
@@ -114,11 +114,15 @@ module SkillsHelper
     type = ""
     
     if(params[:controller] == "skills")
-      type = "skillstart"
+      type = "gettingstarted"
     end
     
-    if(params[:controller] == "lessons" && actions.include?(params[:action]))
-      type = "newlesson"
+    if(params[:controller] == "lessons" && actions.include?(params[:action]))  
+      if(params[:list_scope].nil? || params[:list_scope] == 1)
+        type = "newlesson"
+      else
+        type = "newresource"
+      end
     end
     
     if(params[:controller] == "challenges" && actions.include?(params[:action]))

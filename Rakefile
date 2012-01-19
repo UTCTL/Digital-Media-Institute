@@ -3,5 +3,6 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require File.expand_path('../config/application', __FILE__)
+ENV['position_in_class']   = "before"
 
 Dmtraining::Application.load_tasks
