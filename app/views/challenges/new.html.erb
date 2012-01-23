@@ -8,6 +8,13 @@
 <%= form_for(@challenge) do |f| %>
   <%= render "shared/error_messages", :obj => @challenge %>
   
+  <% if @skill_challenge %>
+    <div id="skillChallengeField">
+      <%= hidden_field(:skill_challenge,:skill_id) %>
+      <%= hidden_field(:skill_challenge,:parent_id) %>
+    </div>
+  <% end %>
+  
   <%= render "fields", :f => f %>
   
   <div class="actions">

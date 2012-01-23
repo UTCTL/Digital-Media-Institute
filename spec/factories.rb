@@ -26,7 +26,7 @@ FactoryGirl.define do
   end
   
   factory :challenge do
-    title "Challenge #1"
+    sequence(:title) {|n| "Challenge #{n}"}
     content "This is a really hard challenge"
   end
 end

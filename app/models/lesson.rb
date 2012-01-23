@@ -13,7 +13,7 @@
 #
 
 class Lesson < ActiveRecord::Base
-  has_many :skill_lessons, :autosave => true, :dependent => :delete_all
+  has_many :skill_lessons, :dependent => :delete_all
   has_many :skills, :through => :skill_lessons
   
   attr_accessible :title, :content, :kind, :link, :thumbnail

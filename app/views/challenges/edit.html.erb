@@ -5,9 +5,15 @@
 
 <h2>Edit Challenge</h2>
 
-<%= form_for(@challenge, :url => training_challenge_path) do |f| %>
+<%= form_for(@challenge) do |f| %>
   <%= render "shared/error_messages", :obj => @challenge %>
-  
+
+  <% if @skill %>
+    <div style="padding:0; margin:0; display:inline">
+      <%= hidden_field(:skill, :id) %>
+    </div>
+  <% end %>
+
   <%= render "fields", :f => f %>
   
   <div class="actions">

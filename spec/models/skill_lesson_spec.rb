@@ -56,11 +56,6 @@ describe SkillLesson do
       
       item.should_not be_valid
     end
-    it "requires a lesson_id" do
-      item = SkillLesson.create(:skill_id => 1, :list_scope => 1)
-      
-      item.should_not be_valid
-    end
     it "requires a list_scope of 1 or 2" do
       
       item = SkillLesson.create(:skill_id => 1, :lesson_id => 1, :list_scope => 5)

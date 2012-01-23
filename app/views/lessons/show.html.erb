@@ -7,7 +7,11 @@
 
 <% if admin? %>
   <div id="adminLinks">
-    <%= link_to "Edit", edit_lesson_path %>
+    <% if @skill %>
+      <%= link_to "Edit", edit_categorized_lesson_path(@skill.slug) %>
+    <% elsif %>
+      <%= link_to "Edit", edit_lesson_path %>
+    <% end %>
   </div>
 <% end %>
 

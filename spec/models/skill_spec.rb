@@ -71,6 +71,22 @@ describe Skill do
       end
     end
     
+    describe "primary challenges" do
+      it "returns only the root challenges" do
+        
+        
+        @challenge = FactoryGirl.create(:challenge)
+        @challenge2 = FactoryGirl.create(:challenge)
+      
+        @sc = SkillChallenge.create(:skill_id => @root_node.id, :challenge_id => @challenge.id)
+        @sc2 = @sc.children.create!(:skill_id => @root_node.id, :challenge_id => @challenge2.id)
+        
+        @root_node.challenges.primary.count.should == 1
+      
+      end
+      
+    end
+    
   end
   
   describe "slug creation" do

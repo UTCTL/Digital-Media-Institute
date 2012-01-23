@@ -7,9 +7,14 @@
 
 <%= form_for(@lesson) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
-  
+
+  <% if @skill %>
+    <div style="padding:0; margin:0; display:inline">
+      <%= hidden_field(:skill, :id) %>
+    </div>
+  <% end %>
   <%= render "fields", :f => f %>
-  
+
   <div class="actions">
     <%= f.submit "Save", :disable_with => 'Saving...' %>
   </div>

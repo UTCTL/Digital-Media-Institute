@@ -15,9 +15,11 @@ end
 #  id           :integer         not null, primary key
 #  skill_id     :integer
 #  challenge_id :integer
-#  list_scope   :integer
-#  position     :integer
 #  created_at   :datetime
 #  updated_at   :datetime
+#  parent_id    :integer
+#  lft          :integer
+#  rgt          :integer
+#  title        :string(255)
 #
 

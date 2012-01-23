@@ -6,9 +6,11 @@
 <h2><%= @challenge.title %></h2>
 <% if admin? %>
   <div id="adminLinks">
-    <%= link_to "Edit", edit_training_challenge_path %>
-    <%= link_to "Delete", training_challenge_path, :method => :delete, 
-        :confirm => "Are you sure you want to delete this challenge?" %>
+    <% if @skill %>
+      <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@challenge) %>
+    <% elsif %>
+      <%= link_to "Edit", edit_challenge_path %>
+    <% end %>
   </div>
 <% end %>
 <div id="challengeContent" class="itemContent">

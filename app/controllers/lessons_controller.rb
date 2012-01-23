@@ -24,19 +24,22 @@ class LessonsController < ApplicationController
   def create
     
     @lesson = Lesson.new(params[:lesson])
+    
     if(params[:skill_lesson])
       @skill_lesson = @lesson.skill_lessons.build(params[:skill_lesson])
       @skill = @skill_lesson.skill
       
       if(@lesson.save)
-       
-       redirect_to categorized_lesson_path(@skill.slug,@lesson.id), :flash => { :success => "Lesson Added."}
-      else
-       render :new
+       redirect_path =  categorized_lesson_path(@skill.slug,@lesson.id)
       end
+      
+    elsif @lesson.save
+    
+      redirect_path = lesson_path(@lesson)
+    end
        
-    elsif(@lesson.save)
-      redirect_to lesson_path(@lesson), :flash => { :success => "Lesson Added."}
+    if(@lesson.valid?)
+      redirect_to redirect_path, :flash => { :success => "Lesson Added."}
     else
       render :new
     end
@@ -56,10 +59,19 @@ class LessonsController < ApplicationController
   def update
     @lesson = Lesson.find(params[:id])
     
+    if params[:skill]
+      @skill = Skill.find(params[:skill][:id]);
+    end
+
+    
     if @lesson.update_attributes(params[:lesson])
-      redirect_to lesson_path
+      if @skill
+        redirect_to categorized_lesson_path(@skill.slug,@lesson)
+      elsif
+        redirect_to lesson_path
+      end
+
     else
-      #@skill = Skill.find_by_slug(params[:slug])
       render :edit
     end
     

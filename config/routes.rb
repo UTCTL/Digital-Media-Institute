@@ -18,10 +18,12 @@ Dmtraining::Application.routes.draw do
     match '/', :to => 'skills#index', :as => 'training_index'
     
     scope '/:slug', :slug => /.*/, do
-      
-      resources :lessons, :only => [:show,:new,:edit], :as => "categorized_lesson"
-      resources :challenges, :only => [:show,:new,:edit], :as => "categorized_challenge"
-      
+
+      resources :lessons, :only => [:show,:new,:edit],
+                :as => "categorized_lesson"
+      resources :challenges, :only => [:show,:new,:edit],
+                :as => "categorized_challenge"
+
       match '/', :to => "skills#show", :as => "named_skill"
     end
   end

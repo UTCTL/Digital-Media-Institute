@@ -10,7 +10,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
   require File.expand_path("../../config/environment", __FILE__)
   require 'rspec/rails'
-  require 'rspec/autorun'
+  #require 'rspec/autorun'
   require 'factory_girl'
 
   # Requires supporting ruby files with custom matchers and macros, etc,
@@ -42,7 +42,10 @@ Spork.prefork do
       controller.current_user
     end
   end
-  
+
+  ActiveSupport::Dependencies.clear
+  ActiveRecord::Base.instantiate_observers
+
 end
 
 Spork.each_run do

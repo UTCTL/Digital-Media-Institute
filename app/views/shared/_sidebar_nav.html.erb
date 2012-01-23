@@ -45,7 +45,20 @@
   <li>
     <span class="top_level">Challenges</span>
     <ul>
-       <li>There are no Challenges</li>
+       <% challenges = @skill.challenges.primary %>
+       
+       <% if challenges.any? %>
+        <% challenges.each do |c| %>
+          
+          <% linkClass = (@challenge && @challenge.id == c.id) ? "current" : "" %>
+          
+          <li><%= link_to c.title, categorized_challenge_path(@skill.slug,c), :class => linkClass %></li>
+        <% end %>
+        
+       <% else %>
+         
+        <li>There are no Challenges</li>
+       <% end %>
        
        <% if admin? %>
        

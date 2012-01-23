@@ -20,8 +20,13 @@ class SkillLesson < ActiveRecord::Base
   belongs_to :lesson
   
   validates :skill_id, :presence => true
-  validates :lesson_id, :presence => true
   validates :list_scope, :inclusion => {:in => 1..2}
+  
+  after_initialize :init_values
+  
+  def init_values
+    self.list_scope ||= 1
+  end
 end
 
 

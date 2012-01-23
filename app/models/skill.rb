@@ -19,7 +19,11 @@ class Skill < ActiveRecord::Base
   acts_as_nested_set
   
   has_many :skill_challenges
-  has_many :challenges, :through => :skill_challenges
+  has_many :challenges, :through => :skill_challenges do
+    def primary
+      Challenge.joins(:skill_challenges).where(:skill_challenges => {:skill_id => proxy_association.owner.id, :parent_id => nil})
+    end
+  end
   
   has_many :skill_lessons
   has_many :lessons, :through => :skill_lessons do
