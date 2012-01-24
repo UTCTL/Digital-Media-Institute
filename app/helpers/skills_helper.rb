@@ -22,7 +22,7 @@ module SkillsHelper
           <li id="tree-#{node.id}" class="tree_node">
         HTML
         
-        output += link_to( node.title, named_skill_path(node.slug))
+        output += link_to( content_tag(:span,' ',:class => 'num') + node.title, named_skill_path(node.slug))
       
       elsif(right_values.length == 2) 
         output += <<-HTML

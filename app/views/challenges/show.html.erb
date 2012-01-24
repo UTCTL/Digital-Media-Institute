@@ -23,7 +23,7 @@
       <% linkClass = ( ch.challenge_id == @current_challenge.id ) ?
                         'relatedChallenge selected' : 'relatedChallenge' -%>
 
-      <%= link_to '', categorized_challenge_path(@skill.slug,ch),:class => linkClass %> 
+      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch),:class => linkClass %>
     <% end -%>
 
   </div>

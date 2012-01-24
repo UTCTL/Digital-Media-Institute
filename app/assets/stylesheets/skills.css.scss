@@ -10,26 +10,25 @@ $lessonBlockHeight:150px;
 
 a.indexLink
 {
-    display:block;
-    font-size:1.8em;
-    font-weight:bold;
-    color:$textColor1;
-    background-color:$bgColor2 - #151515;
-    margin-bottom:10px;
-    padding:10px;
-    text-decoration:none;
-    @include round-corners(10px);
-    @include box-shadow(2px, 2px, 5px,.5)
+  display:block;
+  font-size:1.8em;
+  font-weight:bold;
+  color:$textColor1;
+  background-color:$bgColor2 - #151515;
+  margin-bottom:10px;
+  padding:10px;
+  text-decoration:none;
+  @include round-corners(10px);
+  @include box-shadow(2px, 2px, 5px,.5)
 }
 
 a.indexLink:hover
 {
-    background-color:$bgColor2 - #050505;
+  background-color:$bgColor2 - #050505;
 }
 
 #skillNav
 {
-    background-color:$bgColor2;
 }
 
 .skill_tree
@@ -39,141 +38,168 @@ a.indexLink:hover
 
 .toplevel_node
 {
-    width:306px;
-    float:left;
+  width:306px;
+  float:left;
 }
 
 .skill_tree .top_level
 {
-    font-size:2.7em;
-    font-weight:bold;
-    color:$textColor2;
-    margin-bottom:0;
+  font-size:2.7em;
+  font-weight:bold;
+  color:$textColor2;
+  margin-bottom:0;
 }
 
 .skill_tree .second_level
 {
-    color:$textColor1;
-    display:block;
-    text-align:center;
-    font-size:1.6em;
-    font-weight:bold;
+  color:$textColor1;
+  display:block;
+  text-align:center;
+  font-size:1.6em;
+  font-weight:bold;
 }
 
 .skill_tree .node_title
 {
-    text-align:left;
-    font-weight:normal;
-    font-size:1.4em;
+  text-align:left;
+  font-weight:normal;
+  font-size:1.4em;
 }
 
 .skill_tree li a
 {
-    color:$textColor3;
-    display:block;
-    font-size:1.2em;
-    font-weight:bold;
-    padding:2px;
-    text-decoration:none;
+  background: asset-url('sm-solid-cir-gray.png', image) no-repeat;
+  color:$textColor3;
+  display:block;
+  font-size:1.2em;
+  line-height:25px;
+  font-weight:bold;
+  text-decoration:none;
+  height:25px;
+  margin-bottom:2px;
 }
+
+.skill_tree li a .num
+{
+  display:block;
+  float:left;
+  width:25px;
+  height:25px;
+  line-height:25px;
+  color:#FFF;
+  text-align:center;
+  margin-right:5px;
+}
+
+.skill_tree li a.addlink, .skill_tree li a.addlink.current
+{
+  background:#999;
+  color:#FFF;
+  padding-left:25px;
+}
+
+.skill_tree li a.addlink:hover
+{
+  background:#999 - #111;
+}
+
 
 .skill_tree li a:hover 
 {
-    color:$textHiliteColor;
-    background-color:$hiliteColor;
+  background-color:$hiliteColor;
 }
 
 .skill_tree li a.current
 {
-    background-color:$bgColor;
+  background: asset-url('sm-solid-cir-mag.png', image) no-repeat $bgColor2;
 }
 
 ul.skill_tree
 {
-    padding:10px 0 10px 10px;
+  padding:10px 0 10px 10px;
 }
 
 ul.skill_tree li
 {
-    margin-bottom:20px;
+  margin-bottom:20px;
 }
 
 ul.skill_tree li li
 {
-    margin-bottom:0;
+  margin-bottom:0;
 }
 
 /* Lesson Listing */
 
 .itemContainer
 {
-    padding-bottom:20px;
-    border-bottom:1px $textColor1 solid;
-    margin-bottom:30px;
+  padding-bottom:20px;
+  border-bottom:1px $textColor1 solid;
+  margin-bottom:30px;
 }
 
 .blockLink, .listLink
 {
-   display:block;
-   text-decoration:none; 
+  display:block;
+  text-decoration:none; 
 }
 
 .blockLink
 {
-	width:$lessonBlockWidth;
-    height:$lessonBlockHeight;
-	margin:3px;
-	float:left;
-	
+  width:$lessonBlockWidth;
+  height:$lessonBlockHeight;
+  margin:3px;
+  float:left;
+  
 }
 
 .blockLink .title
 {
-    display:block;
-    font-size:2em;
-	color:#FFF;
-	background:rgba(0,0,0,.5);
-	padding:5px;
+  display:block;
+  font-size:2em;
+  color:#FFF;
+  background:rgba(0,0,0,.5);
+  padding:5px;
 }
 
 
 .listLink
 {
-    color:$textColor1;
-    padding:5px;
+  color:$textColor1;
+  padding:5px;
 }
 
 .listLink.even
 {
-    background-color:$bgColor + #080808;
+  background-color:$bgColor + #080808;
 }
 
 .listLink.odd
 {
-    background-color:$bgColor - #080808;
+  background-color:$bgColor - #080808;
 }
 
 .listLink .title
 {
-    font-size:1.4em;
+  font-size:1.4em;
     
 }
 
 .newButton
 {
-    background-color:$bgColor2;
-    font-size:1.4em;
-    color:#FFF;
-    display:block;
-    float:left;
-    clear:both;
-    width:100%;
-    padding:5px;
-    margin-top:10px;
-    text-decoration:none;
+  background-color:$bgColor2;
+  font-size:1.4em;
+  color:#FFF;
+  display:block;
+  float:left;
+  clear:both;
+  width:100%;
+  padding:5px;
+  margin-top:10px;
+  text-decoration:none;
 }
 
 .newButton:hover
 {
-    background-color:$bgColor3 + #111;
+  background-color:$bgColor3 + #111;
 }
