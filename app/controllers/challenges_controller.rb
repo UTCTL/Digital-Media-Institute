@@ -11,6 +11,9 @@ class ChallengesController < ApplicationController
       @skill = Skill.find_by_slug(params[:slug])
       @skill_challenge = SkillChallenge.new
       @skill_challenge.skill_id = @skill.id
+      if params[:parent_id]
+        @skill_challenge.parent_id = params[:parent_id]
+      end
     end
 
     @challenge = Challenge.new
@@ -60,7 +63,7 @@ class ChallengesController < ApplicationController
     if @challenge.update_attributes(params[:challenge])
 
       if @skill
-        redirect_to categorized_challenge_path(@skill.slug,@lesson)
+        redirect_to categorized_challenge_path(@skill.slug,@challenge)
       elsif
         redirect_to challenge_path
       end
@@ -80,9 +83,16 @@ class ChallengesController < ApplicationController
   def show
     if params[:slug]
       @skill = Skill.find_by_slug(params[:slug])
-      @challenge = @skill.challenges.find(params[:id])
+      @challenge_list = SkillChallenge.where(:skill_id => @skill.id,:challenge_id => params[:id])
+                                      .first
+                                      .relatedChallenges
+
+      @root_challenge = @challenge_list[0].challenge;
+      @current_challenge = @challenge_list.find_by_challenge_id(params[:id]).challenge;
     else
-      @challenge = Challenge.find(params[:id])
+      @root_challenge = @current_challenge = Challenge.find(params[:id])
     end
+
+
   end
 end

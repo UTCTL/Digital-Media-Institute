@@ -3,16 +3,35 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<h2><%= @challenge.title %></h2>
+<h2><%= @current_challenge.title %></h2>
 <% if admin? %>
   <div id="adminLinks">
     <% if @skill %>
-      <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@challenge) %>
+      <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@current_challenge) %>
     <% elsif %>
       <%= link_to "Edit", edit_challenge_path %>
     <% end %>
   </div>
 <% end %>
 <div id="challengeContent" class="itemContent">
-  <%= sanitize @challenge.content %>
+  <%= sanitize @current_challenge.content %>
 </div>
+<% if @skill && @challenge_list.many? -%>
+  <h3>More Challenges Like This</h3>
+  <div>
+    <% @challenge_list.each_with_index do |ch,index| -%>
+      <% linkClass = ( ch.challenge_id == @current_challenge.id ) ?
+                        'relatedChallenge selected' : 'relatedChallenge' -%>
+
+      <%= link_to '', categorized_challenge_path(@skill.slug,ch),:class => linkClass %> 
+    <% end -%>
+
+  </div>
+
+<% end -%>
+
+<% if admin? -%>
+  <%= link_to "+ Add related challenge", 
+    new_categorized_challenge_path(@skill.slug, :parent_id => @root_challenge.id) -%>
+<% end -%>
+

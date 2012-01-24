@@ -20,4 +20,12 @@ class SkillChallenge < ActiveRecord::Base
   
   belongs_to :skill
   belongs_to :challenge
+
+  def relatedChallenges
+    if self.parent_id.nil?
+      self_and_descendants
+    else
+      root.self_and_descendants
+    end
+  end
 end
