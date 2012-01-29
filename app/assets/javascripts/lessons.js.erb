@@ -55,11 +55,12 @@ var lessonForm = function(){
   return {
       init :function(className){
         _className = className;
-        
-        
+
+        _lastProcessedLink = $("#lesson_link").val();
+
         _activeFields["Internal"] = ["titleField","contentField"];
         _activeFields["External"] = ["linkField","titleField","contentField","thumbnailField"];
-        
+
         //Event Handlers
         var owner = this;
        $("#content_location").change(function(){

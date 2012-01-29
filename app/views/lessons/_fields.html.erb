@@ -17,7 +17,11 @@
   
   <div id="thumbnailField" class="field dynamic">
     <%= f.hidden_field :thumbnail %>
-    <div id="thumbnailImage"></div>
+    <div id="thumbnailImage">
+      <% if @lesson.thumbnail -%>
+        <img src="<%= @lesson.thumbnail %>"/>
+      <% end -%>
+    </div>
   </div>
   <div id="contentField" class="field dynamic">
     <%= f.label :content, "Content" %>
