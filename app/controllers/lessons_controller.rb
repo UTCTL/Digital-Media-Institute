@@ -4,6 +4,7 @@ require 'open-uri'
 class LessonsController < ApplicationController
   include LessonsHelper
   before_filter :check_admin_user, :except => :show
+  before_filter :get_skill_tree, :only => [:new,:edit,:show]
   layout "sidebar"
   
   def index
@@ -78,10 +79,23 @@ class LessonsController < ApplicationController
   end
   
   def destroy
-    @lesson = Lesson.find(params[:id])
-    @lesson.destroy
+    redirect_path = training_index_path
+
+    if params[:slug]
+      @skill = Skill.find_by_slug(params[:slug]);
+      skill_lesson = @skill.skill_lessons.find_by_lesson_id(params[:id])
+      skill_lesson.destroy
+      redirect_path = named_skill_path(@skill.slug)
+    elsif
+      @lesson.destroy
+      @lesson = Lesson.find(params[:id])
+    end
+
     
-    redirect_to training_index_path, :flash => {:success => "Lesson Deleted."}
+    respond_to do |format|
+      format.html {redirect_to redirect_path, :flash => {:success => "Lesson Deleted."}}
+      format.js { render :js => "window.location = '#{redirect_path}'"}
+    end
   end
   
   def show

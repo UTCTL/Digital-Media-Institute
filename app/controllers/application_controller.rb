@@ -21,6 +21,9 @@ class ApplicationController < ActionController::Base
     end
   end
   
+  def get_skill_tree
+    @skills = Skill.root.self_and_descendants
+  end
   helper_method :current_user
   helper_method :signed_in?
   helper_method :admin?

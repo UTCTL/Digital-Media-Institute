@@ -8,8 +8,12 @@
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@current_challenge) %>
+      <%= link_to "Delete from this Skill", categorized_challenge_path, :remote => true, 
+        :method => :delete, :confirm => "Are you sure?" %>
     <% elsif %>
       <%= link_to "Edit", edit_challenge_path %>
+      <%= link_to "Delete", challenge_path, :remote => true, :method => :delete,
+        :confirm => "Are You sure?" %>
     <% end %>
   </div>
 <% end %>
@@ -30,7 +34,7 @@
 
 <% end -%>
 
-<% if admin? -%>
+<% if admin? && @skill -%>
   <%= link_to "+ Add related challenge", 
     new_categorized_challenge_path(@skill.slug, :parent_id => @root_challenge.id) -%>
 <% end -%>

@@ -27,13 +27,8 @@ a.indexLink:hover
   background-color:$bgColor2 - #050505;
 }
 
-#skillNav
-{
-}
-
 .skill_tree
 {
-    
 }
 
 .toplevel_node
@@ -127,6 +122,50 @@ ul.skill_tree li
 ul.skill_tree li li
 {
   margin-bottom:0;
+}
+
+#training_index_popover
+{
+  -webkit-transition: opacity .5s ease-out;
+  opacity: 0;
+  visibility:hidden;
+  background-color:#666;
+  position:absolute;
+  padding:10px;
+  top:-10px;
+  left:-10px;
+  width:940px;
+  @include round-corners(10px);
+  @include box-shadow(2px, 2px, 5px,.5)
+}
+
+#training_index_popover .indexLink
+{
+  @include box-shadow(0,0,0,0);
+}
+
+#training_index_popover .toplevel_node
+{
+  width:235px;
+}
+
+#training_index_popover .skill_tree li a
+{
+}
+
+#training_index_popover .skill_tree .second_level
+{
+  color:#EEE;
+}
+
+#training_index_popover .skill_tree .top_level
+{
+  color:#fff;
+}
+
+#training_index_popover .skill_tree li a
+{
+  color:#AAA;
 }
 
 /* Lesson Listing */

@@ -9,8 +9,12 @@
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_lesson_path(@skill.slug) %>
+      <%= link_to "Delete from this Skill", categorized_lesson_path, 
+        :remote => true, :method => :delete, :confirm => "Are you Sure?" %>
     <% elsif %>
       <%= link_to "Edit", edit_lesson_path %>
+      <%= link_to "Delete", lesson_path, :remote => true, :method => :delete,
+      :confirm => "Are you sure?" %>
     <% end %>
   </div>
 <% end %>

@@ -1,0 +1,20 @@
+development:
+  bucket: dmtraining-dev
+  access_key_id: AKIAIF4YWHYWH77HAIZQ
+  secret_access_key: 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
+  max_file_size: 10485760
+  acl: public-read
+    
+test:
+  bucket: dmtraining-dev
+  access_key_id: AKIAIF4YWHYWH77HAIZQ
+  secret_access_key: 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
+  max_file_size: 10485760
+  acl: public-read
+  
+production:
+  bucket: dmtraining
+  access_key_id: AKIAIF4YWHYWH77HAIZQ
+  secret_access_key: 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
+  max_file_size: 10485760
+  acl: public-read

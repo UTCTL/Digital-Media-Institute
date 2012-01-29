@@ -1,5 +1,7 @@
 class ChallengesController < ApplicationController
   before_filter :check_admin_user, :except => :show
+  before_filter :get_skill_tree, :only => [:new,:edit,:show]
+
   layout "sidebar"
 
   def index
@@ -74,10 +76,24 @@ class ChallengesController < ApplicationController
   end
 
   def destroy
-    @challenge = Challenge.find(params[:id])
-    @challenge.destroy
+    redirect_path = training_index_path
 
-    redirect_to training_path, :flash => {:success => "Challenge Deleted!"}
+    if params[:slug]
+      @skill = Skill.find_by_slug(params[:slug])
+      skill_challenge = @skill.skill_challenges.find_by_challenge_id(params[:id])
+      skill_challenge.destroy
+      redirect_path = named_skill_path(@skill.slug)
+    elsif
+
+      @challenge = Challenge.find(params[:id])
+      @challenge.destroy
+    end
+
+    respond_to do |format|
+      format.html {redirect_to redirect_path, :flash => {:success => "Challenge Deleted!"}}
+      format.js { render :js => "window.location = '#{redirect_path}'"}
+
+    end
   end
 
   def show

@@ -10,6 +10,8 @@ gem "acts_as_list", "~> 0.1.4"
 gem "awesome_nested_set", "~> 2.0.2"
 gem "vimeo"
 gem "nokogiri"
+gem "aws-s3"
+gem 's3_swf_upload', :git => 'git://github.com/nathancolgate/s3-swf-upload-plugin'
 
 # Gems used only for assets and not required
 # in production environments by default.

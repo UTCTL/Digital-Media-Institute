@@ -1,4 +1,12 @@
-<%= link_to "Training Index", training_index_path, :class => "indexLink" %>
+<script>$(function(){ skillsPage.init() });</script>
+
+<% if @skills -%>
+  <%= link_to "Training Index", '#', :class => "indexLink" %>
+  <div id="training_index_popover">
+    <%= link_to "Training Index", '#', :class => "indexLink" %>
+    <%= print_tree_cols(@skills) %>
+  </div>
+<% end -%>
 
 <% if admin? %>
 <!--<div id="adminNav">

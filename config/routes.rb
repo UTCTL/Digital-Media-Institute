@@ -1,5 +1,7 @@
 Dmtraining::Application.routes.draw do
 
+  resources :s3_uploads
+
   #resources :skills,   :only => [:index, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
   resources :users
@@ -19,9 +21,9 @@ Dmtraining::Application.routes.draw do
     
     scope '/:slug', :slug => /.*/, do
 
-      resources :lessons, :only => [:show,:new,:edit],
+      resources :lessons, :only => [:show,:new,:edit,:destroy],
                 :as => "categorized_lesson"
-      resources :challenges, :only => [:show,:new,:edit],
+      resources :challenges, :only => [:show,:new,:edit,:destroy],
                 :as => "categorized_challenge"
 
       match '/', :to => "skills#show", :as => "named_skill"
@@ -30,6 +32,7 @@ Dmtraining::Application.routes.draw do
   
   
   match '/gallery', :to => 'pages#gallery', :as => 'gallery_index'
+  match '/upload', :to => 'pages#upload', :as => 'upload_index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.
