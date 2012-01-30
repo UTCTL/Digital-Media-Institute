@@ -4,8 +4,57 @@
     border-radius: $cornerRadius;
 }
 
+@mixin round-corners-right($cornerRadius){
+  -webkit-border-top-right-radius: $cornerRadius;
+  -webkit-border-bottom-right-radius: $cornerRadius;
+  -moz-border-radius-topright: $cornerRadius;
+  -moz-border-radius-bottomright: $cornerRadius;
+  border-top-right-radius: $cornerRadius;
+  border-bottom-right-radius: $cornerRadius;
+}
+
+@mixin round-corners-left($cornerRadius){
+  -webkit-border-top-left-radius: $cornerRadius;
+  -webkit-border-bottom-left-radius: $cornerRadius;
+  -moz-border-radius-topleft: $cornerRadius;
+  -moz-border-radius-bottomleft: $cornerRadius;
+  border-top-left-radius: $cornerRadius;
+  border-bottom-left-radius: $cornerRadius;
+}
+
+@mixin round-corners-top($cornerRadius){
+  -webkit-border-top-left-radius: $cornerRadius;
+  -webkit-border-top-right-radius: $cornerRadius;
+  -moz-border-radius-topleft: $cornerRadius;
+  -moz-border-radius-topright: $cornerRadius;
+  border-top-left-radius: $cornerRadius;
+  border-top-right-radius: $cornerRadius;
+}
+
+@mixin round-corners-bottom($cornerRadius){
+  -webkit-border-bottom-right-radius: $cornerRadius;
+  -webkit-border-bottom-left-radius: $cornerRadius;
+  -moz-border-radius-bottomright: $cornerRadius;
+  -moz-border-radius-bottomleft: $cornerRadius;
+  border-bottom-right-radius: $cornerRadius;
+  border-bottom-left-radius: $cornerRadius;
+}
+
 @mixin box-shadow($x,$y,$blur,$alpha) {
     box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
     -moz-box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
     -webkit-box-shadow: $x $y $blur rgba(0, 0, 0, $alpha);
+}
+
+
+@mixin two-color-gradient ($color1,$c1percent,$color2,$c2percent) {
+background: $color1; /* Old browsers */
+background: -moz-linear-gradient(top,  $color1 $c1percent, $color2 $c2percent); /* FF3.6+ */
+background: -webkit-gradient(linear, left top, left bottom, color-stop($c1percent,$color1), color-stop($c2percent,$color2)); /* Chrome,Safari4+ */
+background: -webkit-linear-gradient(top,  $color1 $c1percent,$color2 $c2percent); /* Chrome10+,Safari5.1+ */
+background: -o-linear-gradient(top,  $color1 $c1percent,$color2 $c2percent); /* Opera 11.10+ */
+background: -ms-linear-gradient(top,  $color1 $c1percent,$color2 $c2percent); /* IE10+ */
+background: linear-gradient(top,  $color1 $c1percent,$color2 $c2percent); /* W3C */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 ); /* IE6-9 */
+  
 }

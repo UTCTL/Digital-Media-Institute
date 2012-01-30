@@ -1,0 +1,46 @@
+@import '_util.scss';
+
+$adminbar1: #4c9bba;
+$adminbar2: #08455e;
+
+div#adminLinks a:first-child
+{
+  @include round-corners-left(10px);
+}
+
+div#adminLinks a:last-child
+{
+  @include round-corners-right(10px);
+  border-right:none;
+}
+
+#adminLinks a
+{
+  @include two-color-gradient($adminbar1,0%,$adminbar2,100%);
+  display:block;
+  float:left;
+  color:#FFF;
+  font-size:1.48em;
+  text-decoration:none;
+  padding:10px;
+  margin-bottom:20px;
+  border-right:1px solid $adminbar2;
+}
+
+#adminLinks a.destructive
+{
+  @include two-color-gradient(#F74040,0%,#960D0D,100%);
+}
+
+#adminLinks a:hover
+{
+  @include two-color-gradient($adminbar1 - #333,0%,$adminbar2 - #333,100%);
+}
+
+#adminLinks a.destructive:hover
+{
+  @include two-color-gradient(#F74040 - #333,0%,#960D0D - #333,100%);
+}
+
+
+
