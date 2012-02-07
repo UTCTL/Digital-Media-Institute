@@ -5,5 +5,6 @@
 
 <div id="contentField" class="field">
   <%= f.label :content, "Content" %>
+  <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'images') %>',challengeForm.contentAddImage)">Insert Image</a>
   <%= f.text_area :content %>
 </div>

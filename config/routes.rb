@@ -32,7 +32,7 @@ Dmtraining::Application.routes.draw do
   
   
   match '/gallery', :to => 'pages#gallery', :as => 'gallery_index'
-  match '/upload', :to => 'pages#upload', :as => 'upload_index'
+  match '/upload/:type', :to => 'pages#upload', :type => /images|lesson-assets|challenge-assets/, :as => 'upload_index'
   
   # The priority is based upon order of creation:
   # first created -> highest priority.

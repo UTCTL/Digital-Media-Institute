@@ -153,6 +153,11 @@ var lessonForm = function(){
           $("#lesson_link,#lesson_title,#lesson_content").val('');
           $("#thumbnailImage").html('');
       },
+      contentAddImage: function(imageURL) {
+        var textArea = $("#lesson_content")[0];
+        var imgTag = "<img src=\""+imageURL+"\"/>";
+        util.insertAtCaret(textArea,imgTag);
+      },
       getContentLocation: function(){
         return _contentLocation;
       },
