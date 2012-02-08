@@ -9,5 +9,3 @@
 //= require jquery-ui
 //= require underscore
 //= require_tree .
-//
-
