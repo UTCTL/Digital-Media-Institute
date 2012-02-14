@@ -1,0 +1,19 @@
+<h2>Organize Skill Sets</h2>
+<div id="listContainer">
+</div>
+<script>
+  var skillOrganizer;
+
+  $( function(){ 
+    skillOrganizer = treeBrowser({dataPath:"<%=j skills_path %>",
+                                  container: $( "#listContainer" ),
+                                  maxLevel:3,
+                                  form: $("#skill_form")});
+    skillOrganizer.loadData();
+  } );
+</script>
+
+<%= form_tag skills_path, :id => "skill_form", :remote => true do %>
+    <%= hidden_field :skill, :parent_id %>
+    <%= text_field :skill, :title %>
+<% end -%>

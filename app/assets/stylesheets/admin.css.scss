@@ -1,46 +1,129 @@
 @import '_util.scss';
+@import '_colors.scss';
 
 $adminbar1: #4c9bba;
 $adminbar2: #08455e;
 
-div#adminLinks a:first-child
+$destructive1: #F74040;
+$destructive2: #960D0D;
+
+$levelsListBG: #EEE;
+$skillsListBG: $levelsListBG - #111;
+
+div#adminLinks
 {
-  @include round-corners-left(10px);
-}
+  clear:both;
 
-div#adminLinks a:last-child
+  a:first-child
+  {
+    @include round-corners-left(10px);
+  }
+
+  a:last-child
+  {
+    @include round-corners-right(10px);
+    border-right:none;
+  }
+
+  a
+  {
+    @include two-color-gradient($adminbar1, 0%, $adminbar2, 100%);
+    display:block;
+    float:left;
+    color:#FFF;
+    font-size:1.48em;
+    text-decoration:none;
+    padding:10px;
+    margin-bottom:20px;
+    border-right:1px solid $adminbar2;
+  }
+
+  a.destructive
+  {
+    @include two-color-gradient($destructive1, 0%, $destructive2, 100%)
+  }
+
+  a:hover
+  {
+    @include two-color-gradient($adminbar1 - #333, 0%, $adminbar2 - #333, 100%);
+  }
+
+  a.destructive:hover
+  {
+    @include two-color-gradient($destructive1 - #333, 0%, $destructive2 - #333, 100%);
+  }
+}
+//Skill Organizer Styles
+$colWidth: 313px;
+
+#listContainer
 {
-  @include round-corners-right(10px);
-  border-right:none;
+  width:940px;
+  position:relative;
+  min-height:500px;
+
+  ul
+  {
+    width:$colWidth - 10;
+    position:absolute;
+    padding:10px 0 10px 10px;
+  }
+
+  li
+  {
+    padding:10px;
+    font-size:1.7em;
+    display:block;
+  }
+
+  ul.level1
+  {
+    
+    li.selected, li.selected:hover
+    {
+      background-color: $skillsListBG;
+      color:#666;
+    }
+
+    li:hover
+    {
+      background-color: $skillsListBG;
+    }
+  }
+
+  ul.level2
+  {
+    background-color: $skillsListBG;
+    left:$colWidth;
+
+    li.selected, li.selected:hover
+    {
+      background-color: $levelsListBG;
+      color:#666;
+    }
+
+    li:hover
+    {
+      background-color: $levelsListBG;
+    }
+
+  }
+
+  ul.level3
+  {
+    background-color: $levelsListBG;
+    left: $colWidth * 2;
+
+    li.selected, li.selected:hover
+    {
+      background-color: #FFF;
+      color:#666;
+    }
+
+    li:hover
+    {
+      background-color: #FFF;
+    }
+
+  }
 }
-
-#adminLinks a
-{
-  @include two-color-gradient($adminbar1,0%,$adminbar2,100%);
-  display:block;
-  float:left;
-  color:#FFF;
-  font-size:1.48em;
-  text-decoration:none;
-  padding:10px;
-  margin-bottom:20px;
-  border-right:1px solid $adminbar2;
-}
-
-#adminLinks a.destructive
-{
-  @include two-color-gradient(#F74040,0%,#960D0D,100%);
-}
-
-#adminLinks a:hover
-{
-  @include two-color-gradient($adminbar1 - #333,0%,$adminbar2 - #333,100%);
-}
-
-#adminLinks a.destructive:hover
-{
-  @include two-color-gradient(#F74040 - #333,0%,#960D0D - #333,100%);
-}
-
-
-

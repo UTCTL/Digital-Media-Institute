@@ -63,7 +63,7 @@ var lessonForm = function(){
 
         //Event Handlers
         var owner = this;
-       $("#content_location").change(function(){
+        $("#content_location").change(function(){
           owner.setContentLocation( $(this).val() );
         });
         
@@ -76,7 +76,9 @@ var lessonForm = function(){
         });
         
         
-        this.setContentLocation( $("#content_location").val() );
+        if($("lesson_kind").val() == ''){
+          this.setContentLocation( $("#content_location").val() ); 
+        }
       },
       processLink: function(){
         var link = $("#lesson_link").val();

@@ -1,2 +1,9 @@
+<% if admin? -%>
+  <div id ="adminLinks">
+    <%= link_to "Organize", organize_skills_path %>
+  </div>
+<% end -%>
+
+<div class="clearfix"></div>
 <%= print_tree_cols(@skills) %>
 
