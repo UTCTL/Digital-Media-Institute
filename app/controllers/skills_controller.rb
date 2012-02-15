@@ -19,9 +19,15 @@ class SkillsController < ApplicationController
   end
 
   def create
-    @skill = Skill.create(params[:skill]);
+    @skill = Skill.create(params[:skill])
     
 
+  end
+
+  def destroy
+    @skill = Skill.find(params[:id])
+
+    @skill.destroy
   end
 
   def organize

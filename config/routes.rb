@@ -16,7 +16,7 @@ Dmtraining::Application.routes.draw do
     
     resources :lessons
     resources :challenges
-    resources :skills, :only => [:index,:create,:update]
+    resources :skills, :only => [:index,:create,:update,:destroy]
 
     match '/', :to => 'skills#index', :as => 'training_index'
     match '/organize', :to  => 'skills#organize', :as => 'organize_skills'

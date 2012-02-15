@@ -8,7 +8,8 @@
     skillOrganizer = treeBrowser({dataPath:"<%=j skills_path %>",
                                   container: $( "#listContainer" ),
                                   maxLevel:3,
-                                  form: $("#skill_form")});
+                                  form: $("#skill_form"),
+                                  objName: "skill"});
     skillOrganizer.loadData();
   } );
 </script>

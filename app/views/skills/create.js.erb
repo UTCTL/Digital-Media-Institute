@@ -1,13 +1,9 @@
 <% if @skill.errors.any? -%>
-var errors = "<p class=\"errors\"><%= @skill.errors.full_messages.join(",") %></p>";
+  var errors = "<p class=\"errors\"><%= @skill.errors.full_messages.join(",") %></p>";
 
-
-$("#formContainer").append(errors);
-
+  skillOrganizer.showErrors(errors);
 <% else -%>
-$(".errors").remove();
-
-$("#formContainer").before("<li><%=j @skill.title  %></li>");
-skillOrganizer.hideSkillForm();
+  skillOrganizer.hideErrors();
+  skillOrganizer.addItem($.parseJSON('<%= @skill.to_json.html_safe %>'));
 
 <% end -%>
