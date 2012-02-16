@@ -18,6 +18,9 @@
     <% end %>
   </div>
 <% end %>
+  <% if !@current_challenge.assets.blank? -%>
+    <div style="float:right"><%= link_to "Download Assets", @current_challenge.assets, :class => "downloadLink" %></div>
+  <% end -%>
 <div id="challengeContent" class="itemContent">
   <%= sanitize @current_challenge.content %>
 </div>

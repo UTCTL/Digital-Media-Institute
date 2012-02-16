@@ -8,6 +8,10 @@ var challengeForm = function(){
       var textArea = $("#challenge_content")[0];
       var imgTag = "<img src=\""+imageURL+"\"/>";
       util.insertAtCaret(textArea,imgTag);
+    },
+    chooseAssets: function(assetsURL) {
+      $("#challenge_assets").val(assetsURL);
+      $("#assets_display").text(assetsURL);
     }
   }
 }();

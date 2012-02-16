@@ -1,7 +1,7 @@
 #encoding: utf-8
 module LessonsHelper
   VIMEO_REGEX = /^http:\/\/(?:www\.)?vimeo\.com\/([0-9]+)$/
-  YOUTUBE_REGEX = /^http:\/\/(?:www\.)?youtube\.com\/watch\?(?=.*v=(\w+))(?:\S+)?$/
+  YOUTUBE_REGEX = /^http:\/\/(?:www\.)?youtube\.com\/watch\?v=(\S+)$/
   URL_REGEX = /(?i)\b((?:[a-z][\w-]+:(?:\/{1,3}|[a-z0-9%])|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}\/)
               (?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|
               (\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))/uix
@@ -13,7 +13,7 @@ module LessonsHelper
     end
     
     if matches = link.match(YOUTUBE_REGEX)
-      return "http://www.youtube.com/embed/#{matches[1]}"
+      return "http://www.youtube.com/embed/#{matches[1]}?wmode=opaque"
     end
     
     return nil

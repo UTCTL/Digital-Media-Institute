@@ -2,7 +2,12 @@
     <%= f.label :title, "Title" %>
     <%= f.text_field :title %>
 </div>
-
+<div id="assetsField">
+  <%= f.label :assets,"Assets" -%>
+  <%= f.hidden_field :assets -%>
+  <p id="assets_display"></p>
+  <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'challenge-assets') %>',challengeForm.chooseAssets)">Choose File...</a>
+</div>
 <div id="contentField" class="field">
   <%= f.label :content, "Content" %>
   <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'images') %>',challengeForm.contentAddImage)">Insert Image</a>

@@ -188,6 +188,15 @@ form div
   overflow:hidden;
 }
 
+a.downloadLink
+{
+  @include round-corners(10px);
+  background-color:#666;
+  color:#fff;
+  padding:10px;
+  font-size:1.4em;
+}
+
 #lessonContainer
 {
 /*-webkit-transition: -webkit-transform .5s ease-out;*/
