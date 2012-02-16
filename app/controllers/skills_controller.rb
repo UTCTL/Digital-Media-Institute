@@ -24,6 +24,13 @@ class SkillsController < ApplicationController
 
   end
 
+  def update
+    @skill = Skill.find(params[:id])
+
+    @skill.update_attributes(params[:skill]);
+
+  end
+
   def destroy
     @skill = Skill.find(params[:id])
 

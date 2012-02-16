@@ -14,7 +14,8 @@
   } );
 </script>
 
-<%= form_tag skills_path, :id => "skill_form", :remote => true do %>
+<%= form_tag skills_path, :id => "skill_form" do %>
     <%= hidden_field :skill, :parent_id %>
     <%= text_field :skill, :title %>
 <% end -%>
+
