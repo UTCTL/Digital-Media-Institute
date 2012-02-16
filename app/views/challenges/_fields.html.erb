@@ -5,7 +5,7 @@
 <div id="assetsField">
   <%= f.label :assets,"Assets" -%>
   <%= f.hidden_field :assets -%>
-  <p id="assets_display"></p>
+  <p id="assets_display"><%= @challenge.assets %></p>
   <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'challenge-assets') %>',challengeForm.chooseAssets)">Choose File...</a>
 </div>
 <div id="contentField" class="field">
