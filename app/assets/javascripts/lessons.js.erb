@@ -76,9 +76,22 @@ var lessonForm = function(){
         });
         
         
+        $(".clearAssetsLink").css("display",( $("#lesson_assets").val() != '' ) ? "inline":"none");
+        
         if($("lesson_kind").val() == ''){
           this.setContentLocation( $("#content_location").val() ); 
         }
+      },
+      chooseAssets: function(assetsURL){
+        $("#lesson_assets").val(assetsURL);
+        $("#assets_display").text(assetsURL);
+        $(".clearAssetsLink").css("display","inline");
+      },
+      clearAssets: function(){
+        $("#lesson_assets").val('');
+        $("#assets_display").text('');
+        $(".clearAssetsLink").css("display","none");
+
       },
       processLink: function(){
         var link = $("#lesson_link").val();

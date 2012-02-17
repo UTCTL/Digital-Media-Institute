@@ -16,7 +16,7 @@ class Lesson < ActiveRecord::Base
   has_many :skill_lessons, :dependent => :delete_all
   has_many :skills, :through => :skill_lessons
   
-  attr_accessible :title, :content, :kind, :link, :thumbnail
+  attr_accessible :title, :content, :kind, :link, :thumbnail, :assets
   
   KINDS = ["Video","Link","Text"]
   

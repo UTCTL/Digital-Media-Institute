@@ -4,6 +4,9 @@
 
 var challengeForm = function(){
   return {
+    init: function(){
+        $(".clearAssetsLink").css("display",( $("#challenge_assets").val() != '' ) ? "inline":"none");
+    },
     contentAddImage: function(imageURL) {
       var textArea = $("#challenge_content")[0];
       var imgTag = "<img src=\""+imageURL+"\"/>";
@@ -12,6 +15,13 @@ var challengeForm = function(){
     chooseAssets: function(assetsURL) {
       $("#challenge_assets").val(assetsURL);
       $("#assets_display").text(assetsURL);
+      $(".clearAssetsLink").css("display","inline");
+    },
+    clearAssets: function(){
+      $(".clearAssetsLink").css("display","none");
+      $("#challenge_assets").val('');
+      $("#assets_display").text('');
+
     }
   }
 }();

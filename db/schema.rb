@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120119154726) do
+ActiveRecord::Schema.define(:version => 20120217154112) do
 
   create_table "challenges", :force => true do |t|
     t.string   "title"
@@ -35,6 +35,7 @@ ActiveRecord::Schema.define(:version => 20120119154726) do
     t.datetime "updated_at"
     t.string   "kind"
     t.string   "link"
+    t.string   "assets"
   end
 
   create_table "skill_challenges", :force => true do |t|

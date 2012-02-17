@@ -23,6 +23,12 @@
       <% end -%>
     </div>
   </div>
+  <div id="assetsField">
+    <%= f.label :assets,"Assets" -%>
+    <%= f.hidden_field :assets -%>
+    <p id="assets_display"><%= @lesson.assets %></p>
+    <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'lesson-assets') %>',lessonForm.chooseAssets)">Choose File...</a>&nbsp;&nbsp;<a href="javascript:lessonForm.clearAssets()" class="clearAssetsLink">Clear</a>
+  </div>
   <div id="contentField" class="field dynamic">
     <%= f.label :content, "Content" %>
     <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'images') %>',lessonForm.contentAddImage)">Insert Image</a>
