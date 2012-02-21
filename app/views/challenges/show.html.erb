@@ -4,7 +4,7 @@
 <% end %>
 
 <h2><%= @current_challenge.title %></h2>
-<% if admin? %>
+<% if can? :update, Challenge %>
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@current_challenge) %>
@@ -38,7 +38,7 @@
 
 <% end -%>
 
-<% if admin? && @skill -%>
+<% if can?( :create, Challenge ) && @skill -%>
   <%= link_to "+ Add related challenge", 
     new_categorized_challenge_path(@skill.slug, :parent_id => @root_challenge.id) -%>
 <% end -%>

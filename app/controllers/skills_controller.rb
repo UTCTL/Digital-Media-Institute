@@ -1,6 +1,7 @@
 class SkillsController < ApplicationController
+  before_filter :find_by_slug, :only => [:show]
   before_filter :get_skill_tree, :only => [:index, :show]
-  before_filter :check_admin_user, :only => [:organize]
+  load_and_authorize_resource :except => [:organize]
 
   def index
     respond_to do |format|
@@ -11,33 +12,31 @@ class SkillsController < ApplicationController
 
   def show
 
-    if params[:slug]
-      @skill = Skill.find_by_slug!(params[:slug])
-    end
-
     render :layout => "sidebar" 
   end
 
   def create
-    @skill = Skill.create(params[:skill])
-    
-
+    @skill.save
   end
 
   def update
-    @skill = Skill.find(params[:id])
 
     @skill.update_attributes(params[:skill]);
 
   end
 
   def destroy
-    @skill = Skill.find(params[:id])
 
     @skill.destroy
   end
 
   def organize
+    authorize! :organize, Skill
+
+  end
+
+  def find_by_slug
+    @skill = Skill.find_by_slug!(params[:slug])
 
   end
 end

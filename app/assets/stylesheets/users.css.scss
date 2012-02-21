@@ -4,5 +4,21 @@
 
 form#new_user
 {
-	width:500px;
+  width:500px;
 }
+
+.userRow
+{
+  width:50%;
+}
+
+.userRow h3
+{
+  clear:none;
+}
+
+.userRow form
+{
+  float:right;
+}
+

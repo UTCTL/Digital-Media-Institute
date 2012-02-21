@@ -1,0 +1,20 @@
+<h2>Manage Users</h2>
+<% @users.each do |user| -%>
+    <div class="userRow">
+      <%= form_for user, :remote => true do |f| -%>
+        <%= f.collection_select(:role, User::ROLES,:to_s,:humanize,{}, :class => "roleSelect") %>
+      <% end -%>
+      <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
+      <p><%= user.email %></p>
+    </div>
+  <% end -%>
+
+  <script>
+    $(function() { 
+      $(".roleSelect").change(function(){
+        $(this).parent().submit();
+        console.log("Select Changed");
+      });
+    
+    });
+  </script>

@@ -4,7 +4,7 @@ Dmtraining::Application.routes.draw do
 
   #resources :skills,   :only => [:index, :create, :destroy]
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :users
+  resources :users, :only => [:new,:create,:index,:update]
   
   root :to => 'pages#home'
   match '/signup', :to => 'users#new'

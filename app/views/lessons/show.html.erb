@@ -5,7 +5,7 @@
 
 <h2><%= @title%></h2>
 
-<% if admin? %>
+<% if can? :update, Lesson %>
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_lesson_path(@skill.slug) %>

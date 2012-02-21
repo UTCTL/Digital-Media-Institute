@@ -8,15 +8,6 @@
   </div>
 <% end -%>
 
-<% if admin? %>
-<!--<div id="adminNav">
-  <ul>
-    <li><%= link_to "Manage Lessons", lessons_path %></li>
-    <li><%= link_to "Manage Challenges", challenges_path %></li>
-  </ul>
-</div>-->
-<% end %>
-
 <% if @skill %>
 <div id="skillNav">
 <h4><%= short_title %></h4>
@@ -45,7 +36,7 @@
         <li>There are no lessons.</li>
       <% end %>
 
-      <% if admin? %>
+      <% if can? :create, Lesson %>
 
         <% linkClass = (skill_content_display == "newlesson") ? "addlink current" : "addlink" %>
 
@@ -76,7 +67,7 @@
         <li>There are no Challenges</li>
        <% end %>
 
-       <% if admin? %>
+       <% if can? :create, Challenge %>
 
         <% linkClass = (skill_content_display == "newchallenge") ? "addlink current" : "addlink" %>
 
@@ -106,7 +97,7 @@
       <% else %>
         <li>There are no resources.</li>
       <% end %>
-      <% if admin? %>
+      <% if can? :create, Lesson %>
 
         <% linkClass = (skill_content_display == "newresource") ? "addlink current" : "addlink" %>
 

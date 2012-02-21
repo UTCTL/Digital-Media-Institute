@@ -1,4 +1,4 @@
-<% if admin? -%>
+<% if can? :organize, Skill -%>
   <div id ="adminLinks">
     <%= link_to "Organize", organize_skills_path %>
   </div>
