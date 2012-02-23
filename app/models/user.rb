@@ -12,7 +12,7 @@
 #  display_name    :string(255)
 #  created_at      :datetime
 #  updated_at      :datetime
-#  admin           :boolean
+#  role            :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   validates :password, :presence => true, :length => { :within => 7..40 }, :unless => :has_digest?
   validates :password_confirmation, :presence => true, :unless => :has_digest?
+  validates :role, :inclusion => { :in => ROLES }
 
   def authorized?(base_role)
     ROLES.index(base_role.to_s) <= ROLES.index(self.role)

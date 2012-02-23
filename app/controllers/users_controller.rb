@@ -13,6 +13,7 @@ class UsersController < ApplicationController
     @user.role = "user"
 
     if @user.save
+      session[:user_id] = @user.id
       redirect_to root_path, :notice => "Welcome to Digital Media Training!"
     else
       render 'new'

@@ -10,9 +10,10 @@ FactoryGirl.define do
     sequence(:email) {|n| "user#{n}@example.com"}
     password "foobar87"
     password_confirmation "foobar87"
-    
+    role "user"
+
     factory :admin_user do
-      admin true
+      role "admin"
     end
   end
   

@@ -1,12 +1,12 @@
 require 'cgi'
 
 class PagesController < ApplicationController
-  before_filter :check_admin_user, :except => [:home,:gallery]
   def home
     
   end
 
   def upload
+    authorize! :upload, :s3
 
     storage = Fog::Storage.new({
       :provider => 'AWS',

@@ -116,6 +116,12 @@ class ChallengesController < ApplicationController
     else
       @root_challenge = @current_challenge = Challenge.find(params[:id])
     end
+    
+    if current_user
+      @submission = Submission.where(:user_id => current_user.id,
+                                     :challenge_id => @current_challenge.id).first
+      @submission ||= Submission.new(:user_id => current_user.id,:challenge_id => @current_challenge.id)
+    end
 
     authorize! :show, @current_challenge
 

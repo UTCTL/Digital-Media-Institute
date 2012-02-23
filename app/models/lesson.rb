@@ -10,6 +10,7 @@
 #  updated_at :datetime
 #  kind       :string(255)
 #  link       :string(255)
+#  assets     :string(255)
 #
 
 class Lesson < ActiveRecord::Base

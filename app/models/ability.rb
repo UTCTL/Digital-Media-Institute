@@ -14,12 +14,14 @@ class Ability
 
     if user.authorized? :user
       can :update, User, :id => user.id
+      can :create, Submission
     end
 
     if user.authorized? :content_editor
       can :manage, Lesson
       can :manage, Challenge
       can :manage, Skill
+      can :upload, :s3
       cannot :change_role, User
     end
 
