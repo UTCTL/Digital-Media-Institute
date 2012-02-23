@@ -24,7 +24,7 @@
 <div id="challengeContent" class="itemContent">
   <%= sanitize @current_challenge.content %>
 </div>
-
+<!--
 <% if @submission.attachment.present? -%>
   <h3>Your Answer</h3>
   <%= image_tag @submission.attachment.url %>
@@ -60,7 +60,7 @@
     });
   </script>
 <% end -%>
-
+-->
 <% if @skill && @challenge_list.many? -%>
   <h3>More Challenges Like This</h3>
   <div>

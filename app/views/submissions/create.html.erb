@@ -1,0 +1,7 @@
+<script>
+<% if @submission.errors.any? -%>
+  parent.answerForm.uploadError();
+<% else -%>
+  parent.answerForm.uploadComplete();
+<% end -%>
+</script>
