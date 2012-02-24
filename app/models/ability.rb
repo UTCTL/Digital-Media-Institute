@@ -15,6 +15,7 @@ class Ability
     if user.authorized? :user
       can :update, User, :id => user.id
       can :create, Submission
+      can :destroy, Submission, :user_id => user.id
     end
 
     if user.authorized? :content_editor

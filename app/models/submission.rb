@@ -18,6 +18,7 @@ class Submission < ActiveRecord::Base
   mount_uploader :attachment, SubmissionUploader
 
   validates :user_id, :presence => true
+  validates :attachment, :presence => true
   # validate :attachment_xor_link
 
   def attachment_xor_link

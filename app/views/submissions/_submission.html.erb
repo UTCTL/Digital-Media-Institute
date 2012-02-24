@@ -1,0 +1,11 @@
+<div id="answerContent">
+  <h3>Your Answer</h3>
+  <%= image_tag submission.attachment.url %>
+  <div>
+    <%= link_to "Delete Answer", submission_path(submission),
+                :method => :delete, 
+                :remote => true, 
+                :confirm => "Are you sure?",
+                :disable_with => "Deleting..." if can? :destroy, submission %>
+  </div>
+</div>

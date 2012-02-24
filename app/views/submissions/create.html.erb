@@ -1,7 +1,7 @@
 <script>
 <% if @submission.errors.any? -%>
-  parent.answerForm.uploadError();
+  parent.answerForm.uploadError("<%=j @submission.errors.full_messages.join(', ') %>");
 <% else -%>
-  parent.answerForm.uploadComplete();
+  parent.answerForm.uploadComplete("<%=j render @submission %>");
 <% end -%>
 </script>

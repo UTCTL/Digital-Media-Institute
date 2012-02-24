@@ -24,43 +24,13 @@
 <div id="challengeContent" class="itemContent">
   <%= sanitize @current_challenge.content %>
 </div>
-<!--
-<% if @submission.attachment.present? -%>
-  <h3>Your Answer</h3>
-  <%= image_tag @submission.attachment.url %>
+
+<% if @submission && ( @submission.attachment.present? || @submission.link.present? ) -%>
+  <%= render @submission %>
 <% elsif can? :create, Submission -%>
-  <h3>Submit Your Answer</h3>
-  <div id="loading_image"><%= image_tag "ajax-loader.gif" %></div>
-  <%= form_for @submission, :html => {:multipart => true, :target => "upload_target"} do |f| %>
-    <div class="field">
-      <%= f.label :attachment, "Upload File" %>
-      <%= f.file_field :attachment  %>
-      <p>Allowed files: jpg, gif, or png</p>
-    </div>
-    <div class="or">OR</div>
-    <div class="field">
-      <%= f.label :link, "Submit a Link" %>
-      <%= f.text_field :link %>
-      <p>Paste a link from Youtube, Vimeo or other external site</p>
-    </div>
-    <div>
-      <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :challenge_id %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Submit Answer" %>
-      <%= f.submit "Reset", :name => "reset", :type => :reset %>
-    </div>
-  <% end -%>
-  <iframe id="upload_target"></iframe>
-  <script>
-    var answerForm;
-    $(function(){
-      answerForm = submissionsForm({ form_id: "#new_submission", loading_id:"#loading_image" });
-    });
-  </script>
+  <%= render :partial => 'image_form' %>
 <% end -%>
--->
+
 <% if @skill && @challenge_list.many? -%>
   <h3>More Challenges Like This</h3>
   <div>

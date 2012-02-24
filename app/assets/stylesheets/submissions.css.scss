@@ -5,6 +5,11 @@ form.new_submission .field
   padding:10px
 }
 
+form.new_submission #errors
+{
+  color:#FF0000;
+}
+
 form.new_submission .actions
 {
   clear:both

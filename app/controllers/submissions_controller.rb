@@ -5,4 +5,8 @@ class SubmissionsController < ApplicationController
     @submission.save
     render :create, :layout => false
   end
+
+  def destroy
+    @submission.destroy
+  end
 end
