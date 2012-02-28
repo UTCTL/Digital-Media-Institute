@@ -27,9 +27,9 @@ class ChallengesController < ApplicationController
 
       if params[:skill_challenge]
         @skill_challenge = @challenge.skill_challenges.build(params[:skill_challenge])
-        @skill = @skill_challenge.skill
 
         if @challenge.save
+          @skill = @skill_challenge.skill
           redirect_path = categorized_challenge_path(@skill.slug,@challenge.id)
         end
 

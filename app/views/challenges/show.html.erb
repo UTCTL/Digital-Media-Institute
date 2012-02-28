@@ -48,6 +48,6 @@
 
 <% if can?( :create, Challenge ) && @skill -%>
   <%= link_to "+ Add related challenge", 
-    new_categorized_challenge_path(@skill.slug, :parent_id => @root_challenge.id) -%>
+    new_categorized_challenge_path(@skill.slug, :parent_id => @challenge_list[0].id) -%>
 <% end -%>
 
