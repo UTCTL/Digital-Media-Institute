@@ -8,8 +8,9 @@ namespace :db do
 end
 
 def make_users
-  admin_user = User.create!(:email => "csherrick@austin.utexas.edu",:password => "foobar87", :password_confirmation => "foobar87")
-  admin_user.toggle!(:admin)
+  admin_user = User.new(:email => "csherrick@austin.utexas.edu",:password => "foobar87", :password_confirmation => "foobar87")
+  admin_user.role = 'admin'
+  admin_user.save
 end
 
 def make_skills
