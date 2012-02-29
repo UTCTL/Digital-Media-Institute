@@ -1,8 +1,9 @@
+<% path_string = "#{ submission.answerable_type.downcase }_submission_path" -%>
 <div id="answerContent">
   <h3>Your Answer</h3>
   <%= image_tag submission.attachment.url %>
   <div>
-    <%= link_to "Delete Answer", submission_path(submission),
+    <%= link_to "Delete Answer", send(path_string,submission.answerable_id,submission),
                 :method => :delete, 
                 :remote => true, 
                 :confirm => "Are you sure?",

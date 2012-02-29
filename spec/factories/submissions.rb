@@ -12,12 +12,14 @@ end
 #
 # Table name: submissions
 #
-#  id           :integer         not null, primary key
-#  user_id      :integer
-#  challenge_id :integer
-#  attachment   :string(255)
-#  link         :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id              :integer         not null, primary key
+#  user_id         :integer
+#  attachment      :string(255)
+#  link            :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  media_type      :string(255)
+#  answerable_id   :integer
+#  answerable_type :string(255)
 #
 

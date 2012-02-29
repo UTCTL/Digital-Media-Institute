@@ -14,10 +14,15 @@ Dmtraining::Application.routes.draw do
   
   scope "/training" do
     
-    resources :lessons
-    resources :challenges
+    resources :lessons do
+      resources :submissions
+    end
+
+    resources :challenges do
+      resources :submissions
+    end
+
     resources :skills, :only => [:index,:create,:update,:destroy]
-    resources :submissions
 
     match '/', :to => 'skills#index', :as => 'training_index'
     match '/organize', :to  => 'skills#organize', :as => 'organize_skills'

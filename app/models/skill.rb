@@ -21,7 +21,7 @@ class Skill < ActiveRecord::Base
   has_many :skill_challenges
   has_many :challenges, :through => :skill_challenges do
     def primary
-      Challenge.joins(:skill_challenges).where(:skill_challenges => {:skill_id => proxy_association.owner.id, :parent_id => nil})
+      Challenge.joins(:skill_challenges).where(:skill_challenges => {:skill_id => proxy_association.owner.id, :parent_id => nil}).order('lft');
     end
   end
   

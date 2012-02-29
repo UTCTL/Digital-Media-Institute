@@ -2,14 +2,17 @@
 #
 # Table name: submissions
 #
-#  id           :integer         not null, primary key
-#  user_id      :integer
-#  challenge_id :integer
-#  attachment   :string(255)
-#  link         :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id              :integer         not null, primary key
+#  user_id         :integer
+#  attachment      :string(255)
+#  link            :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  media_type      :string(255)
+#  answerable_id   :integer
+#  answerable_type :string(255)
 #
+
 require 'spec_helper'
 
 describe Submission do
@@ -17,11 +20,13 @@ describe Submission do
     @attr = FactoryGirl.attributes_for(:submission)
   end
   
-  # it "must have an attachment or link, but not both" do
-  #   sub = Submission.new(@attr.merge({:link => "alink"}))
+  it "must have a link if media type is Video"
+  it "must have a link if media type is Link"
+  it "must have an attachment if media type is image"
+  it "must a have media type in the allowed list" do
 
-  #   sub.should_not be_valid
-  # end
+  end
+
 
   it "must have a user_id" do
     sub = Submission.new(@attr.merge({:user_id => nil}))

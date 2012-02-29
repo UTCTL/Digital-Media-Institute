@@ -1,7 +1,7 @@
 <div id="answerContent">
   <h3>Submit Your Answer</h3>
   <div id="loading_image"><%= image_tag "ajax-loader.gif" %></div>
-  <%= form_for @submission, :html => {:multipart => true, :target => "upload_target"} do |f| %>
+  <%= form_for [answerable,@submission], :html => {:multipart => true, :target => "upload_target"} do |f| %>
     <p id="errors"></p>
     <div class="field">
       <%= f.label :attachment, "Upload File" %>
@@ -16,7 +16,8 @@
     </div>
     <div>
       <%= f.hidden_field :user_id %>
-      <%= f.hidden_field :challenge_id %>
+      <%= f.hidden_field :answerable_id %>
+      <%= f.hidden_field :answerable_type %>
     </div>
     <div class="actions">
       <%= f.submit "Submit Answer" %>

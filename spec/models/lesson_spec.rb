@@ -2,15 +2,17 @@
 #
 # Table name: lessons
 #
-#  id         :integer         not null, primary key
-#  title      :string(255)
-#  content    :text
-#  thumbnail  :string(255)
-#  created_at :datetime
-#  updated_at :datetime
-#  kind       :string(255)
-#  link       :string(255)
-#  assets     :string(255)
+#  id               :integer         not null, primary key
+#  title            :string(255)
+#  content          :text
+#  thumbnail        :string(255)
+#  created_at       :datetime
+#  updated_at       :datetime
+#  kind             :string(255)
+#  link             :string(255)
+#  assets           :string(255)
+#  submission_type  :string(255)
+#  allow_submission :boolean
 #
 
 require 'spec_helper'
@@ -35,6 +37,11 @@ describe Lesson do
     it "has skills attribute" do
       l = Lesson.new
       l.should respond_to(:skills)
+    end
+
+    it "has submissions attribute" do
+      l = Lesson.new
+      l.should respond_to(:submissions)
     end
   end
   

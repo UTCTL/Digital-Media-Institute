@@ -2,12 +2,13 @@
 #
 # Table name: challenges
 #
-#  id         :integer         not null, primary key
-#  title      :string(255)
-#  content    :text
-#  assets     :string(255)
-#  created_at :datetime
-#  updated_at :datetime
+#  id              :integer         not null, primary key
+#  title           :string(255)
+#  content         :text
+#  assets          :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  submission_type :string(255)
 #
 
 require 'spec_helper'
@@ -30,6 +31,11 @@ describe Challenge do
     it "has skills attribute" do
       c = Challenge.new
       c.should respond_to(:skills)
+    end
+
+    it "has submissions attribute" do
+      c = Challenge.new
+      c.should respond_to(:submissions)
     end
   end
   

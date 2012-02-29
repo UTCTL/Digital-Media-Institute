@@ -2,28 +2,26 @@
 #
 # Table name: submissions
 #
-#  id           :integer         not null, primary key
-#  user_id      :integer
-#  challenge_id :integer
-#  attachment   :string(255)
-#  link         :string(255)
-#  created_at   :datetime
-#  updated_at   :datetime
+#  id              :integer         not null, primary key
+#  user_id         :integer
+#  attachment      :string(255)
+#  link            :string(255)
+#  created_at      :datetime
+#  updated_at      :datetime
+#  media_type      :string(255)
+#  answerable_id   :integer
+#  answerable_type :string(255)
 #
 
 class Submission < ActiveRecord::Base
   belongs_to :user
-  belongs_to :challenge
+  belongs_to :answerable, :polymorphic => true
+  
+  MEDIA_TYPES = %w(image video link)
 
   mount_uploader :attachment, SubmissionUploader
 
   validates :user_id, :presence => true
   validates :attachment, :presence => true
-  # validate :attachment_xor_link
-
-  def attachment_xor_link
-    if !(attachment.present? ^ link.present?)
-      errors.add(:attachment_and_link, "must have attachment OR link")
-    end
-  end
+  
 end

@@ -120,9 +120,8 @@ class ChallengesController < ApplicationController
     authorize! :show, @current_challenge
 
     if current_user
-      @submission = Submission.where(:user_id => current_user.id,
-                                     :challenge_id => @current_challenge.id).first
-      @submission ||= Submission.new(:user_id => current_user.id,:challenge_id => @current_challenge.id)
+      @submission = @current_challenge.submissions.first
+      @submission ||= @current_challenge.submissions.build(:user_id => current_user.id)
     end
 
 

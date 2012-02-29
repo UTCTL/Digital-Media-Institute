@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120222173543) do
+ActiveRecord::Schema.define(:version => 20120228210506) do
 
   create_table "challenges", :force => true do |t|
     t.string   "title"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(:version => 20120222173543) do
     t.string   "assets"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "submission_type"
   end
 
   create_table "groupings", :force => true do |t|
@@ -36,6 +37,8 @@ ActiveRecord::Schema.define(:version => 20120222173543) do
     t.string   "kind"
     t.string   "link"
     t.string   "assets"
+    t.string   "submission_type"
+    t.boolean  "allow_submission"
   end
 
   create_table "skill_challenges", :force => true do |t|
@@ -73,11 +76,13 @@ ActiveRecord::Schema.define(:version => 20120222173543) do
 
   create_table "submissions", :force => true do |t|
     t.integer  "user_id"
-    t.integer  "challenge_id"
     t.string   "attachment"
     t.string   "link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "media_type"
+    t.integer  "answerable_id"
+    t.string   "answerable_type"
   end
 
   create_table "users", :force => true do |t|
