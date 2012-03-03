@@ -23,14 +23,22 @@
       <% end -%>
     </div>
   </div>
+  <div id="allowSubmissionField" class="field">
+    <%= f.label :allow_submission, "Allow Submissions" %>
+    <%= f.check_box :allow_submission %>
+  </div>
+  <div id="submissionTypeField" class="field">
+    <%= f.label :submission_type, "Submission Type" %>
+    <%= f.collection_select :submission_type, Submission::MEDIA_TYPES, :to_s, :humanize %>
+  </div>
   <div id="assetsField">
     <%= f.label :assets,"Assets" -%>
     <%= f.hidden_field :assets -%>
     <p id="assets_display"><%= @lesson.assets %></p>
-    <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'lesson-assets') %>',lessonForm.chooseAssets)">Choose File...</a>&nbsp;&nbsp;<a href="javascript:lessonForm.clearAssets()" class="clearAssetsLink">Clear</a>
+    <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'lesson-assets') %>',lform.chooseAssets)">Choose File...</a>&nbsp;&nbsp;<a href="javascript:lform.clearAssets()" class="clearAssetsLink">Clear</a>
   </div>
   <div id="contentField" class="field dynamic">
     <%= f.label :content, "Content" %>
-    <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'images') %>',lessonForm.contentAddImage)">Insert Image</a>
+    <a href="javascript:fileBrowser.show('<%= upload_index_path(:type => 'images') %>',lform.contentAddImage)">Insert Image</a>
     <%= f.text_area :content %>
   </div>

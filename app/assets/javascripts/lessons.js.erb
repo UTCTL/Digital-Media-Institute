@@ -1,87 +1,65 @@
 //Defines behavior of the New and Edit lesson forms
-var lessonForm = function(){
+var lessonForm = function(className){
   var _fields = {};
   var _contentLocation = "";
   var _className = "";
   var _lastProcessedLink = "";
   var _activeFields = {};
-  
+
+  _className = className;
+
+  _lastProcessedLink = $("#lesson_link").val();
+
+  _activeFields["Internal"] = ["titleField","contentField"];
+  _activeFields["External"] = ["linkField","titleField","contentField","thumbnailField"];
+
   var _addFormField = function(field){
     $(_className+" .actions").before(field);
   };
-  
+
   var getVimeoInfo_result = function(data){
     var video = data[0];
-    
+
     clearErrors();
     $("#lesson_title").val(video.title);
     $("#lesson_content").val(video.description);
     $("#lesson_thumbnail").val(video.thumbnail_medium);
     $("#lesson_kind").val('Video');
-    
+
     $("#thumbnailImage").html("<img src=\""+video.thumbnail_medium+"\"/>");
   };
-  
+
   var getYoutubeInfo_result = function(data){
       clearErrors();
       var video = data.entry;
-      
+
       $("#lesson_title").val(video.title['$t']);
       $("#lesson_content").val(video['media$group']['media$description']['$t']);
-      
+
       var default_thumbnail = video['media$group']['media$thumbnail'][0].url;
-      
+
       $("#lesson_thumbnail").val(default_thumbnail);
       $("#lesson_kind").val('Video');
       $("#thumbnailImage").html("<img src=\""+default_thumbnail+"\"/>");
   };
-  
+
   var getExternalInfo_result = function(data){
       clearErrors();
       $("#lesson_title").val(data.title);
       $("#lesson_content").val(data.description);
       $("#lesson_kind").val('Link');
   }
-  
+
   var xhrError = function(xhr, status, error){
-      
+
     $("#lesson_link").after("<span class=\"ajaxError\">Link is invalid</span>")
   };
-  
+
   var clearErrors = function(){
-      $(".ajaxError").remove();
-      };
-  
-  return {
-      init :function(className){
-        _className = className;
+    $(".ajaxError").remove();
+  };
 
-        _lastProcessedLink = $("#lesson_link").val();
-
-        _activeFields["Internal"] = ["titleField","contentField"];
-        _activeFields["External"] = ["linkField","titleField","contentField","thumbnailField"];
-
-        //Event Handlers
-        var owner = this;
-        $("#content_location").change(function(){
-          owner.setContentLocation( $(this).val() );
-        });
-        
-        $("#lesson_link").live("paste", function(event){
-          setTimeout(function(){ owner.processLink() },0);
-        });
-        
-        $("#lesson_link").live("focusout", function(event){
-           owner.processLink(); 
-        });
-        
-        
-        $(".clearAssetsLink").css("display",( $("#lesson_assets").val() != '' ) ? "inline":"none");
-        
-        if($("lesson_kind").val() == ''){
-          this.setContentLocation( $("#content_location").val() ); 
-        }
-      },
+  var that = {
       chooseAssets: function(assetsURL){
         $("#lesson_assets").val(assetsURL);
         $("#assets_display").text(assetsURL);
@@ -95,20 +73,20 @@ var lessonForm = function(){
       },
       processLink: function(){
         var link = $("#lesson_link").val();
-        
+
         if(link === _lastProcessedLink)
             return;
-        
+
         clearErrors();
-        
+
         var vimeoRegexp = /<%= LessonsHelper::VIMEO_REGEX.source %>/;
         var youtubeRegexp = /<%= LessonsHelper::YOUTUBE_REGEX.source %>/;
 
-               
+
         var matches;
-        
+
         _lastProcessedLink = link;
-        
+
         if(matches = link.match(vimeoRegexp))
         {
             this.getVimeoInfo(matches[1]);
@@ -121,8 +99,8 @@ var lessonForm = function(){
         {
             this.getExternalInfo(link);
         }
-        
-          
+
+
       },
       getVimeoInfo: function(video_id){
         $.ajax({
@@ -151,9 +129,9 @@ var lessonForm = function(){
       },
       displayActiveFields: function(){
           $(_className+" .dynamic").each(function(index){
-              
+
               var field = $(this);
-              
+
               if( _.include(_activeFields[_contentLocation],field.attr("id")) ) 
               {
                   field.css("display","block")
@@ -162,7 +140,7 @@ var lessonForm = function(){
               {
                   field.css("display","none")
               }
-              
+
           });
       },
       resetForm: function(){
@@ -178,36 +156,57 @@ var lessonForm = function(){
         return _contentLocation;
       },
       setContentLocation: function(value){
-        
+
         if(_contentLocation !== value)
         {
           _contentLocation = value;
-          
+
           //this.resetForm();
           this.displayActiveFields();
-          
-          
+
+
           if(_contentLocation === "External")
           {
-            $("#lesson_kind").val("Link");
-            
+
             $("#lesson_link").focus();
-            
+
             $("#linkInstructions").text("Paste a link to Vimeo or YouTube for Video, or any other URL for an external link");
-            
+
           }
           else
           {
             $("#lesson_link").val('');
             $("#lesson_thumbnail").val('');
-            
+
             $("#lesson_kind").val("Text");
             $("#lesson_title").focus();
           }
-          
-          
         }
-        
       }
   };
-}();
+
+  //Event Handlers
+  $("#content_location").change(function(){
+    that.setContentLocation( $(this).val() );
+  });
+
+  $("#lesson_allow_submission").change(function(){
+    $("#submissionTypeField").toggle(this.checked);
+  });
+
+  $("#lesson_link").live("paste", function(event){
+    setTimeout(function(){ that.processLink() },0);
+  });
+
+  $("#lesson_link").live("focusout", function(event){
+     that.processLink(); 
+  });
+
+
+  $(".clearAssetsLink").css("display",( $("#lesson_assets").val() != '' ) ? "inline":"none");
+
+  that.setContentLocation( $("#content_location").val() ); 
+  $("#lesson_allow_submission").trigger("change");
+
+return that;
+};

@@ -118,6 +118,11 @@ class LessonsController < ApplicationController
 
     authorize! :show, @lesson
 
+    if current_user && @lesson.allow_submission
+      @submission = @lesson.submissions.first
+      @submission ||= @lesson.submissions.build(:user_id => current_user.id)
+    end
+
     @title = @lesson.title
   end
 

@@ -14,6 +14,8 @@
 #
 
 class Submission < ActiveRecord::Base
+  include LessonsHelper
+
   belongs_to :user
   belongs_to :answerable, :polymorphic => true
   
@@ -22,6 +24,17 @@ class Submission < ActiveRecord::Base
   mount_uploader :attachment, SubmissionUploader
 
   validates :user_id, :presence => true
-  validates :attachment, :presence => true
+  validates :attachment, :presence => true, :if => "media_type == 'image'"
+  validates :link, :presence => true, :if => "media_type == 'link' || media_type == 'video'"
+  validates :media_type, :inclusion => { :in => MEDIA_TYPES }
+
+  validate :video_link?, :if => "media_type == 'video'"
+
+  def video_link?
+    if !( link.match(VIMEO_REGEX) || link.match(YOUTUBE_REGEX))
+      errors.add( :link, "must be a Youtube or Vimeo link" )
+    end
+  end
+
   
 end

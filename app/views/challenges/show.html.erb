@@ -28,7 +28,7 @@
 <% if @submission && ( @submission.attachment.present? || @submission.link.present? ) -%>
   <%= render @submission %>
 <% elsif can? :create, Submission -%>
-  <%= render :partial => 'image_form', :locals => { :answerable => @current_challenge } %>
+  <%= render :partial => 'submissions/image_form', :locals => { :answerable => @current_challenge } %>
 <% end -%>
 
 <% if @skill && @challenge_list.many? -%>

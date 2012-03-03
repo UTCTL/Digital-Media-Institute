@@ -1,0 +1,50 @@
+<div id="answerContent">
+  <h3>Submit Your Answer</h3>
+  <div id="loading_image"><%= image_tag "ajax-loader.gif" %></div>
+  <%= form_for [answerable,@submission], :html => {:multipart => true, :target => "upload_target"} do |f| %>
+
+    <p id="errors"></p>
+    <% if answerable.submission_type == "image" -%>
+        <div class="field">
+          <%= f.label :attachment, "Upload File" %>
+          <%= f.file_field :attachment  %>
+          <p>Allowed files: jpg, gif, or png</p>
+        </div>
+        <div class="or">OR</div>
+        <div class="field">
+          <%= f.label :remote_attachment_url, "Submit a Link" %>
+          <%= f.text_field :remote_attachment_url %>
+          <p>Paste a link to your file on a remote site.</p>
+        </div>
+    <% else -%>
+        <div class="field">
+          <%= f.label :link, "Submit a Link" %>
+          <%= f.text_field :link %>
+
+          <% if answerable.submission_type == 'video' -%>
+            <p>Paste a link to your video on Youtube or Vimeo.</p>
+          <% else -%>
+            <p>Paste a link to your answer on a remote site.</p>
+          <% end -%>
+
+        </div>
+    <% end -%>
+    <div>
+      <%= f.hidden_field :media_type, :value => answerable.submission_type %>
+      <%= f.hidden_field :user_id %>
+      <%= f.hidden_field :answerable_id %>
+      <%= f.hidden_field :answerable_type %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Submit Answer" %>
+      <%= f.submit "Reset", :name => "reset", :type => :reset %>
+    </div>
+  <% end -%>
+  <iframe id="upload_target"></iframe>
+  <script>
+    var answerForm;
+    $(function(){
+      answerForm = imageUploadForm({ form_id: "#new_submission", loading_id:"#loading_image" });
+    });
+  </script>
+</div>

@@ -31,6 +31,14 @@
   <%= sanitize @lesson.content %>
 </div>
 
+<% if @lesson.allow_submission -%>
+  <% if @submission && ( @submission.attachment.present? || @submission.link.present? ) -%>
+    <%= render @submission %>
+  <% elsif can? :create, Submission -%>
+    <%= render :partial => 'submissions/image_form', :locals => { :answerable => @lesson } %>
+  <% end -%>
+<% end -%>
+
 <% if @lesson.kind == "Link" %>
 <div><%= link_to "Go to external site.", @lesson.link, :target => "_blank" %></div>
 <% end %>

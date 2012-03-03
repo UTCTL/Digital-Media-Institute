@@ -30,4 +30,23 @@ FactoryGirl.define do
     sequence(:title) {|n| "Challenge #{n}"}
     content "This is a really hard challenge"
   end
+
+  factory :submission do
+    user_id  1
+
+    factory :image_submission do
+      media_type 'image'
+      attachment 'images/test.jpg'
+    end
+
+    factory :video_submission do
+      media_type 'video'
+      link 'http://www.vimeo.com/1234'
+    end
+
+    factory :link_submission do
+      media_type 'link'
+      link 'http://www.cnn.com'
+    end
+  end
 end

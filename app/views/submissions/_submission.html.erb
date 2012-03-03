@@ -1,7 +1,11 @@
 <% path_string = "#{ submission.answerable_type.downcase }_submission_path" -%>
 <div id="answerContent">
   <h3>Your Answer</h3>
-  <%= image_tag submission.attachment.url %>
+  <% if submission.media_type == 'image' -%>
+    <%= image_tag submission.attachment.url %>
+  <% else -%>
+    <%= link_to submission.link, submission.link, :target => '_blank' %>
+  <% end -%>
   <div>
     <%= link_to "Delete Answer", send(path_string,submission.answerable_id,submission),
                 :method => :delete, 

@@ -16,7 +16,7 @@ class Challenge < ActiveRecord::Base
   has_many :skills, :through => :skill_challenges
   has_many :submissions, :as => :answerable
 
-  attr_accessible :title, :content, :assets
+  attr_accessible :title, :content, :assets, :submission_type
   
   validates :title, :presence => true
   validates :content, :presence => true
