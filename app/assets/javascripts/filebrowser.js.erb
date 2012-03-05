@@ -2,7 +2,7 @@ var fileBrowser = function(){
 
   return {
     show: function(path,chooseCallback) {
-      var fb = window.open(path, "file_browser","width=800,height=600");
+      var fb = window.open(path, "file_browser","scrollbars=1,width=800,height=600");
       fb.chooseCallback = chooseCallback;
     }
   };
