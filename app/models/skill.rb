@@ -21,14 +21,20 @@ class Skill < ActiveRecord::Base
   has_many :skill_challenges
   has_many :challenges, :through => :skill_challenges do
     def primary
-      Challenge.joins(:skill_challenges).where(:skill_challenges => {:skill_id => proxy_association.owner.id, :parent_id => nil}).order('lft');
+      Challenge.all(:joins => :skill_challenges,
+                    :select => "challenges.*, skill_challenges.title AS category_title",
+                    :conditions => { :skill_challenges => {:skill_id => proxy_association.owner.id,
+                                                           :parent_id => nil} },
+                    :order => 'lft')
     end
   end
   
   has_many :skill_lessons
   has_many :lessons, :through => :skill_lessons do
     def list_scope(num)
-      Lesson.joins(:skill_lessons).where("skill_id = ? AND list_scope = ?", proxy_association.owner.id, num)
+      Lesson.joins(:skill_lessons)
+            .where("skill_id = ? AND list_scope = ?", proxy_association.owner.id, num)
+            .order('position')
     end
     
   end

@@ -3,4 +3,7 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<h2>Manage Lessons</h2>
+<h2><%= short_title @skill %></h2>
+<% if @skill -%>
+  <%= render :partial => 'lesson_nav' %>
+<% end -%>

@@ -3,10 +3,15 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'challenge_nav' %>
+<% end -%>
+
 <h2>Edit Challenge</h2>
 
-<%= form_for(@challenge) do |f| %>
-  <%= render "shared/error_messages", :obj => @challenge %>
+<%= form_for(@current_challenge) do |f| %>
+  <%= render "shared/error_messages", :obj => @current_challenge %>
 
   <% if @skill %>
     <div style="padding:0; margin:0; display:inline">
@@ -22,5 +27,6 @@
 <% end -%>
 
 <script>
-  $( function(){ challengeForm.init() });
+  var cform;
+  $( function(){ cform =  challengeForm() });
 </script>

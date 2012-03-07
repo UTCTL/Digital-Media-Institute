@@ -3,10 +3,7 @@
 
 
 var challengeForm = function(){
-  return {
-    init: function(){
-        $(".clearAssetsLink").css("display",( $("#challenge_assets").val() != '' ) ? "inline":"none");
-    },
+  var that =  {
     contentAddImage: function(imageURL) {
       var textArea = $("#challenge_content")[0];
       var imgTag = "<img src=\""+imageURL+"\"/>";
@@ -24,4 +21,13 @@ var challengeForm = function(){
 
     }
   }
-}();
+
+  $("#skill_challenge_parent_id").change(function(){
+    $("#skill_challenge_title").toggle( $(this).val() == '' ).val('');
+  });
+
+  $(".clearAssetsLink").css("display",( $("#challenge_assets").val() != '' ) ? "inline":"none");
+
+  $("#skill_challenge_parent_id").trigger("change");
+  return that;
+};

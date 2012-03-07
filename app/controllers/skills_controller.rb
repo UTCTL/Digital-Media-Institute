@@ -11,8 +11,12 @@ class SkillsController < ApplicationController
   end
 
   def show
-
-    render :layout => "sidebar" 
+    if @skill.level == 2
+      @category = @skill
+      render :layout => "sidebar" 
+    else
+      redirect_to named_skill_path(@skill.ancestors.last.slug)
+    end
   end
 
   def create

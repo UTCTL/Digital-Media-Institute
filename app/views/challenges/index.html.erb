@@ -3,4 +3,8 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<h2>Manage Challenges</h2>
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'challenge_nav' %>
+<% end -%>
+</ul>

@@ -3,6 +3,10 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'lesson_nav' %>
+<% end -%>
 <h2>New Lesson</h2>
 
 <%= form_for(@lesson) do |f| %>

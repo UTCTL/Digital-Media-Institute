@@ -1,8 +1,15 @@
 // Place all the styles related to the Challenges controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+.relatedChallenge
+{
+  clear:both;
+  margin-bottom:20px;
+  border-top:1px solid #000;
+  border-bottom:1px solid #000;
+}
 
-a.relatedChallenge
+.relatedChallenge a
 {
   background: asset-url("solid-cir-gray.png",image);
   width:50px;
@@ -16,7 +23,7 @@ a.relatedChallenge
   text-decoration:none;
 }
 
-a.relatedChallenge.selected
+.relatedChallenge a.selected
 {
   background: asset-url("solid-cir-mag.png",image);
 }

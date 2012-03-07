@@ -3,15 +3,26 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'challenge_nav' %>
+<% end -%>
+<div style="border-bottom:1px solid #000; margin-bottom:10px; clear:both; height:20px;"></div>
+
 <h2>New Challenge</h2>
 
-<%= form_for(@challenge) do |f| %>
-  <%= render "shared/error_messages", :obj => @challenge %>
+<%= form_for(@current_challenge) do |f| %>
+  <%= render "shared/error_messages", :obj => @current_challenge %>
   
   <% if @skill_challenge %>
     <div id="skillChallengeField">
       <%= hidden_field(:skill_challenge,:skill_id) %>
-      <%= hidden_field(:skill_challenge,:parent_id) %>
+      <%= label :parent_id, "Category" %>
+      <%= collection_select(:skill_challenge,
+                            :parent_id,
+                            @skill.challenges.primary,
+                            :id, :category_title,:prompt => "New Category") %>
+      <%= text_field :skill_challenge, :title %>
     </div>
   <% end %>
   
@@ -23,5 +34,6 @@
 <% end -%>
 
 <script>
-  $( function(){ challengeForm.init() });
+  var cform;
+  $( function(){ cform = challengeForm() });
 </script>

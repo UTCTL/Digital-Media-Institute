@@ -1,0 +1,28 @@
+<ul class="subnav">
+<% @skill.challenges.primary.each do |c| -%>
+  <% linkClass = ( @root_challenge && ( c.id == @root_challenge.id ) ) ?  'selected' : '' -%>
+
+  <li><%= link_to c.category_title,
+          categorized_challenge_path(@skill.slug,c.id),
+          :class => linkClass %></li>
+<% end -%>
+
+<% if can? :create, Challenge -%>
+  <li><%= link_to "+ Add Challenge", new_categorized_challenge_path(@skill.slug), 
+        :class => params['action'] == 'new' ? 'selected' : ''  %></li>
+<% end -%>
+  <div class="clearfix"></div>
+</ul>
+
+<% if @challenge_list && @challenge_list.many? -%>
+  <div class="relatedChallenge">
+    <% @challenge_list.each_with_index do |ch,index| -%>
+      <% linkClass = ( ch.challenge_id == @current_challenge.id ) ?
+                        'selected' : '' -%>
+      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch.challenge_id),:class => linkClass %>
+    <% end -%>
+    <div class="clearfix"></div>
+
+  </div>
+
+<% end -%>

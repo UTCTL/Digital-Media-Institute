@@ -8,103 +8,47 @@
   </div>
 <% end -%>
 
-<% if @skill %>
+<% if @category %>
 <div id="skillNav">
-<h4><%= short_title %></h4>
+<h4><%= short_title @category %></h4>
 <ul class="skill_tree">
   <li><%= link_to content_tag(:span,' ',:class => 'num') + "Getting Started",
-                              named_skill_path(@skill.slug),
-                              :class => (skill_content_display == "gettingstarted") ? "current" : "" %>
+                              named_skill_path(@category.slug),
+                              :class => (@skill == @category) ? "current" : "" %>
   </li>
   <li>
     <span class="top_level">Lessons</span>
     <ul>
-      <% lessons = @skill.lessons.list_scope(1) %>
 
-      <% if lessons.any? %>
+      <% if @category.descendants.any? %>
 
-        <% lessons.each_with_index do |l,index| %>
+        <% @category.descendants.each_with_index do |skill,index| %>
 
-          <% linkClass = (@lesson && @lesson.id == l.id) ? "current" : "" %>
-
-          <li><%= link_to content_tag(:span,index+1,:class => 'num')+l.title,
-                    categorized_lesson_path(@skill.slug,l), :class => linkClass %></li>
-
+          <li><%= link_to content_tag(:span,index+1,:class => 'num')+skill.title,
+                  categorized_lesson_index_path(skill.slug),
+                  :class => (@skill == skill && params[:controller] == 'lessons') ? "current" : "" %></li>
         <% end %>
 
-      <% else %>
-        <li>There are no lessons.</li>
       <% end %>
 
-      <% if can? :create, Lesson %>
-
-        <% linkClass = (skill_content_display == "newlesson") ? "addlink current" : "addlink" %>
-
-        <li><%= link_to content_tag(:span,"+ Add Lesson",:class => "title"),
-                  new_categorized_lesson_path(@skill.slug),
-                  :class => linkClass %></li>
-      <% end %>
     </ul>
   </li>
   <li>
     <span class="top_level">Challenges</span>
     <ul>
-       <% challenges = @skill.challenges.primary %>
 
-       <% if challenges.any? %>
-        <% challenges.each_with_index do |c,index| %>
+      <% if @category.descendants.any? %>
+        <% @category.descendants.each_with_index do |skill,index| %>
 
-          <% linkClass = (@root_challenge && @root_challenge.id == c.id) ? "current" : "" %>
 
-          <li><%= link_to content_tag(:span,index+1,:class => 'num')+c.title,
-                                      categorized_challenge_path(@skill.slug,c),
-                                      :class => linkClass %>
+          <li><%= link_to content_tag(:span,index+1,:class => 'num')+skill.title,
+            categorized_challenge_index_path(skill.slug),
+            :class => (@skill == skill && params[:controller] == 'challenges') ? "current" : "" %>
           </li>
         <% end %>
 
-       <% else %>
-
-        <li>There are no Challenges</li>
-       <% end %>
-
-       <% if can? :create, Challenge %>
-
-        <% linkClass = (skill_content_display == "newchallenge") ? "addlink current" : "addlink" %>
-
-        <li><%= link_to content_tag(:span,"+ Add Challenge",:class => "title"), new_categorized_challenge_path(@skill.slug),
-        :class => linkClass %></li>
       <% end %>
-    </ul>
-  </li>
-  <li>
-    <span class="top_level">Other Resources</span>
-    <ul>
-      <% resources = @skill.lessons.list_scope(2) %>
 
-      <% if resources.any? %>
-
-        <% resources.each_with_index do |r,index| %>
-
-          <% linkClass = (@lesson && @lesson.id == r.id) ? "current" : "" %>
-
-          <li><%= link_to content_tag(:span,index+1,:class => 'num')+r.title,
-                                      categorized_lesson_path(@skill.slug,r),
-                                      :class => linkClass %>
-          </li>
-
-        <% end %>
-
-      <% else %>
-        <li>There are no resources.</li>
-      <% end %>
-      <% if can? :create, Lesson %>
-
-        <% linkClass = (skill_content_display == "newresource") ? "addlink current" : "addlink" %>
-
-        <li><%= link_to content_tag(:span,"+ Add Resource",:class => "title"),
-                                    new_categorized_lesson_path(@skill.slug,
-                                    :list_scope => 2), :class => linkClass %></li>
-      <% end %>
     </ul>
   </li>
 </ul>

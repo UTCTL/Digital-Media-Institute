@@ -2,13 +2,17 @@
 
   <%= render "shared/sidebar_nav"%>
 <% end %>
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'challenge_nav' %>
+<% end -%>
 
 <h2><%= @current_challenge.title %></h2>
 <% if can? :update, Challenge %>
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@current_challenge) %>
-      <%= link_to "Delete from this Skill", categorized_challenge_path, :class => 'destructive',
+      <%= link_to "Delete from this Skill", categorized_challenge_path(@skill.slug,@current_challenge), :class => 'destructive',
         :remote => true, :method => :delete, :confirm => "Are you sure?" %>
     <% elsif %>
       <%= link_to "Edit", edit_challenge_path %>
@@ -31,22 +35,4 @@
   <%= render :partial => 'submissions/image_form', :locals => { :answerable => @current_challenge } %>
 <% end -%>
 
-<% if @skill && @challenge_list.many? -%>
-  <h3>More Challenges Like This</h3>
-  <div>
-    <% @challenge_list.each_with_index do |ch,index| -%>
-      <% linkClass = ( ch.challenge_id == @current_challenge.id ) ?
-                        'relatedChallenge selected' : 'relatedChallenge' -%>
-      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch.challenge_id),:class => linkClass %>
-    <% end -%>
-
-  </div>
-
-<% end -%>
-
-
-<% if can?( :create, Challenge ) && @skill -%>
-  <%= link_to "+ Add related challenge", 
-    new_categorized_challenge_path(@skill.slug, :parent_id => @challenge_list[0].id) -%>
-<% end -%>
 

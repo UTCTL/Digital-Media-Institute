@@ -3,19 +3,32 @@ require 'open-uri'
 
 class LessonsController < ApplicationController
   include LessonsHelper
-  before_filter :get_skill_tree, :only => [:new,:edit,:show]
+  before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
+  before_filter :get_skill_nav, :only => [:index,:new,:edit,:show]
   layout "sidebar"
+
+  def get_skill_nav
+    if params[:slug]
+      @skill = Skill.find_by_slug(params[:slug])
+      @category = @skill.ancestors.last
+    end
+  end
 
   def index
     authorize! :index, Lesson
+
+    if @skill
+      @lessons = @skill.lessons.list_scope(1);
+    else
+      @lessons = Lesson.all
+    end
   end
 
   def new
 
     @lesson = Lesson.new
 
-    if(params[:slug])
-      @skill = Skill.find_by_slug(params[:slug])
+    if(@skill)
       @skill_lesson = SkillLesson.new
       @skill_lesson.list_scope = (params[:list_scope].nil?) ? 1 : params[:list_scope]
       @skill_lesson.skill_id = @skill.id
@@ -52,8 +65,7 @@ class LessonsController < ApplicationController
   end
 
   def edit
-    if(params[:slug])
-      @skill = Skill.find_by_slug(params[:slug])
+    if(@skill)
       @lesson = @skill.lessons.find(params[:id])
     else
       @lesson = Lesson.find(params[:id])
@@ -86,8 +98,7 @@ class LessonsController < ApplicationController
   def destroy
     redirect_path = training_index_path
 
-    if params[:slug]
-      @skill = Skill.find_by_slug(params[:slug]);
+    if @skill
       skill_lesson = @skill.skill_lessons.find_by_lesson_id(params[:id])
       authorize! :destroy, skill_lesson
 
@@ -108,9 +119,7 @@ class LessonsController < ApplicationController
   end
 
   def show
-    if(params[:slug])
-      @skill = Skill.find_by_slug!(params[:slug])
-
+    if @skill
       @lesson = @skill.lessons.find(params[:id])
     else
       @lesson = Lesson.find(params[:id])

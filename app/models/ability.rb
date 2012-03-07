@@ -7,8 +7,6 @@ class Ability
     if user.authorized? :anonymous
       can :read, :all
       can :create, User
-      cannot :index, Challenge
-      cannot :index, Lesson
       cannot :index, User
     end
 

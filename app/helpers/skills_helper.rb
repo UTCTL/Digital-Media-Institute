@@ -138,10 +138,10 @@ module SkillsHelper
     end
   end
   
-  def short_title
-    if @skill
-      index = @skill.fulltitle.index(Skill::SEP)
-      short_title = @skill.fulltitle[ (index+Skill::SEP.length)..@skill.fulltitle.length ]
+  def short_title(skill)
+    if skill
+      index = skill.fulltitle.index(Skill::SEP)
+      short_title = skill.fulltitle[ (index+Skill::SEP.length)..skill.fulltitle.length ]
       
       short_title.gsub(Skill::SEP," \u27A2 ")
     end

@@ -3,6 +3,11 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
+<% if @skill -%>
+  <h2><%= short_title @skill %></h2>
+  <%= render :partial => 'lesson_nav' %>
+<% end -%>
+
 <h2><%= @title%></h2>
 
 <% if can? :update, Lesson %>

@@ -181,7 +181,28 @@ form div
   margin-bottom:10px;
 }
 
+.subnav
+{
+  margin-bottom:10px;
+}
 
+.subnav a
+{
+  @include round-corners(5px);
+  display:block;
+  float:left;
+  font-size:1.4em;
+  padding:10px;
+  margin-right:5px;
+  background-color:$textColor3;
+  color:#fff;
+  text-decoration:none;
+}
+
+.subnav a.selected
+{
+  background-color:$textColor3 + #222;
+}
 
 #content
 {
