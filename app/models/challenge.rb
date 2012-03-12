@@ -20,6 +20,15 @@ class Challenge < ActiveRecord::Base
   
   validates :title, :presence => true
   validates :content, :presence => true
+
+
+  def relatedChallenges
+    Challenge.all(:select => "challenges.*,skill_challenges.parent_id",
+                   :joins => :skill_challenges,
+                   :conditions => { 
+                     :skill_challenges => { :parent_id => self.skill_challenges.first.parent_id }
+                   })
+  end
   
 end
 

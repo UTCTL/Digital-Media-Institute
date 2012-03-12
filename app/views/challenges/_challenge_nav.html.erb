@@ -1,9 +1,9 @@
 <ul class="subnav">
-<% @skill.challenges.primary.each do |c| -%>
-  <% linkClass = ( @root_challenge && ( c.id == @root_challenge.id ) ) ?  'selected' : '' -%>
+<% @skill.skill_challenges.categories.each do |c| -%>
+  <% linkClass = ( @challenge_list && c.id == @challenge_list[0].parent_id.to_i ) ?  'selected' : '' -%>
 
-  <li><%= link_to c.category_title,
-          categorized_challenge_path(@skill.slug,c.id),
+  <li><%= link_to c.title,
+          categorized_challenge_path(@skill.slug,c.first_child),
           :class => linkClass %></li>
 <% end -%>
 
@@ -17,12 +17,10 @@
 <% if @challenge_list && @challenge_list.many? -%>
   <div class="relatedChallenge">
     <% @challenge_list.each_with_index do |ch,index| -%>
-      <% linkClass = ( ch.challenge_id == @current_challenge.id ) ?
-                        'selected' : '' -%>
-      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch.challenge_id),:class => linkClass %>
+      <% linkClass = ( ch.id == @current_challenge.id ) ? 'selected' : '' -%>
+      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch.id),:class => linkClass %>
     <% end -%>
     <div class="clearfix"></div>
 
   </div>
-
 <% end -%>

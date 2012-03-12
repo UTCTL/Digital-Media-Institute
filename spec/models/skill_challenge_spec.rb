@@ -27,5 +27,26 @@ describe SkillChallenge do
       sc = SkillChallenge.new
       sc.should respond_to(:skill)
     end
+
+    it "requires a title if root node (it is a challenge category)" do
+      sc = SkillChallenge.new(:skill_id => 1)
+      sc.should_not be_valid
+
+    end
+
+    it "requires a challenge_id if it is a child node" do
+      cat = SkillChallenge.create(:skill_id => 1, :title => "Test Category")
+      sc = SkillChallenge.new(:parent_id => cat.id)
+
+      sc.should_not be_valid
+
+    end
+
+    it "requires a skill_id" do
+      sc = SkillChallenge.new(:title => "Test1")
+
+      sc.should_not be_valid
+    end
+
   end
 end

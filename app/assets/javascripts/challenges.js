@@ -22,12 +22,12 @@ var challengeForm = function(){
     }
   }
 
-  $("#skill_challenge_parent_id").change(function(){
-    $("#skill_challenge_title").toggle( $(this).val() == '' ).val('');
+  $("#challenge_category_parent_id").change(function(){
+    $("#challenge_category_title").toggle( $(this).val() == '' ).val('');
   });
 
   $(".clearAssetsLink").css("display",( $("#challenge_assets").val() != '' ) ? "inline":"none");
 
-  $("#skill_challenge_parent_id").trigger("change");
+  $("#challenge_category_parent_id").trigger("change");
   return that;
 };

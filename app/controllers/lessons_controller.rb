@@ -59,6 +59,10 @@ class LessonsController < ApplicationController
     if(@lesson.valid?)
       redirect_to redirect_path, :flash => { :success => "Lesson Added."}
     else
+      if @skill
+        @category = @skill.ancestors.last
+      end
+
       render :new
     end
 
@@ -90,6 +94,10 @@ class LessonsController < ApplicationController
       end
 
     else
+      if @skill
+        @category = @skill.ancestors.last
+      end
+
       render :edit
     end
 

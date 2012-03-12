@@ -14,7 +14,8 @@ describe ChallengesController do
     @skill_node = @category_node.children.create(@skill_attr.merge(:title => "Photoshop"))
     @level_node = @skill_node.children.create(@skill_attr.merge(:title => "Beginner"))
 
-    @level_node.challenges << @challenge
+    @challenge_category = @level_node.skill_challenges.create(:title => 'Test Category')
+    @challenge.skill_challenges.create(:parent_id => @level_node.id)
   end
 
   describe 'GET show' do
@@ -56,16 +57,14 @@ describe ChallengesController do
       describe 'uncategorized challenge' do
         it 'does not include skill_challenge form fields' do
           get :new
-          response.should_not have_selector("input[type='hidden']",:name => "skill_challenge[skill_id]")
-          response.should_not have_selector("input[type='hidden']",:name => "skill_challenge[parent_id]")
+          response.should_not have_selector("div",:id => "skillChallengeField")
         end
       end
 
       describe 'categorized challenge' do
         it 'includes skill_challenge form fields' do
           get :new, :slug => @level_node.slug
-          response.should have_selector("input[type='hidden']",:name => "skill_challenge[skill_id]")
-          response.should have_selector("input[type='hidden']",:name => "skill_challenge[parent_id]")
+          response.should have_selector("div",:id => "skillChallengeField")
         end
       end
     end
@@ -117,6 +116,7 @@ describe ChallengesController do
         post :create, :challenge => @challenge_attr
         response.should redirect_to(root_path)
       end
+    end
 
       context "logged in as admin" do
 
@@ -136,7 +136,9 @@ describe ChallengesController do
           it "creates a skill_challenge object" do
             lambda do
               post :create, :challenge => @challenge_attr, 
-                  :skill_challenge => {:skill_id => @level_node.id}
+                  :challenge_category => {:skill_id => @level_node.id, 
+                                          :parent_id => @challenge_category.id
+                                         }
             end.should change(SkillChallenge, :count).by(1)
           end
 
@@ -158,7 +160,7 @@ describe ChallengesController do
         end
 
 
-      end
+      
     end
   end
 

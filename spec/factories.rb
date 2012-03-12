@@ -26,6 +26,7 @@ FactoryGirl.define do
     link "http://vimeo.com/32001208"
   end
   
+
   factory :challenge do
     sequence(:title) {|n| "Challenge #{n}"}
     content "This is a really hard challenge"

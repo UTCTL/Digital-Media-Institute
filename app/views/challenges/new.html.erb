@@ -6,23 +6,27 @@
 <% if @skill -%>
   <h2><%= short_title @skill %></h2>
   <%= render :partial => 'challenge_nav' %>
+  <%  url = categorized_challenge_index_path(@skill.slug) -%>
+<% else -%>
+  <%  url = challenges_path() -%>
+
 <% end -%>
 <div style="border-bottom:1px solid #000; margin-bottom:10px; clear:both; height:20px;"></div>
 
 <h2>New Challenge</h2>
 
-<%= form_for(@current_challenge) do |f| %>
+<%= form_for(@current_challenge, :url => url) do |f| %>
   <%= render "shared/error_messages", :obj => @current_challenge %>
   
-  <% if @skill_challenge %>
+  <% if @challenge_category %>
     <div id="skillChallengeField">
-      <%= hidden_field(:skill_challenge,:skill_id) %>
+      <%= hidden_field(:challenge_category,:skill_id) %>
       <%= label :parent_id, "Category" %>
-      <%= collection_select(:skill_challenge,
+      <%= collection_select(:challenge_category,
                             :parent_id,
-                            @skill.challenges.primary,
-                            :id, :category_title,:prompt => "New Category") %>
-      <%= text_field :skill_challenge, :title %>
+                            @skill.skill_challenges.categories,
+                            :id, :title,:prompt => "New Category") %>
+      <%= text_field :challenge_category, :title %>
     </div>
   <% end %>
   

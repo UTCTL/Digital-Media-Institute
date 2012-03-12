@@ -29,10 +29,8 @@ Dmtraining::Application.routes.draw do
 
     scope '/:slug', :slug => /.*/, do
 
-      resources :lessons, :only => [:index,:show,:new,:edit,:destroy],
-                :as => "categorized_lesson"
-      resources :challenges, :only => [:index,:show,:new,:edit,:destroy],
-                :as => "categorized_challenge"
+      resources :lessons, :as => "categorized_lesson"
+      resources :challenges, :as => "categorized_challenge"
 
       match '/', :to => "skills#show", :as => "named_skill"
     end

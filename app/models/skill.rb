@@ -18,16 +18,29 @@
 class Skill < ActiveRecord::Base
   acts_as_nested_set
   
-  has_many :skill_challenges
-  has_many :challenges, :through => :skill_challenges do
-    def primary
-      Challenge.all(:joins => :skill_challenges,
-                    :select => "challenges.*, skill_challenges.title AS category_title",
-                    :conditions => { :skill_challenges => {:skill_id => proxy_association.owner.id,
-                                                           :parent_id => nil} },
-                    :order => 'lft')
+  has_many :skill_challenges do
+    def categories
+
+      SkillChallenge.find_by_sql([ "SELECT x.*,a.challenge_id AS first_child
+                                    FROM skill_challenges x 
+                                    JOIN (SELECT y.parent_id, MIN(y.lft) AS min_lft 
+                                          FROM skill_challenges y 
+                                          WHERE y.parent_id IS NOT NULL 
+                                          GROUP BY y.parent_id) z 
+                                          ON x.id = z.parent_id 
+                                          JOIN (SELECT lft,challenge_id 
+                                                FROM skill_challenges 
+                                                WHERE challenge_id IS NOT NULL
+                                                AND skill_id = ?) a 
+                                          ON z.min_lft = a.lft 
+                                          WHERE x.skill_id = ? 
+                                          ORDER BY x.lft",
+                                  proxy_association.owner.id,proxy_association.owner.id])
+
+
     end
   end
+  has_many :challenges, :through => :skill_challenges
   
   has_many :skill_lessons
   has_many :lessons, :through => :skill_lessons do

@@ -6,10 +6,14 @@
 <% if @skill -%>
   <h2><%= short_title @skill %></h2>
   <%= render :partial => 'lesson_nav' %>
+  <%  url = categorized_lesson_index_path(@skill.slug) -%>
+<% else -%>
+  <%  url = lessons_path() -%>
+
 <% end -%>
 <h2>New Lesson</h2>
 
-<%= form_for(@lesson) do |f| %>
+<%= form_for(@lesson, :url => url) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   
   <%= render "fields", :f => f %>
