@@ -9,13 +9,15 @@
 <body>
 <div id="page" class="container_12">
   <div id="user_links" class="grid_12">
-    <% if(signed_in?) %>
-      <%= link_to "Sign Out", signout_path, :method => :delete %>
+    <% if(user_signed_in?) %>
+      Signed In: <%= current_user.display_name -%>
+      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
       <% if can? :index, User -%>
          | <%= link_to "Manage Users", users_path %>
       <% end -%>
     <% else %>
-      <%= link_to "Sign In", signin_path %> | <%= link_to "Create Account", signup_path %>
+      <%= link_to "Sign In", new_user_session_path %> | 
+      <%= link_to "Create Account", new_user_registration_path %>
     <% end %>
   </div>
   <div id="header" class="grid_12"><h1><%= link_to "Digital Media Institute", root_path %></h1></div>

@@ -1,0 +1,24 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+  <div>
+    <%= f.label :display_name, "Display Name" %>
+    <%= f.text_field :display_name, :autofocus => "" %>
+    <p>This name will be displayed publically</p>
+  </div>
+  <div><%= f.label :email %>
+  <%= f.email_field :email %>
+  <p>Only UT Students are allowed at this time. Please register with a utexas.edu email address</p>
+</div>
+
+  <div><%= f.label :password %>
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %>
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "links" %>

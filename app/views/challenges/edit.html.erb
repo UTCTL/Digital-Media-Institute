@@ -6,9 +6,9 @@
 <% if @skill -%>
   <h2><%= short_title @skill %></h2>
   <%= render :partial => 'challenge_nav' %>
-  <%  url = categorized_challenge_path(@skill.slug,@challenge) -%>
+  <%  url = categorized_challenge_path(@skill.slug,@current_challenge) -%>
 <% else -%>
-  <%  url = challenge_path(@challenge) -%>
+  <%  url = challenge_path(@current_challenge) -%>
 <% end -%>
 
 <h2>Edit Challenge</h2>

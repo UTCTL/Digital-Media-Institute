@@ -1,15 +1,17 @@
 Dmtraining::Application.routes.draw do
 
+  devise_for :users, :path_prefix => 'd'
+
   resources :s3_uploads
 
   #resources :skills,   :only => [:index, :create, :destroy]
-  resources :sessions, :only => [:new, :create, :destroy]
-  resources :users, :only => [:new,:create,:index,:update]
+  # resources :sessions, :only => [:new, :create, :destroy]
+  resources :users, :only => [:index,:update]
   
   root :to => 'pages#home'
-  match '/signup', :to => 'users#new'
-  match '/signin', :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+  # match '/signup', :to => 'users#new'
+  # match '/signin', :to => 'sessions#new'
+  # match '/signout', :to => 'sessions#destroy'
   match '/linkinfo', :to => 'lessons#link_info'
   
   scope "/training" do

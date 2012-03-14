@@ -4,8 +4,9 @@
       <%= form_for user, :remote => true do |f| -%>
         <%= f.collection_select(:role, User::ROLES,:to_s,:humanize,{}, :class => "roleSelect") %>
       <% end -%>
-      <h3><%= "#{user.first_name} #{user.last_name}" %></h3>
+      <h3><%= user.display_name %></h3>
       <p><%= user.email %></p>
+      <p><%= "#{user.first_name} #{user.last_name}" %></p>
     </div>
   <% end -%>
 

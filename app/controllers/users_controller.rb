@@ -9,24 +9,14 @@ class UsersController < ApplicationController
 
   end
 
-  def create
-    @user.role = "user"
-
-    if @user.save
-      session[:user_id] = @user.id
-      redirect_to root_path, :notice => "Welcome to Digital Media Training!"
-    else
-      render 'new'
-    end
-  end
-
   def update
-    if params[:user][:role]
+
+    if params[:user].has_key?(:role)
       authorize! :change_role, @user
       @user.role = params[:user][:role]
+      @user.save(:validate => false)
     end
 
-    @user.update_attributes(params[:user]);
 
 
   end

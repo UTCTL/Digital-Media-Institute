@@ -16,18 +16,31 @@
 #
 
 class User < ActiveRecord::Base
-  attr_accessible :email, :password, :password_confirmation, :about_me, 
-                  :display_name, :url, :first_name, :last_name
-  has_secure_password
-  after_initialize :init_values
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :confirmable, :lockable
 
-  email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :about_me, 
+                  :display_name, :url, :first_name, :last_name
+
+  # has_secure_password
+  after_initialize :init_values
+  before_create :set_default_role
+
+  default_scope :order => :last_name
+
+  email_regex= /\A[^@]+@[^@]*utexas\.edu\z/
   ROLES = %w( anonymous user content_editor admin )
 
   validates :email, :presence => true, 
                     :uniqueness => {:case_sensitive => false}, 
-                    :format => {:with => email_regex}
+                    :format => {:with => email_regex,
+                                :message => "must be a valid utexas.edu email address"
+                               }
 
+  validates :display_name, :presence => true
   validates :password, :presence => true, :length => { :within => 7..40 }, :unless => :has_digest?
   validates :password_confirmation, :presence => true, :unless => :has_digest?
   validates :role, :inclusion => { :in => ROLES }
@@ -37,10 +50,14 @@ class User < ActiveRecord::Base
   end
 
   def has_digest?
-    self.password_digest.present?
+    self.encrypted_password.present?
   end
 
   def init_values
     self.role ||= "anonymous"
+  end
+
+  def set_default_role
+    self.role = "user"
   end
 end
