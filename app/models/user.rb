@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
     ROLES.index(base_role.to_s) <= ROLES.index(self.role)
   end
 
+protected
+
   def has_digest?
     self.encrypted_password.present?
   end
