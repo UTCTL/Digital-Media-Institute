@@ -2,8 +2,11 @@ class SkillsController < ApplicationController
   before_filter :find_by_slug, :only => [:show]
   before_filter :get_skill_tree, :only => [:index, :show]
   load_and_authorize_resource :except => [:organize]
+  layout 'subpage'
 
   def index
+    @title = "Training"
+
     respond_to do |format|
       format.html
       format.json { render :json => @skills.to_json }
@@ -13,7 +16,7 @@ class SkillsController < ApplicationController
   def show
     if @skill.level == 2
       @category = @skill
-      render :layout => "sidebar" 
+      render :layout => "training_page" 
     else
       redirect_to named_skill_path(@skill.ancestors.last.slug)
     end

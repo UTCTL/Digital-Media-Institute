@@ -3,7 +3,11 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<h2><%= short_title @skill %></h2>
-<% if @skill -%>
-  <%= render :partial => 'lesson_nav' %>
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'lesson_nav' %>
+  <% end -%>
 <% end -%>
+
+<script>$(function(){ $(".challenge-header").ajax_accordian() })</script>

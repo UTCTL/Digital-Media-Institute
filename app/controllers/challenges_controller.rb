@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
   before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show,:destroy]
   before_filter :get_related_challenges, :only => [:show,:edit]
-  layout "sidebar"
+  layout "training_page"
 
   def get_skill_nav
     if params[:slug]

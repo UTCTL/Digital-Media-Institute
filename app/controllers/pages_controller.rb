@@ -1,8 +1,18 @@
 require 'cgi'
 
 class PagesController < ApplicationController
+  before_filter :get_skill_tree, :only => [ :gallery ]
+  
   def home
-    
+    render 'home', :layout => 'home'
+  end
+
+  def gallery
+    @title = "Gallery"
+  end
+
+  def internship
+    @title = "Internship"
   end
 
   def upload

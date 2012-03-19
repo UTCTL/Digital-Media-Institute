@@ -7,43 +7,62 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-<div id="page" class="container_12">
-  <div id="user_links" class="grid_12">
-    <% if(user_signed_in?) %>
-      Signed In: <%= current_user.display_name -%>
-      <%= link_to "Sign Out", destroy_user_session_path, :method => :delete %>
-      <% if can? :index, User -%>
-         | <%= link_to "Manage Users", users_path %>
-      <% end -%>
-    <% else %>
-      <%= link_to "Sign In", new_user_session_path %> | 
-      <%= link_to "Create Account", new_user_registration_path %>
-    <% end %>
-  </div>
-  <div id="header" class="grid_12"><h1><%= link_to "Digital Media Institute", root_path %></h1></div>
-  <div id="top_navigation" class="grid_12">
-    <ul>
-      <li><%= link_to "Program", root_path %></li>
-      <li><%= link_to "Training", training_index_path %></li>
-      <li><%= link_to "Gallery", gallery_index_path %></li>
-    </ul>
-  </div>
-    <div id="flash_messages" class="grid_12">
-      <% flash.each do |key, value| %>
-        <div class="flash <%= key %>"><%= value %></div>
-      <% end %>
+  <div id="bluebar"></div>
+  <header>
+    <div id="dmiflag" >
+      <%= link_to image_tag("DMIFlag.png", :width => 107, :height => 100), root_path %>
     </div>
-  <div class="grid_12">
-  </div>
+    <div id="tagline">// TAG LINE?</div>
+    
+    <div id="topnav">
+      <div id="main-nav">
+      <ul class="right-border">
+        <li><%= link_to "Internship", internship_index_path %></li>
+        <li><%= link_to "Training", training_index_path %></li>
+        <li><%= link_to "Gallery", gallery_index_path %></li>
+      </ul>
+      </div>
+      <div id="user-nav">
+        <ul>
+          <% if(user_signed_in?) %>
+            <li id="username"> <%= current_user.display_name -%></li>
+            <li id="portfolio-link">My Portfolio</li>
+            <% if can? :index, User -%>
+              <li><%= link_to "Manage Users", users_path %></li>
+            <% end -%>
+            <li id="sign-out"><%= link_to "Sign Out", destroy_user_session_path, :method => :delete %></li>
+
+          <% else %>
+            <li><%= link_to "Sign In", new_user_session_path %></li>
+            <li><%= link_to "Create Account", new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+    <div class="clear"></div>
+  </header>
+
+
   <% if content_for?(:content) %>
     <%= yield(:content) %>
   <% else %>
-    <div id="content" class="grid_12">
+    <div id="content">
       <%= yield %>
     </div>
   <% end %>
-  <div id="footer" class="grid_12"></div>
-</div>
+
+
+  <footer>
+  <%= link_to image_tag("utlogo.png",
+                        :height => 50,
+                        :alt => "The University of Texas"),
+                       "http://www.utexas.edu" %>
+
+  <%= link_to image_tag("ctllogo.png", 
+                         :height => 35, 
+                         :alt => "Center for Teaching and Learning"),
+                         "http://ctl.utexas.edu" %>
+  </footer>
 
 </body>
 </html>

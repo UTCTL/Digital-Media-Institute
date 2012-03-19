@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   include LessonsHelper
   before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show]
-  layout "sidebar"
+  layout :get_layout
 
   def get_skill_nav
     if params[:slug]
@@ -141,6 +141,7 @@ class LessonsController < ApplicationController
     end
 
     @title = @lesson.title
+
   end
 
   def link_info
@@ -166,5 +167,11 @@ class LessonsController < ApplicationController
     else
       head :bad_request
     end
+  end
+
+  private
+
+  def get_layout
+    (request.xhr?) ? false : "training_page"
   end
 end

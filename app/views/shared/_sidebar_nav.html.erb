@@ -1,56 +1,48 @@
 <script>$(function(){ skillsPage.init() });</script>
 
-<% if @skills -%>
-  <%= link_to "Training Index", '#', :class => "indexLink" %>
-  <div id="training_index_popover">
-    <%= link_to "Training Index", '#', :class => "indexLink" %>
-    <%= print_tree_cols(@skills) %>
-  </div>
-<% end -%>
 
 <% if @category %>
-<div id="skillNav">
-<h4><%= short_title @category %></h4>
-<ul class="skill_tree">
-  <li><%= link_to content_tag(:span,' ',:class => 'num') + "Getting Started",
-                              named_skill_path(@category.slug),
-                              :class => (@skill == @category) ? "current" : "" %>
-  </li>
-  <li>
-    <span class="top_level">Lessons</span>
+
+
+  <div id="lesson-nav">
+    <h4>Lessons</h4>
     <ul>
+      <li>
+        <%= link_to content_tag(:span,' ',:class => 'num') + "Getting Started",
+                                    named_skill_path(@category.slug),
+                                    :class => (@skill == @category) ? "selected" : "" %>
+      </li>
 
       <% if @category.descendants.any? %>
 
         <% @category.descendants.each_with_index do |skill,index| %>
 
-          <li><%= link_to content_tag(:span,index+1,:class => 'num')+skill.title,
+          <li><%= link_to skill.title,
                   categorized_lesson_index_path(skill.slug),
-                  :class => (@skill == skill && params[:controller] == 'lessons') ? "current" : "" %></li>
+                  :class => (@skill == skill && params[:controller] == 'lessons') ? "selected" : "" %></li>
         <% end %>
 
       <% end %>
 
     </ul>
-  </li>
-  <li>
-    <span class="top_level">Challenges</span>
+  </div>
+
+  <div id="challenge-nav">
+    <h4>Challenges</h4>
     <ul>
 
       <% if @category.descendants.any? %>
         <% @category.descendants.each_with_index do |skill,index| %>
 
 
-          <li><%= link_to content_tag(:span,index+1,:class => 'num')+skill.title,
+          <li><%= link_to skill.title,
             categorized_challenge_index_path(skill.slug),
-            :class => (@skill == skill && params[:controller] == 'challenges') ? "current" : "" %>
+            :class => (@skill == skill && params[:controller] == 'challenges') ? "selected" : "" %>
           </li>
         <% end %>
 
       <% end %>
 
     </ul>
-  </li>
-</ul>
-</div>
+  </div>
 <% end %>

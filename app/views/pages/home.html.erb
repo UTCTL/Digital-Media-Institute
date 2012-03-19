@@ -1,24 +1,25 @@
-<h2>Welcome to the Digital Media Institute</h2>
+<div id="content">
+  <div id="creative-text">Creative line of text</div>
 
-<div class="itemContent">
-<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque est eros, 
-  tempus a blandit ut, ultrices eu purus. Cras ante ipsum, hendrerit at porttitor eu, 
-  imperdiet sit amet enim. Aenean dictum lectus non lorem porta cursus. Morbi justo mi, 
-  vestibulum id consectetur sed, laoreet quis mauris. Pellentesque tellus nisl, 
-  facilisis a porttitor eget, eleifend a nisi. Morbi vulputate eros at lectus 
-  venenatis commodo. Vivamus aliquet rhoncus odio in hendrerit.
-</p>
-<p>Duis interdum turpis in justo blandit rutrum. Donec dignissim, libero eu 
-  dictum scelerisque, dolor orci interdum augue, vel bibendum libero eros 
-  hendrerit orci. Fusce iaculis eros ac dui tincidunt dictum. Morbi dictum 
-  iaculis scelerisque. Sed id sapien odio. Aliquam quis commodo dolor. Donec 
-  elit sem, bibendum non commodo et, fringilla at nisl. Nunc pellentesque 
-  egestas dui et placerat. Morbi ut metus in sapien elementum pharetra. Nam ut 
-  nulla tortor, quis vestibulum ligula. Duis eu nibh turpis, et rhoncus ligula.
-</p>
-<p>Donec neque massa, pellentesque sit amet gravida id, fermentum a sem. Vivamus 
-  vitae lacus mauris, eu condimentum lorem. Etiam vitae lobortis tortor. In sit amet 
-  libero a lectus vehicula gravida id venenatis erat. Vivamus sed massa ornare velit mollis aliquet 
-  vitae id nunc. Aliquam interdum, libero vitae mattis mollis, nisl nunc imperdiet odio, vitae tincidunt 
-  lectus sem eget odio. Aliquam pulvinar erat vitae turpis commodo lobortis.
-</p></div>
+  <div class="site-section right-border">
+    <%= link_to content_tag(:div, '', :id => "internship-icon"), internship_index_path %>
+    <%= link_to content_tag(:h3, 'Internship Program', :class => "white_link"), internship_index_path %>
+    <p>The Center for Teaching and Learning (CTL) offers the CTL Digital Media Institute: a four-week (80-hour)</p>
+    <%= link_to 'LEARN MORE >', internship_index_path %>
+  </div>
+  <div class="site-section right-border left-border">
+    <%= link_to content_tag(:div, '', :id => "training-icon"), training_index_path %>
+    <%= link_to content_tag(:h3, 'Online Training', :class => "white_link"), training_index_path %>
+    <p>The DMI training is online and available to anyone.  It is not restricted to students that are accepted into the</p>
+    <%= link_to 'LEARN MORE >', training_index_path %>
+  </div>    
+  <div class="site-section left-border">
+    <%= link_to content_tag(:div, '', :id => "gallery-icon"), gallery_index_path %>
+    <%= link_to content_tag(:h3, 'Project Gallery', :class => "white_link"), gallery_index_path %>
+    <p>Go to the Gallery to check out the work of previous DMI participants and other UT students.</p>
+    <%= link_to 'LEARN MORE >', gallery_index_path %>
+  </div>
+
+  <div class="clear"></div>  
+</div>
+

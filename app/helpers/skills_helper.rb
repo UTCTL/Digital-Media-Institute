@@ -51,6 +51,38 @@ module SkillsHelper
 
     output.html_safe
   end
+
+  def course_menu_list(tree)
+    right_values = []
+    categories = {}
+    current_title = ""
+
+    tree.each do |node|
+
+       if(right_values.length > 0)
+
+         while(right_values.last < node.right)
+           right_values.pop
+
+         end
+
+       end
+
+
+      if right_values.length == 2
+        categories[current_title] << node
+
+      elsif right_values.length == 1
+        current_title = node.title
+        categories[current_title] = []
+
+      end
+
+      right_values.push(node.right)
+    end
+
+    return categories
+  end
   
   def print_tree_list(tree,current)
     output = ""

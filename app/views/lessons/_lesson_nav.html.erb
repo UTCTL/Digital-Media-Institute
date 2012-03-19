@@ -1,14 +1,11 @@
 <% lessons = @skill.lessons.list_scope(1); -%>
 
-<ul class="subnav">
 <% lessons.each do |l| -%>
-  <% linkClass = (l == @lesson) ? 'selected' : '' -%>
-  <li><%= link_to l.title, categorized_lesson_path(@skill.slug,l), :class => linkClass %></li>
+  <%= link_to l.title, categorized_lesson_path(@skill.slug,l), 
+                                    :class => "challenge-header" %>
 <% end -%>
 
 <% if can? :create, Lesson -%>
-  <li><%= link_to "+ Add Lesson", new_categorized_lesson_path(@skill.slug), 
-            :class => params['action'] == 'new' ? 'selected' : '' %></li>
+  <%= link_to "+ Add Lesson", new_categorized_lesson_path(@skill.slug),
+                              :class => "challenge-header" %>
 <% end -%>
-</ul>
-<div style="border-bottom:1px solid #000; margin-bottom:10px; clear:both; height:20px;"></div>

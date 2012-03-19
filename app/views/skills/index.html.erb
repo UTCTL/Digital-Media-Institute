@@ -5,5 +5,31 @@
 <% end -%>
 
 <div class="clearfix"></div>
-<%= print_tree_cols(@skills) %>
+<div id="training-description">
+  <div class="training-section right-border">
 
+    <%= image_tag "training/designIcon.png", :alt => "Design Icon", :width => 60 %>
+    <h3>Lessons</h3>
+    <p>Go to the Gallery to check out the work of previous DMI participants and other UT students.</p>
+    <p>The Center for Teaching and Learning (CTL) offers the CTL Digital Media Institute: a four-week (80-hour)</p>
+    <p>Go to the Gallery to check out the work of previous DMI participants and other UT students.</p>
+  </div>
+  <div class="training-section right-border left-border">
+
+    <%= image_tag "training/motionIcon.png", :alt => "Motion Icon", :width => 60 %>
+    <h3>Challenges</h3>
+    <p>Go to the Gallery to check out the work of previous DMI participants and other UT students.</p>
+    <p>The DMI training is online and available to anyone. It is not restricted to students that are accepted into the</p>
+  </div>    
+  <div class="training-section left-border">
+
+    <%= image_tag "training/webmobileIcon.png", :alt => "Web/Mobile Icon", :width => 60 %>
+    <h3>Resources</h3>
+    <p>The DMI training is online and available to anyone. It is not restricted to students that are accepted into the.</p>
+    <p>The Center for Teaching and Learning (CTL) offers the CTL Digital Media Institute: a four-week (80-hour)</p>
+  </div>
+
+  <div class="clear"></div>  
+</div>
+
+<%= render 'shared/course_menu' %>

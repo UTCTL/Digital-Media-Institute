@@ -4,14 +4,9 @@ Dmtraining::Application.routes.draw do
 
   resources :s3_uploads
 
-  #resources :skills,   :only => [:index, :create, :destroy]
-  # resources :sessions, :only => [:new, :create, :destroy]
   resources :users, :only => [:index,:update]
   
   root :to => 'pages#home'
-  # match '/signup', :to => 'users#new'
-  # match '/signin', :to => 'sessions#new'
-  # match '/signout', :to => 'sessions#destroy'
   match '/linkinfo', :to => 'lessons#link_info'
   
   scope "/training" do
@@ -40,6 +35,7 @@ Dmtraining::Application.routes.draw do
   
   
   match '/gallery', :to => 'pages#gallery', :as => 'gallery_index'
+  match '/internship', :to => 'pages#internship', :as => 'internship_index'
   match '/upload/:type', :to => 'pages#upload', :type => /images|lesson-assets|challenge-assets/, :as => 'upload_index'
   
   # The priority is based upon order of creation:

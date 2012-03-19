@@ -3,12 +3,14 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'lesson_nav' %>
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'lesson_nav' %>
+    <h2><%= @title%></h2>
+  <% end -%>
 <% end -%>
 
-<h2><%= @title%></h2>
 
 <% if can? :update, Lesson %>
   <div id="adminLinks">
