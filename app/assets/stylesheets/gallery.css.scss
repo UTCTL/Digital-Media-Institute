@@ -1,0 +1,23 @@
+/* ---- Gallery Section ---- */
+
+.gallery-section {
+  width: 33%;
+  float: left;
+  text-align: center;
+  padding-top: 40px;
+  height: 350px;
+}
+
+.gallery-thumbnail {
+  height: 150px;
+}
+
+.thumbnail-caption {
+  padding-top: 15px;
+}
+
+.gallery-thumbnail img{
+  max-height: 150px;
+  max-width: 150px;
+}
+

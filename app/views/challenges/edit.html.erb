@@ -13,7 +13,7 @@
 
 <h2>Edit Challenge</h2>
 
-<%= form_for(@current_challenge, :url => url) do |f| %>
+<%= form_for(@current_challenge, :url => url, :remote => request.xhr?) do |f| %>
   <%= render "shared/error_messages", :obj => @current_challenge %>
 
   <% if @skill %>
@@ -31,5 +31,9 @@
 
 <script>
   var cform;
-  $( function(){ cform =  challengeForm() });
+  initCallback =  function(){ cform = challengeForm() };
+
+  <% if !request.xhr? -%>
+      $(initCallback);
+  <% end -%>
 </script>

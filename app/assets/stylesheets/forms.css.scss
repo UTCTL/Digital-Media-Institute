@@ -1,0 +1,70 @@
+form label
+{
+  display:block;
+  font-size:1.4em;
+  font-weight:bold;
+  width:200px;
+}
+
+input[type="text"]
+{
+    width:50%;
+}
+
+.ajaxError
+{
+    color:#F00;
+    font-weight:bold;
+    font-size:1.3em;
+    margin:0;
+    padding-left:10px;
+}
+
+textarea
+{
+    width:95%;
+    height:300px;
+}
+
+form div
+{
+  margin-bottom:10px;
+}
+
+form.new_submission .field
+{
+  float:left;
+  padding:10px;
+  background-color:#ddd;
+}
+
+p.field_info
+{
+  width:100%;
+  margin:5px;
+}
+
+form.new_submission #errors
+{
+  color:#FF0000;
+}
+
+form.new_submission .actions
+{
+  clear:both
+}
+
+form.new_submission .or
+{
+  font-size:3em;
+  font-weight:bold;
+  float:left;
+  padding:10px
+}
+
+form.new_submission input[type="text"]
+{
+  width:100%;
+}
+
+

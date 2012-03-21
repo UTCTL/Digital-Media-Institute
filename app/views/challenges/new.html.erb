@@ -3,19 +3,17 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'challenge_nav' %>
-  <%  url = categorized_challenge_index_path(@skill.slug) -%>
-<% else -%>
-  <%  url = challenges_path() -%>
-
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'challenge_nav' %>
+    <h2>New Challenge</h2>
+  <% end -%>
 <% end -%>
-<div style="border-bottom:1px solid #000; margin-bottom:10px; clear:both; height:20px;"></div>
 
-<h2>New Challenge</h2>
+<% url = (@skill) ? categorized_challenge_index_path(@skill.slug) : challenges_path() -%>
 
-<%= form_for(@current_challenge, :url => url) do |f| %>
+<%= form_for(@current_challenge, :url => url, :remote => request.xhr?) do |f| %>
   <%= render "shared/error_messages", :obj => @current_challenge %>
   
   <% if @challenge_category %>
@@ -39,5 +37,9 @@
 
 <script>
   var cform;
-  $( function(){ cform = challengeForm() });
+  initCallback =  function(){ cform = challengeForm() };
+
+  <% if !request.xhr? -%>
+      $(initCallback);
+  <% end -%>
 </script>

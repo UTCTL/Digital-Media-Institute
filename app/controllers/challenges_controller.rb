@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
   before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show,:destroy]
   before_filter :get_related_challenges, :only => [:show,:edit]
-  layout "training_page"
+  layout :get_layout
 
   def get_skill_nav
     if params[:slug]
@@ -124,7 +124,7 @@ class ChallengesController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to redirect_path, :flash => {:success => "Challenge Deleted!"}}
-      format.js { render :js => "window.location = '#{redirect_path}'"}
+      format.js { render :js => "challengeDestroyCallback('#{redirect_path}')"}
 
     end
   end
@@ -137,8 +137,11 @@ class ChallengesController < ApplicationController
       @submission = @current_challenge.submissions.first
       @submission ||= @current_challenge.submissions.build(:user_id => current_user.id)
     end
+  end
 
+  private
 
-
+  def get_layout
+    (request.xhr?) ? false : "training_page"
   end
 end

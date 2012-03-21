@@ -1,0 +1,38 @@
+<% content_for :content do %>
+  <div id="challenge-banner">
+    <div id="challenge-banner-inner">
+    <%= image_tag "training/photoshopIcon.png", :width => 128, :height => 128 %>
+    <h4><%= short_title @category %></h4>
+    <a href="#">Course Index >></a>
+    </div>
+
+    <% if @skills -%>
+      <div id="training_index_popover">
+        <%= link_to "Training Index", '#', :class => "indexLink" %>
+        <%= render 'shared/course_menu' %>
+      </div>
+    <% end -%>
+
+  </div>
+
+  <div id="flash_messages" class="grid_12">
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>"><%= value %></div>
+    <% end %>
+  </div>
+
+  <div id="content">
+    <div id="left-nav" class="right-border">
+      <%= yield :sidebar %>
+    </div>
+
+    <div id="challenge-content">
+      <%= yield :topnav %>
+      <%= yield %>
+    </div>
+    <div class="clear"></div>
+  </div>
+<% end %>
+
+<%= render :template => 'layouts/application' %>
+

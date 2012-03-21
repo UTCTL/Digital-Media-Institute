@@ -1,0 +1,14 @@
+<div id="training-courses">
+  <div id="creative-text">Courses</div>
+  <% course_menu_list(@skills).each do |key,value| -%>
+    <div class="training-section right-border">
+      <%= image_tag "training/designIcon.png", :alt => "Design Icon", :width => 80 %>
+      <h3><%= key %></h3>
+      <% value.each do |s| -%>
+        <%= link_to content_tag(:h4,s.title), named_skill_path(s.slug) %>
+      <% end -%>
+    </div>
+  <% end -%>
+  </div>
+  <div class="clear"></div>  
+</div>

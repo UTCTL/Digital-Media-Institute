@@ -57,7 +57,10 @@ class LessonsController < ApplicationController
     end
 
     if(@lesson.valid?)
-      redirect_to redirect_path, :flash => { :success => "Lesson Added."}
+      respond_to do |format|
+        format.html { redirect_to redirect_path, :flash => { :success => "Lesson Added."} }
+        format.js
+      end
     else
       if @skill
         @category = @skill.ancestors.last
@@ -121,8 +124,8 @@ class LessonsController < ApplicationController
 
 
     respond_to do |format|
-      format.html {redirect_to redirect_path, :flash => {:success => "Lesson Deleted."}}
-      format.js { render :js => "window.location = '#{redirect_path}'"}
+      format.html { redirect_to redirect_path, :flash => {:success => "Lesson Deleted."} }
+      format.js { render :js => "lessonDestroyCallback('#{redirect_path}')" }
     end
   end
 

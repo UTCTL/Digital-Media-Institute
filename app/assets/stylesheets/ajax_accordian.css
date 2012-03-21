@@ -1,0 +1,10 @@
+.accordian_content{
+  -webkit-transition: height .5s ease;
+  -moz-transition: height .5s ease;
+  overflow:hidden;
+}
+
+.inner_content{
+  visibility:hidden;
+}
+

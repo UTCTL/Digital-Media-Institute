@@ -2,18 +2,25 @@
 
   <%= render "shared/sidebar_nav"%>
 <% end %>
-<% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'challenge_nav' %>
+
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'challenge_nav' %>
+    <h2><%= @current_challenge.title %></h2>
+  <% end -%>
 <% end -%>
 
-<h2><%= @current_challenge.title %></h2>
+<%= render :partial => 'challenge_subnav' %>
+
 <% if can? :update, Challenge %>
   <div id="adminLinks">
     <% if @skill %>
       <%= link_to "Edit", edit_categorized_challenge_path(@skill.slug,@current_challenge) %>
-      <%= link_to "Delete from this Skill", categorized_challenge_path(@skill.slug,@current_challenge), :class => 'destructive',
-        :remote => true, :method => :delete, :confirm => "Are you sure?" %>
+      <%= link_to "Delete from this Skill", 
+                  categorized_challenge_path(@skill.slug,@current_challenge), 
+                  :class => 'destructive',
+                  :remote => true, :method => :delete, :confirm => "Are you sure?" %>
     <% elsif %>
       <%= link_to "Edit", edit_challenge_path %>
       <%= link_to "Delete", challenge_path, :class => 'destructive', 
@@ -22,17 +29,31 @@
     <% end %>
   </div>
 <% end %>
-  <% if !@current_challenge.assets.blank? -%>
-    <div style="float:right"><%= link_to "Download Assets", @current_challenge.assets, :class => "downloadLink" %></div>
-  <% end -%>
-<div id="challengeContent" class="itemContent">
-  <%= sanitize @current_challenge.content %>
-</div>
 
-<% if @submission && ( @submission.attachment.present? || @submission.link.present? ) -%>
-  <%= render @submission %>
-<% elsif can? :create, Submission -%>
-  <%= render :partial => 'submissions/image_form', :locals => { :answerable => @current_challenge } %>
-<% end -%>
+<div id="challenge-sections" class="clear">
+  <div id="challenge-main">
+    <% if !@current_challenge.assets.blank? -%>
+      <%= link_to "Download Assets", @current_challenge.assets, :id => "challenge-files" %>
+    <% end -%>
+    
+    <%= sanitize @current_challenge.content %>
+
+    <% if @submission && ( @submission.attachment.present? || @submission.link.present? ) -%>
+      <%= render @submission %>
+    <% elsif can? :create, Submission -%>
+      <%= render :partial => 'submissions/image_form', :locals => { :answerable => @current_challenge } %>
+    <% end -%>
+  </div>
+</div>
+<script>
+  <% if(request.xhr?) -%>
+    var challengeDestroyCallback = function(url){ 
+      window.location.reload();
+    };
+  <% else -%>
+    var challengeDestroyCallback = function(url){ window.location = url };
+  <% end -%>
+</script>
+
 
 

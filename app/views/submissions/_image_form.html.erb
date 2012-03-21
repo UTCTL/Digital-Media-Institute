@@ -1,4 +1,5 @@
 <div id="answerContent">
+
   <h3>Submit Your Answer</h3>
   <div id="loading_image"><%= image_tag "ajax-loader.gif" %></div>
   <%= form_for [answerable,@submission], :html => {:multipart => true, :target => "upload_target"} do |f| %>
@@ -8,13 +9,13 @@
         <div class="field">
           <%= f.label :attachment, "Upload File" %>
           <%= f.file_field :attachment  %>
-          <p>Allowed files: jpg, gif, or png</p>
+          <p class="field_info">Allowed files: jpg, gif, or png</p>
         </div>
         <div class="or">OR</div>
         <div class="field">
           <%= f.label :remote_attachment_url, "Submit a Link" %>
           <%= f.text_field :remote_attachment_url %>
-          <p>Paste a link to your file on a remote site.</p>
+          <p class="field_info">Paste a link to your file on a remote site.</p>
         </div>
     <% else -%>
         <div class="field">
@@ -22,9 +23,9 @@
           <%= f.text_field :link %>
 
           <% if answerable.submission_type == 'video' -%>
-            <p>Paste a link to your video on Youtube or Vimeo.</p>
+            <p class="field_info">Paste a link to your video on Youtube or Vimeo.</p>
           <% else -%>
-            <p>Paste a link to your answer on a remote site.</p>
+            <p class="field_info">Paste a link to your answer on a remote site.</p>
           <% end -%>
 
         </div>
@@ -42,9 +43,15 @@
   <% end -%>
   <iframe id="upload_target"></iframe>
   <script>
+
     var answerForm;
-    $(function(){
+    initCallback = function(){
       answerForm = imageUploadForm({ form_id: "#new_submission", loading_id:"#loading_image" });
-    });
+      console.log('InitCallback');
+    }
+    
+  <% if !request.xhr? -%>
+      $(initCallback);
+  <% end -%>
   </script>
 </div>

@@ -1,26 +1,12 @@
-<ul class="subnav">
 <% @skill.skill_challenges.categories.each do |c| -%>
-  <% linkClass = ( @challenge_list && c.id == @challenge_list[0].parent_id.to_i ) ?  'selected' : '' -%>
 
-  <li><%= link_to c.title,
+  <%= link_to c.title,
           categorized_challenge_path(@skill.slug,c.first_child),
-          :class => linkClass %></li>
+          :class => "challenge-header" %>
 <% end -%>
 
 <% if can? :create, Challenge -%>
-  <li><%= link_to "+ Add Challenge", new_categorized_challenge_path(@skill.slug), 
-        :class => params['action'] == 'new' ? 'selected' : ''  %></li>
+  <%= link_to "+ Add Challenge", new_categorized_challenge_path(@skill.slug), 
+        :class => "challenge-header" %>
 <% end -%>
-  <div class="clearfix"></div>
-</ul>
 
-<% if @challenge_list && @challenge_list.many? -%>
-  <div class="relatedChallenge">
-    <% @challenge_list.each_with_index do |ch,index| -%>
-      <% linkClass = ( ch.id == @current_challenge.id ) ? 'selected' : '' -%>
-      <%= link_to "#{index + 1}", categorized_challenge_path(@skill.slug,ch.id),:class => linkClass %>
-    <% end -%>
-    <div class="clearfix"></div>
-
-  </div>
-<% end -%>

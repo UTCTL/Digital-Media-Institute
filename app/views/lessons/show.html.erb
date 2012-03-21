@@ -49,3 +49,16 @@
 <% if @lesson.kind == "Link" %>
 <div><%= link_to "Go to external site.", @lesson.link, :target => "_blank" %></div>
 <% end %>
+
+<script>
+  <% if(request.xhr?) -%>
+    var lessonDestroyCallback = function(url){ 
+      window.location.reload();
+    };
+  <% else -%>
+    var lessonDestroyCallback = function(url){ window.location = url };
+  <% end -%>
+</script>
+
+
+

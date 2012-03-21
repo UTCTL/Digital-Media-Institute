@@ -14,7 +14,7 @@
 
 <h2>Edit Lesson</h2>
 
-<%= form_for(@lesson, :url => url) do |f| %>
+<%= form_for(@lesson, :url => url, :remote => request.xhr?) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
 
   <% if @skill %>
@@ -31,5 +31,9 @@
 
 <script>
   var lform;
-  $(function(){ lform = lessonForm(".edit_lesson") });
+  initCallback = function(){ lform = lessonForm(".edit_lesson") };
+
+  <% if !request.xhr? -%>
+      $(initCallback);
+  <% end -%>
 </script>

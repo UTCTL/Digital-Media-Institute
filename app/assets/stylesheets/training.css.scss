@@ -1,0 +1,412 @@
+/* ---- Online Training Section ---- */
+
+#training-banner {
+  margin: 0 auto;
+  /* border: 1px blue solid; */
+  text-align: center;
+  border-top: 3px white solid;
+  border-bottom: 3px white solid;
+  /* box-shadow: 0px 25px 5px #888; */
+  box-shadow: 0px 5px 8px #888;
+  background: image-url("training/trainingBanner.png") no-repeat scroll center;
+  height: 159px;
+}
+
+#training-banner h2 {
+  font-size: 3.8em;
+  text-transform: uppercase;
+  color: white;
+  /* text-shadow: 1px 1px 3px #1C75BC; */
+  padding: 0;
+  margin: 0px 0 0 150px;
+}
+
+
+#training-description .training-section {
+  padding-top: 40px;
+  height: 225px;
+  text-align: left;
+  padding-bottom: 25px;
+}
+
+#training-description .training-section h3{
+  padding: 18px 0 10px 20px;
+}
+
+#training-description .training-section img{
+  float: left;
+  padding-right: 10px;
+  margin-bottom: 0px;
+}
+
+#training-description .training-section h4{
+  padding-left: 80px;
+}
+
+#internship-description .training-section {
+  padding-top: 40px;
+  height: 500px;
+  text-align: left;
+  padding-bottom: 25px;
+}
+
+#internship-description .training-section h3{
+  padding: 18px 0 10px 20px;
+}
+
+#internship-description .training-section img{
+  float: left;
+  padding-right: 10px;
+  margin-bottom: 0px;
+}
+
+#internship-description .training-section h4{
+  padding-left: 80px;
+}
+
+#internship-description .training-section ul {
+  margin-top: 0;
+  padding-top: 0;
+}
+
+#internship-description .training-section li {
+  font-family: Georgia, serif;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  color: #666;
+  padding-top: 10px;
+}
+
+.training-section {
+  width: 33%;
+  float: left;
+  text-align: center;
+  padding-top: 5px;
+  height: 350px;
+}
+
+.training-section img{
+  margin-bottom: 16px;
+  margin-left: 5px;
+}
+
+.training-section h3{
+  color: #555;
+  text-transform: uppercase;
+  font-size: 1.7em;
+  margin: 0 0 14px 0;
+  padding: 0;
+  letter-spacing: .15em;
+}
+
+.training-section h4{
+  font-size: 1.2em;
+}
+
+.training-section h4:hover{
+  color: white;
+}
+
+.training-section p{
+  font-family: Georgia, serif;
+  font-size: 1.1em;
+  line-height: 1.5em;
+  width: 80%;
+  margin: 0 auto;
+  padding-bottom: 18px;
+  color: #666;
+  padding-left: 30px;
+}
+
+.training-section a{
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: Arial, sans-serif;
+  color: #1C75BC;
+}
+
+/* ---- Challenge Section ---- */
+#training_index_popover {
+  position:absolute;
+  background:#999;
+  visibility:hidden;
+}
+
+#challenge-banner {
+  margin: 0 auto;
+  /* border: 1px blue solid; */
+  /* text-align: center; */
+  border-top: 1px #ccc solid;
+  /* border-bottom: 3px white solid; */
+  background: -webkit-linear-gradient(left, #007fc8, #034676);
+  background: -moz-linear-gradient(left, #007fc8, #034676);
+  /* box-shadow: 0px 25px 5px #888; */
+  box-shadow: 0px 5px 8px #888;
+  /* background: image-url("training/trainingBanner.png") no-repeat scroll center; */
+  height: 35px;
+  overflow: hidden;
+}
+
+#challenge-banner-inner {
+  width: 900px;
+  margin: 0 auto;
+}
+
+#challenge-banner-inner img{
+  margin-top: -35px;
+  padding-left: 25px;
+  width: 100px;
+  height: 100px;
+  /* display: inline; */
+  float: left;
+}
+
+#challenge-banner a{
+  text-decoration: none;
+  color: white;
+  float: right;
+  padding-right: 40px;
+  margin-top: 7px;
+  font-size: 1.3em;
+}
+
+#challenge-banner h4{
+  /* display: inline; */
+  /* margin-top: -20px; */
+  margin-top: -6px;
+  padding-top: 10px;
+  padding-left: 20px;
+  float: left;
+  font-size: 1.8em;
+  font-weight: normal;
+  color: white;
+  text-transform: uppercase;
+}
+
+#left-nav{
+  width: 18%;
+  float: left;
+  height: 500px;
+  /* margin-top: -2px; */
+}
+
+#left-nav h4{
+  margin-top: -6px;
+  padding-top: 10px;
+  margin-bottom: 0px;
+  padding-left: 10px;
+  font-size: 1.8em;
+  font-weight: normal;
+  color: white;
+  text-transform: uppercase;
+}
+
+#left-nav ul{
+  margin: 0 0 0 15px;
+  padding: 0;
+  list-style-type: none;
+  text-transform: uppercase;
+}
+
+#left-nav ul li{
+  text-transform: uppercase;
+}
+
+#left-nav a{
+  margin: 15px 0 5px 0;
+  padding: 5px 0 5px 15px;
+  color: #666;
+  display:block;
+}
+
+#left-nav a:hover {
+  background-color:#CCC;
+}
+
+
+#left-nav a.selected{
+  background-color: #1C75BC;
+  color: white;
+}
+
+#lesson-nav {
+  margin-top: 40px;
+}
+
+#challenge-nav {
+  margin-top: 30px;
+}
+
+
+#challenge-content {
+  width: 75%;
+  min-height: 800px;
+  float: left;
+  padding: 30px 0 0 40px;
+}
+
+a.challenge-header {
+  display:block;
+  margin: 0 auto;
+  /* width: 90%; */
+  border-top: 1px #666 solid;
+  color: white;
+  font-size: 3em;
+  text-transform: uppercase;
+  padding: 3px 0 3px 0;
+}
+
+a.challenge-header:last-child{
+  border-bottom: 1px #666 solid;
+}
+
+.challenge-submission {
+  width: 25px;
+  height: 25px;
+  float: right;
+  margin: 10px;
+  background-color: #aaa;
+}
+
+.submitted {
+  background-color: #1C75BC;
+}
+
+.challenge-selections {
+  margin: 0 auto;
+  /* width: 90%; */
+  border-bottom: 1px #999 solid;
+}
+
+.challenge-selections ul{
+  list-style-type: none;
+  font-size: 1.2em;
+  padding-left: 0px;
+  margin: 10px 0;
+}
+
+.challenge-selections ul li{
+  display: inline;
+}
+
+.challenge-selections ul li a{
+  color: #1C75BC;
+  padding: 5px 30px;
+}
+
+.challenge-selections .selected {
+  background-color: #1C75BC;
+  color: white;
+}
+
+#challenge-sections {
+  margin-bottom: 40px;
+}
+
+#challenge-sections h3{
+  color: #444;
+  font-size: 1.6em;
+  text-transform: uppercase;
+  padding: 0;
+  margin: 15px 0;
+  
+}
+
+#challenge-files {
+  float: right;
+  background-color: #1C75BC;
+  padding: 5px 10px;
+  text-transform: uppercase;
+  color: white;
+}
+
+.border-top {
+  border-top: 1px #999 dashed;
+}
+
+#challenge-main img {
+  margin-bottom: 40px;
+}
+
+#challenge-main img {
+  box-shadow: 0px 5px 8px #888;
+}
+
+#challenge-submit{
+  margin-bottom: 40px;
+}
+
+#upload-file-container p{
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 10px 20px 0 0;
+}
+
+#upload-file-container label{
+  display: block;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+#upload-input-container { 
+  float: left;
+}
+
+#upload-input-container p{
+  float: none;
+  margin: 3px 0 0 0;
+  padding: 0;
+  width: 100%;
+  font-size: .9em;
+}
+
+#upload_target{
+  width:0;
+  height:0;
+  border:0;
+}
+
+#submit-link-container p{
+  width: 30%;
+  float: left;
+  margin: 0;
+  padding: 10px 20px 0 0;
+}
+
+#submit-link-container label{
+  display: block;
+  color: #666;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+#submit-input-container { 
+  float: left;
+}
+
+#submit-input-container p{
+  float: none;
+  margin: 3px 0 0 0;
+  padding: 0;
+  width: 100%;
+  font-size: .9em;
+}
+
+#submit-answer-button {
+  padding-right: 80px;
+}
+
+#submit-answer-button span {
+  color: #666;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  float: right;
+  padding: 10px 270px 10px 0;
+}
+
+#submit-answer-button input {
+  float: right;
+  height: 30px;
+}

@@ -1,0 +1,15 @@
+<% if @challenge_list && @challenge_list.many? -%>
+  <div class="challenge-selections">
+    <ul>
+      <% @challenge_list.each_with_index do |ch,index| -%>
+        <% linkClass = ( ch.id == @current_challenge.id ) ?
+                         'challenge-subnav selected' : 'challenge-subnav' -%>
+
+        <li><%= link_to "#{index + 1} #{ch.title}", 
+                        categorized_challenge_path(@skill.slug,ch.id),
+                        :class => linkClass %></li>
+      <% end -%>
+    </ul>
+
+  </div>
+<% end -%>
