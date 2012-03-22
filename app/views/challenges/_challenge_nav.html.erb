@@ -2,11 +2,11 @@
 
   <%= link_to c.title,
           categorized_challenge_path(@skill.slug,c.first_child),
-          :class => "challenge-header" %>
+          :class => "accordian-header" %>
 <% end -%>
 
 <% if can? :create, Challenge -%>
   <%= link_to "+ Add Challenge", new_categorized_challenge_path(@skill.slug), 
-        :class => "challenge-header" %>
+        :class => "accordian-header add-button" %>
 <% end -%>
 

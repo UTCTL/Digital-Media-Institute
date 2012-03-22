@@ -45,13 +45,10 @@
   <script>
 
     var answerForm;
-    initCallback = function(){
+    var imageFormCallback = function(){
       answerForm = imageUploadForm({ form_id: "#new_submission", loading_id:"#loading_image" });
-      console.log('InitCallback');
+      console.log('ImageFormCallback');
     }
     
-  <% if !request.xhr? -%>
-      $(initCallback);
-  <% end -%>
   </script>
 </div>

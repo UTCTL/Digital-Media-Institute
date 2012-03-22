@@ -15,11 +15,11 @@
 <% if can? :update, Lesson %>
   <div id="adminLinks">
     <% if @skill %>
-      <%= link_to "Edit", edit_categorized_lesson_path(@skill.slug) %>
+      <%= link_to "Edit", edit_categorized_lesson_path(@skill.slug), :class => "edit-link" %>
       <%= link_to "Delete from this Skill", categorized_lesson_path, :class => 'destructive',
         :remote => true, :method => :delete, :confirm => "Are you Sure?" %>
     <% elsif %>
-      <%= link_to "Edit", edit_lesson_path %>
+      <%= link_to "Edit", edit_lesson_path, :class => "edit-link" %>
       <%= link_to "Delete", lesson_path, :class => 'destructive', :remote => true, :method => :delete,
       :confirm => "Are you sure?" %>
     <% end %>
@@ -34,7 +34,7 @@
   <%= render "videoplayer", :player_link => player_link(@lesson.link) %>
 <% end %>
   
-<div id="lessonContent" class="itemContent">
+<div id="lessonContent" class="itemContent clear">
   <%= sanitize @lesson.content %>
 </div>
 
@@ -43,6 +43,7 @@
     <%= render @submission %>
   <% elsif can? :create, Submission -%>
     <%= render :partial => 'submissions/image_form', :locals => { :answerable => @lesson } %>
+    <script>$("#lesson-accordian").ajax_accordian("setPrimaryCallback",imageFormCallback);</script>
   <% end -%>
 <% end -%>
 
@@ -53,7 +54,7 @@
 <script>
   <% if(request.xhr?) -%>
     var lessonDestroyCallback = function(url){ 
-      window.location.reload();
+      $("#lesson-accordian").ajax_accordian("removeHeader");
     };
   <% else -%>
     var lessonDestroyCallback = function(url){ window.location = url };

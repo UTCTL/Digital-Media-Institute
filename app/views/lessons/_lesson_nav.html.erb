@@ -2,10 +2,10 @@
 
 <% lessons.each do |l| -%>
   <%= link_to l.title, categorized_lesson_path(@skill.slug,l), 
-                                    :class => "challenge-header" %>
+                                    :class => "accordian-header" %>
 <% end -%>
 
 <% if can? :create, Lesson -%>
   <%= link_to "+ Add Lesson", new_categorized_lesson_path(@skill.slug),
-                              :class => "challenge-header" %>
+                              :class => "accordian-header add-button" %>
 <% end -%>

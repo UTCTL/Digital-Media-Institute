@@ -1,10 +1,26 @@
 .accordian_content{
+  position:relative;
+  overflow:hidden;
   -webkit-transition: height .5s ease;
   -moz-transition: height .5s ease;
-  overflow:hidden;
 }
 
 .inner_content{
-  visibility:hidden;
+  position:absolute;
+  /* visibility:hidden; */
+  width:1350px;
+  padding-bottom:20px;
+  -webkit-transition: left .5s ease;
+  -moz-transition: left .5s ease;
+}
+
+.accordian-view{
+  float:left;
+  width:655px;
+  padding:10px;
+}
+
+.aux{
+  background-color:#ddd;
 }
 

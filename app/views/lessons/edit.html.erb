@@ -3,16 +3,23 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'lesson_nav' %>
-  <%  url = categorized_lesson_path(@skill.slug,@lesson) -%>
-<% else -%>
-  <%  url = lesson_path(@lesson) -%>
-
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'lesson_nav' %>
+    <h2>Edit Lesson</h2>
+  <% end -%>
 <% end -%>
 
-<h2>Edit Lesson</h2>
+
+<%  url = (@skill) ? categorized_lesson_path(@skill.slug,@lesson) : lesson_path(@lesson) -%>
+
+<% if request.xhr? -%>
+  <div id="adminLinks">
+    <%= link_to "< Back", url, :class => "back-link" %>
+  </div>
+  <div class="clear"></div>
+<% end -%>
 
 <%= form_for(@lesson, :url => url, :remote => request.xhr?) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
@@ -31,9 +38,9 @@
 
 <script>
   var lform;
-  initCallback = function(){ lform = lessonForm(".edit_lesson") };
+  auxCallback = function(){ lform = lessonForm(".edit_lesson") };
 
   <% if !request.xhr? -%>
-      $(initCallback);
+      $(auxCallback);
   <% end -%>
 </script>

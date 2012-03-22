@@ -245,7 +245,7 @@
   padding: 30px 0 0 40px;
 }
 
-a.challenge-header {
+a.accordian-header {
   display:block;
   margin: 0 auto;
   /* width: 90%; */
@@ -256,7 +256,7 @@ a.challenge-header {
   padding: 3px 0 3px 0;
 }
 
-a.challenge-header:last-child{
+a.accordian-header:last-child{
   border-bottom: 1px #666 solid;
 }
 
@@ -302,6 +302,7 @@ a.challenge-header:last-child{
 #challenge-sections {
   margin-bottom: 40px;
 }
+
 
 #challenge-sections h3{
   color: #444;

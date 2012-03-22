@@ -4,10 +4,12 @@
 <% end %>
 
 <% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'challenge_nav' %>
+  <div id="challenge-accordian">
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'challenge_nav' %>
+  </div>
 <% end -%>
 </ul>
 
 
-<script>$(function(){ $(".challenge-header").ajax_accordian() })</script>
+<script>$(function(){ $("#challenge-accordian").ajax_accordian() })</script>
