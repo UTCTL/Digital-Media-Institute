@@ -13,6 +13,15 @@
 <% end -%>
 
 <script>
+  var lessonDestroyCallback = function(){ 
+    $("#lesson-accordian").ajax_accordian("removeHeader");
+  };
+
+  var lessonCreateCallback = function(obj){
+    $("#lesson-accordian").ajax_accordian("close");
+    $("#lesson-accordian").ajax_accordian("addHeader",obj);
+  }
+
   $(function(){
     $("#lesson-accordian").ajax_accordian();
   });

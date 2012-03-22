@@ -12,4 +12,16 @@
 </ul>
 
 
-<script>$(function(){ $("#challenge-accordian").ajax_accordian() })</script>
+<script>
+  var challengeDestroyCallback = function(){ 
+    window.location.reload();
+  };
+
+  var challengeCreateCallback = function(obj){
+    window.location.reload();
+  }
+
+  $(function(){
+    $("#challenge-accordian").ajax_accordian();
+  });
+</script>

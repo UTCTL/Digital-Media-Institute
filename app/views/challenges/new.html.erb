@@ -13,7 +13,7 @@
 
 <% url = (@skill) ? categorized_challenge_index_path(@skill.slug) : challenges_path() -%>
 
-<%= form_for(@current_challenge, :url => url, :remote => request.xhr?) do |f| %>
+<%= form_for(@current_challenge, :url => url, :remote => true) do |f| %>
   <%= render "shared/error_messages", :obj => @current_challenge %>
   
   <% if @challenge_category %>

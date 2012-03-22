@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
   before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show,:destroy]
   before_filter :get_related_challenges, :only => [:show,:edit]
-  layout :get_layout
+  layout "content_only", :unless => :index
 
   def get_skill_nav
     if params[:slug]
@@ -24,6 +24,7 @@ class ChallengesController < ApplicationController
 
   def index
     authorize! :index, Challenge
+    render :index, :layout => "training_page"
   end
 
   def new
@@ -62,7 +63,10 @@ class ChallengesController < ApplicationController
       end
 
       if @current_challenge.valid?
-        redirect_to redirect_path, :flash => { :success => "Challenge Added."}
+        respond_to do |format|
+          format.html { redirect_to redirect_path, :flash => { :success => "Challenge Added."} }
+          format.js { render :js => "parent.challengeCreateCallback()"}
+        end
       else
         @category = @skill.ancestors.last
         render :new
@@ -124,7 +128,7 @@ class ChallengesController < ApplicationController
 
     respond_to do |format|
       format.html {redirect_to redirect_path, :flash => {:success => "Challenge Deleted!"}}
-      format.js { render :js => "challengeDestroyCallback('#{redirect_path}')"}
+      format.js { render :js => "parent.challengeDestroyCallback('#{redirect_path}')"}
 
     end
   end
@@ -139,9 +143,5 @@ class ChallengesController < ApplicationController
     end
   end
 
-  private
 
-  def get_layout
-    (request.xhr?) ? false : "training_page"
-  end
 end

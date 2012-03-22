@@ -16,7 +16,7 @@
 <%  url = (@skill) ? categorized_lesson_index_path(@skill.slug) : lessons_path() -%>
 
 
-<%= form_for(@lesson, :url => url, :remote => request.xhr?) do |f| %>
+<%= form_for(@lesson, :url => url, :remote => true) do |f| %>
   <%= render "shared/error_messages", :obj => @lesson %>
   
   <%= render "fields", :f => f %>

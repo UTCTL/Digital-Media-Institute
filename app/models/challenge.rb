@@ -27,7 +27,8 @@ class Challenge < ActiveRecord::Base
                    :joins => :skill_challenges,
                    :conditions => { 
                      :skill_challenges => { :parent_id => self.skill_challenges.first.parent_id }
-                   })
+                   },
+                   :order => "skill_challenges.lft")
   end
   
 end

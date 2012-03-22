@@ -5,7 +5,7 @@ class LessonsController < ApplicationController
   include LessonsHelper
   before_filter :get_skill_tree, :only => [:index,:new,:edit,:show]
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show]
-  layout :get_layout
+  layout "content_only", :unless => :index
 
   def get_skill_nav
     if params[:slug]
@@ -22,6 +22,8 @@ class LessonsController < ApplicationController
     else
       @lessons = Lesson.all
     end
+
+    render :index, :layout => "training_page"
   end
 
   def new
@@ -125,7 +127,7 @@ class LessonsController < ApplicationController
 
     respond_to do |format|
       format.html { redirect_to redirect_path, :flash => {:success => "Lesson Deleted."} }
-      format.js { render :js => "lessonDestroyCallback('#{redirect_path}')" }
+      format.js { render :js => "parent.lessonDestroyCallback()" }
     end
   end
 
@@ -174,7 +176,4 @@ class LessonsController < ApplicationController
 
   private
 
-  def get_layout
-    (request.xhr?) ? false : "training_page"
-  end
 end

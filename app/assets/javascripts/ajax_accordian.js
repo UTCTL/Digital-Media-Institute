@@ -15,14 +15,18 @@
     currentHeader = this;
 
     prevContainer = currentContainer;
-    var containerHTML = "<div class=\"accordian_content\">";
-    containerHTML    += "<div class=\"inner_content\">";
-    containerHTML    += "<div class=\"accordian-view primary\"></div>"
-    containerHTML    += "<div class=\"accordian-view aux\"></div>"
-    containerHTML    += "<div class=\"clear\"</div>";
-    containerHTML    += "</div></div>";
+    // var containerHTML = "<div class=\"accordian_content\">";
+    // containerHTML    += "<div class=\"inner_content\">";
+    // containerHTML    += "<div class=\"accordian-view primary\"></div>"
+    // containerHTML    += "<div class=\"accordian-view aux\"></div>"
+    // containerHTML    += "<div class=\"clear\"</div>";
+    // containerHTML    += "</div></div>";
 
-    currentContainer = $(containerHTML);
+    currentContainer = $("<iframe class=\"accordian_content\"></iframe>");
+
+    $(currentHeader).after(currentContainer);
+    currentContainer.attr("src",this.href);
+    currentContainer.load(content_onResult);
 
     //TODO Needs update to support other browsers
     currentContainer.on("webkitTransitionEnd",function(){
@@ -33,29 +37,29 @@
 
 
 
-      // $(".inner_content",this).css("visibility","visible");
+      $(".inner_content",this).css("visibility","visible");
     });
 
-    $(".inner_content",currentContainer).on("webkitTransitionEnd", function(){
+    // $(".inner_content",currentContainer).on("webkitTransitionEnd", function(){
 
-      if(typeof auxCallback === "function"){
+    //   if(typeof auxCallback === "function"){
 
-        if(auxViewVisible){
-          auxCallback();
-        }
-        else{
-          $(".aux",currentContainer).empty();
-        }
-      }
+    //     if(auxViewVisible){
+    //       auxCallback();
+    //     }
+    //     else{
+    //       $(".aux",currentContainer).empty();
+    //     }
+    //   }
 
-    });
+    // });
 
-    currentContainer.on("click",".challenge-subnav",function(){
-      $.ajax({url:this.href,dataType:"html",success:content_onResult});
-      return false;
-    });
+    // currentContainer.on("click",".challenge-subnav",function(){
+    //   $.ajax({url:this.href,dataType:"html",success:content_onResult});
+    //   return false;
+    // });
 
-    $.ajax({url:this.href,dataType:"html",success:content_onResult});
+    // $.ajax({url:this.href,dataType:"html",success:content_onResult});
 
     return false;
   }
@@ -76,28 +80,20 @@
 
   var content_onResult = function(data){
     if(currentHeader){
-      var containerHeight = 0;
+      // var containerHeight = 0;
 
-      $(".primary",currentContainer).html(data);
+      // $(".primary",currentContainer).html(data);
 
-      $(currentHeader).after(currentContainer);
+      // $(currentHeader).after(currentContainer);
 
       if(prevContainer){
         prevContainer.css("height",0);
+        prevContainer.addClass("remove");
       }
 
-      containerHeight = $(".inner_content",currentContainer).height();
-      console.log("height = "+containerHeight);
+    // containerHeight = this.contentDocument.document.getElementById("content_container").style.height;
 
-      if(typeof primaryCallback === "function")
-        primaryCallback();
-
-      $(".inner_content",currentContainer).css("left",0);
-      //height wasn't registering correctly,this pushes it to the next render
-      setTimeout(function(){
-
-        currentContainer.css("height",containerHeight)
-      },0);
+      currentContainer.css("height",800);
     }
 
   };

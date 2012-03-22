@@ -1,13 +1,16 @@
 .accordian_content{
   position:relative;
   overflow:hidden;
+  border:none;
+  height:0;
+  width:675px;
   -webkit-transition: height .5s ease;
   -moz-transition: height .5s ease;
 }
 
 .inner_content{
   position:absolute;
-  /* visibility:hidden; */
+  visibility:hidden;
   width:1350px;
   padding-bottom:20px;
   -webkit-transition: left .5s ease;
