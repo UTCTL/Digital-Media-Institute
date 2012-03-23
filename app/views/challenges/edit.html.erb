@@ -3,15 +3,16 @@
   <%= render "shared/sidebar_nav"%>
 <% end %>
 
-<% if @skill -%>
-  <h2><%= short_title @skill %></h2>
-  <%= render :partial => 'challenge_nav' %>
-  <%  url = categorized_challenge_path(@skill.slug,@current_challenge) -%>
-<% else -%>
-  <%  url = challenge_path(@current_challenge) -%>
+<% content_for :topnav do -%>
+  <% if @skill -%>
+    <h2><%= short_title @skill %></h2>
+    <%= render :partial => 'challenge_nav' %>
+    <h2>Edit Challenge</h2>
+  <% end -%>
 <% end -%>
 
-<h2>Edit Challenge</h2>
+<%  url = (@skill) ? categorized_challenge_path(@skill.slug,@current_challenge) : challenge_path(@current_challenge) -%>
+
 
 <%= form_for(@current_challenge, :url => url, :remote => request.xhr?) do |f| %>
   <%= render "shared/error_messages", :obj => @current_challenge %>
