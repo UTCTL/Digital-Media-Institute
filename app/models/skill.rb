@@ -21,6 +21,11 @@ class Skill < ActiveRecord::Base
   has_many :skill_challenges do
     def categories
 
+      # this awesome query joins the category skill_challenge with the first child skill_challenge
+      # this was refactored fromt the old method of arranging challenges where there
+      # was a primary challenge and sub challenges.  This should probably be changed to flatten
+      # the list and add the category as a field on each row
+
       SkillChallenge.find_by_sql([ "SELECT x.*,a.challenge_id AS first_child
                                     FROM skill_challenges x 
                                     JOIN (SELECT y.parent_id, MIN(y.lft) AS min_lft 
@@ -43,6 +48,11 @@ class Skill < ActiveRecord::Base
   has_many :challenges, :through => :skill_challenges
   
   has_many :skill_lessons
+
+  # the app was originally designed with lessons and other resources as the same resource
+  # lessons are list scope 1 and reources are list scope 2. I have since taken
+  # Other Resources out of the UI, but the functionality is still here
+
   has_many :lessons, :through => :skill_lessons do
     def list_scope(num)
       Lesson.joins(:skill_lessons)

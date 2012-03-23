@@ -7,12 +7,18 @@ class LessonsController < ApplicationController
   before_filter :get_skill_nav, :only => [:index,:new,:edit,:show]
   layout "content_only", :unless => :index
 
+  # Gets the data for displaying the sidebar nav
   def get_skill_nav
     if params[:slug]
       @skill = Skill.find_by_slug(params[:slug])
       @category = @skill.ancestors.last
     end
   end
+
+  # challenges and lessons can be categorized (attached to a skill) or uncategorized
+  # for each of the CRUD functions a challenge will be attached to the @skill object if
+  # the is one present in the request, other wise it will be added as uncategorized
+  # There is currently no view in the app to show the uncategorized challenges or lessons
 
   def index
     authorize! :index, Lesson

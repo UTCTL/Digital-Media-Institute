@@ -1,12 +1,13 @@
 <% content_for :content do %>
   <div id="shadow-div"></div> 
   <div id="scroll"></div>
-
-  <div id="flash_messages" class="grid_12">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-  </div>
+  <% if flash.any? -%>
+    <div id="flash_messages">
+      <% flash.each do |key, value| %>
+        <div class="flash <%= key %>"><%= value %></div>
+      <% end %>
+    </div>
+  <% end -%>
   <div id="content"><%= yield %></div>
 <% end %>
 

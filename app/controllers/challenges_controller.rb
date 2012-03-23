@@ -22,6 +22,11 @@ class ChallengesController < ApplicationController
 
   end
 
+  # challenges and lessons can be categorized (attached to a skill) or uncategorized
+  # for each of the CRUD functions a challenge will be attached to the @skill object if
+  # the is one present in the request, other wise it will be added as uncategorized
+  # There is current no view in the app to show the uncategorized challenges or lessons
+
   def index
     authorize! :index, Challenge
     render :index, :layout => "training_page"
@@ -36,6 +41,11 @@ class ChallengesController < ApplicationController
     end
 
   end
+
+  # categorized challenges are saved as a nested set where the root skill_challenge is the
+  # category and does not link directly to a challenge.  The child skill_challenges link to
+  # challenge objects.  This is kinda messy, and should probably be flattened into a list
+  # with a category field on each row, but it works for now
 
   def create
     @current_challenge = Challenge.new(params[:challenge])

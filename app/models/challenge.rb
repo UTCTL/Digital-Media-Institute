@@ -21,7 +21,7 @@ class Challenge < ActiveRecord::Base
   validates :title, :presence => true
   validates :content, :presence => true
 
-
+  # gets a list of challenges in the same category
   def relatedChallenges
     Challenge.all(:select => "challenges.*,skill_challenges.parent_id",
                    :joins => :skill_challenges,

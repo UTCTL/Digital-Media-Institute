@@ -14,12 +14,13 @@
     <% end -%>
 
   </div>
-
-  <div id="flash_messages" class="grid_12">
+<% if flash.any? -%>
+  <div id="flash_messages" class="training_flash">
     <% flash.each do |key, value| %>
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
   </div>
+<% end -%>
 
   <div id="content">
     <div id="left-nav" class="right-border">
