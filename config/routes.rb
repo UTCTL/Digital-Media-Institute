@@ -24,7 +24,7 @@ Dmtraining::Application.routes.draw do
     match '/', :to => 'skills#index', :as => 'training_index'
     match '/organize', :to  => 'skills#organize', :as => 'organize_skills'
 
-    scope '/:slug', :slug => /.*/, do
+    scope '/:slug', :slug => /.*/ do
 
       resources :lessons, :as => "categorized_lesson"
       resources :challenges, :as => "categorized_challenge"
