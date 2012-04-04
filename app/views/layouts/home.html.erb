@@ -1,6 +1,13 @@
 <% content_for :content do %>
   <div id="shadow-div"></div> 
-  <div id="scroll"></div>
+  <div id="scroll">
+  	<div id="intro">
+  		<h1>Digital<br />Media<br />Institute</h1>
+  		<div class="thumbnail"></div>
+  		<a id="intro_video" href="http://vimeo.com/9532951">Watch the video</a>
+  	</div>
+  	
+  </div>
   <% if flash.any? -%>
     <div id="flash_messages">
       <% flash.each do |key, value| %>
@@ -9,7 +16,18 @@
     </div>
   <% end -%>
   <div id="content"><%= yield %></div>
+  <script type="text/javascript">
+	$("#intro_video").fancybox({
+		'padding'		: 0,
+		'autoScale'		: true,
+		'transitionIn'	: 'fade',
+		'transitionOut'	: 'fade',
+		'width'			: 640,
+		'height'		: 360,
+		'href'			: 'http://player.vimeo.com/video/35582100?title=0&amp;byline=0&amp;portrait=0&autoplay=true',
+		'type'			: 'iframe'
+	});
+	</script>
 <% end %>
 
 <%= render :template => 'layouts/application' %>
-

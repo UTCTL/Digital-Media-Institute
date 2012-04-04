@@ -149,7 +149,7 @@ footer img {
   letter-spacing: .15em;
 }
 
-.site-section h3:hover{
+.site-section h3 a:hover{
   color: #1C75BC;
 }
 
@@ -286,3 +286,33 @@ footer img {
   clear: both;
 }
 
+#intro{
+  width:240px;
+  float:left;
+  height:100%;
+  background-color:rgba(0,0,0,.75);
+  margin-left:30%;
+}
+
+#intro h1{
+  color:#fff;
+  text-align:left;
+  margin-left:1em;
+  text-transform:uppercase;
+  font-size:30px;
+}
+
+#intro div.thumbnail{
+  width:192px;
+  height:108px;
+  background-color:#00ff00;
+  margin:0 auto 10px auto;
+}
+
+#intro a, #intro a:visited{
+  color:#fff;
+}
+
+#intro a:hover{
+  color:#e0e0e0;
+}
