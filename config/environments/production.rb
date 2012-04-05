@@ -1,7 +1,7 @@
 Dmtraining::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  config.action_ mailer.default_url_options = { :host => 'dmi.utexas.org' }
+  config.action_mailer.default_url_options = { :host => 'dmi.utexas.org' }
   # Code is not reloaded between requests
   config.cache_classes = true
 
