@@ -7,7 +7,7 @@ Devise.setup do |config|
   config.mailer_sender = "ctl-developers@utlists.utexas.edu"
 
   # Configure the class responsible to send e-mails.
-  config.mailer = "ActionMailer::Base"
+  #config.mailer = "ActionMailer::Base"
 
   # Automatically apply schema changes in tableless databases
   config.apply_schema = false
