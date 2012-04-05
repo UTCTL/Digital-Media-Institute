@@ -61,12 +61,11 @@ Dmtraining::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
-  require 'tlsmail'
-  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)   
-  ActionMailer::Base.delivery_method = :smtp   
-  ActionMailer::Base.perform_deliveries = true   
-  ActionMailer::Base.raise_delivery_errors = true   
-  ActionMailer::Base.smtp_settings = {   
+  config.action_mailer.enable_tls(OpenSSL::SSL::VERIFY_NONE)   
+  config.action_mailer.delivery_method = :smtp   
+  config.action_mailer.perform_deliveries = true   
+  config.action_mailer.raise_delivery_errors = true   
+  Devise::Mailer.smtp_settings = {   
     :enable_starttls_auto => true,     
     :address            => 'smtp.gmail.com',   
     :port               => 587,   
