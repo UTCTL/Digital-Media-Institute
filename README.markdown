@@ -172,6 +172,11 @@ admin/skills/13/challenges/16
 admin/users
 admin/groupings
 
+### Setting up a development environment
+
+#### heroku db:pull
+`heroku db:pull postgres://user@localhost/dmtraining_development
+
 
 
 
