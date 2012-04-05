@@ -1,7 +1,7 @@
 Dmtraining::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
-  config.action_mailer.default_url_options = { :host => 'dmitexas.herokuapp.com' }
+  config.action_mailer.default_url_options = { :host => 'dmi.utexas.org' }
   # Code is not reloaded between requests
   config.cache_classes = true
 
@@ -61,4 +61,13 @@ Dmtraining::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+  
+  ActionMailer::Base.smtp_settings = {
+    :address        => 'smtp.sendgrid.net',
+    :port           => '587',
+    :authentication => :plain,
+    :user_name      => ENV['SENDGRID_USERNAME'],
+    :password       => ENV['SENDGRID_PASSWORD'],
+    :domain         => 'dmi.utexas.org'
+  }
 end

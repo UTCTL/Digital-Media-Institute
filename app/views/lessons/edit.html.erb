@@ -38,7 +38,9 @@
 
 <script>
   var lform;
-  auxCallback = function(){ lform = lessonForm(".edit_lesson") };
+  var vimeoRegexp = /<%= LessonsHelper::VIMEO_REGEX.source %>/;
+  var youtubeRegexp = /<%= LessonsHelper::YOUTUBE_REGEX.source %>/;
+  auxCallback = function(){ lform = lessonForm(".edit_lesson",vimeoRegexp,youtubeRegexp) };
 
   <% if !request.xhr? -%>
       $(auxCallback);
