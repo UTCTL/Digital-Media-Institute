@@ -14,7 +14,6 @@ gem 'fog'
 gem "cancan"
 gem "carrierwave"
 gem "devise"
-gem "tlsmail"
 # gem "aws-s3"
 gem 's3_swf_upload', :git => 'git://github.com/nathancolgate/s3-swf-upload-plugin'
 
