@@ -16,18 +16,18 @@
 #training-banner-inner{
   width:960px;
   margin:0 auto;
+  text-align:left;
 }
 
 #training-banner h2 {
+  display:inline-block;
   background-color:rgba(0,0,0,.8);
-  height:139px;
-  width:500px;
   font-size: 6em;
   text-transform: uppercase;
   color: white;
   /* text-shadow: 1px 1px 3px #1C75BC; */
-  padding: 20px 0 0 0;
-  margin: 0px 0 0 100px;
+  padding: 10px;
+  margin: 0 0 0 100px;
 }
 
 
