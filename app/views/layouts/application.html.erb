@@ -12,16 +12,19 @@
     <div id="dmiflag" >
       <%= link_to image_tag("DMIFlag.png", :width => 107, :height => 100), root_path %>
     </div>
-    <div id="tagline">// TAG LINE?</div>
     
     <div id="topnav">
       <div id="main-nav">
+      	<ul>
+      	<!--
       <ul class="right-border">
+      -->
         <li><%= link_to "Internship", internship_index_path %></li>
         <li><%= link_to "Training", training_index_path %></li>
         <li><%= link_to "Gallery", gallery_index_path %></li>
       </ul>
       </div>
+      <!--
       <div id="user-nav">
         <ul>
           <% if(user_signed_in?) %>
@@ -38,6 +41,7 @@
           <% end %>
         </ul>
       </div>
+      -->
     </div>
     <div class="clear"></div>
     </div>

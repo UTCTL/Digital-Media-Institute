@@ -4,7 +4,7 @@ body {
   background-color: #ccc;
   font-family: Arial, sans-serif;
   font-size: .7em;
-  background-image:image-url('micro_carbon.png');
+  background-image:image-url('white_carbon.png');
   border-top:6px solid #1C75BC;
 }
 
@@ -19,7 +19,7 @@ p {
 }
 
 header{
-  background-image:image-url('bgnoise_lg.png');
+  background-image:url('white_carbon.png');
   background-color:#333;
   width:100%;
   
@@ -36,11 +36,11 @@ header div.inner {
 footer {
   height: 70px;
   /* background-color: red; */
-  border-top:6px solid #e0e0e0;
   padding-top: 30px;
   background-color: #222; 
   text-align: center;
   clear:both;
+  box-shadow: 0px 0px 12px 0 #333;
 }
 
 footer img {
@@ -60,13 +60,14 @@ footer img {
   background-repeat:no-repeat;
   margin: 0 auto;
   margin-bottom: 16px;
-  box-shadow:0px 0px 10px 4px #000;
-  border:2px solid #e0e0e0;
+  box-shadow:0px 0px 10px 4px #666;
   background-color:#333;
+  transition: color 1s linear;
 }
 
 .large-icon:hover {
   background-color: rgb(36,118,184);
+  border-radius:20px;
 }
 
 #internship-icon {
@@ -79,10 +80,8 @@ footer img {
 
 #gallery-icon {
   background-image: image-url("film.png");
-  transform: rotate(33deg);
-  -moz-transform: rotate(33deg);
-  -webkit-transform: rotate(33deg);
 }
+
 
 #shadow-div {
   box-shadow: 0px 0px 4px #333;
@@ -91,16 +90,22 @@ footer img {
 }
 
 #scroll {
+  width:100%;
   margin: 0 auto;
   /* border: 1px blue solid; */
   text-align: center;
   border-top: 2px #e0e0e0 solid;
   border-bottom: 2px #e0e0e0 solid;
   /* box-shadow: 0px 25px 5px #888; */
-  box-shadow: 0px 0px 12px 2px #000;
+  box-shadow: 0px 0px 12px 0 #333;
   background: image-url("dmiHomeBanner.jpg") no-repeat scroll center;
   height: 366px;
   background-color: black;
+}
+
+#scroll-inner{
+  margin:0 auto;
+  width:960px;
 }
 
 #content {
@@ -139,7 +144,7 @@ footer img {
 
 .site-section h3{
   /* box-shadow: 0px 5px 5px #888; */
-  color: white;
+  color: #000;
   text-transform: uppercase;
   font-size: 1.7em;
   margin: 0 0 14px 0;
@@ -147,7 +152,7 @@ footer img {
   letter-spacing: .15em;
 }
 
-.site-section h3 a:hover{
+.site-section a h3:hover {
   color: #1C75BC;
 }
 
@@ -159,7 +164,7 @@ footer img {
   width: 70%;
   margin: 0 auto;
   padding-bottom: 18px;
-  color: #e0e0e0;
+  color: #333;
 }
 
 .site-section a{
@@ -204,7 +209,7 @@ footer img {
 }
 
 #topnav ul li{  
-  font-size: 1.1em;
+  font-size: 1.4em;
 }
 
 #main-nav {
@@ -290,13 +295,12 @@ footer img {
 }
 
 #intro{
-  width:425px;
-  float:left;
-  height:75%;
+  width:450px;
+  height:316px;
   background-color:rgba(0,0,0,.80);
-  margin-left:25%;
-  box-shadow: 5px 5px 5px #000;
   text-align: center;
+  padding:50px 0 0 0;
+  margin-left:100px;
 }
 
 #intro h1{
@@ -318,10 +322,10 @@ footer img {
 }
 
 #intro div.thumbnail{
-  width:215px;
-  height:121px;
+  width:400px;
+  height:225px;
   background-image:url(dmivideothumbnail.jpg);
-  margin: 5px auto 10px auto;
+  margin: 0 auto 10px auto;
   box-shadow: 2px 2px 8px #666;
   
 }
@@ -346,9 +350,29 @@ footer img {
 }
 
 #intro a, #intro a:visited{
-  color:#555;
+  font-size:2em;
+  color:#e0e0e0;
 }
 
 #intro a:hover{
   color:#e0e0e0;
+}
+
+#coming-soon{
+  color:#000;
+  font-size:10em;
+  transform:rotate(-45deg);
+  -moz-transform:rotate(-45deg);
+  -webkit-transform:rotate(-45deg);
+  float:left;
+  position:absolute;
+  text-transform:uppercase;
+  font-weight:bold;
+  opacity:.8;
+  margin:20px 0 0 0;
+  width:960px;
+}
+
+.gallery-coming-soon{
+  margin-top:-800px !important;
 }
